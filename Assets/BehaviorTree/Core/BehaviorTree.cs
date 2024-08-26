@@ -31,7 +31,7 @@ namespace BT
         private const string UNDO_REDO_DELETE_NODE_ID = "Behavior Tree (DeleteNode)";
         [HideInInspector] public bool IsMinimapDisplayed = false;
         [HideInInspector] public bool IsBlackboardDisplayed = false;
-        // the values that center the view at the zoom of one
+        // the values that center the view at the zoom of one.
         [HideInInspector] public Vector3 ViewPosition = new Vector3(431, 358, 0f);
         [HideInInspector] public Vector3 ViewZoom = Vector3.one;
 

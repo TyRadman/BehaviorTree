@@ -279,6 +279,11 @@ public class BehaviorTreeEditor : EditorWindow
         EditorApplication.playModeStateChanged -= OnPlayerModeStateChanged;
         EditorApplication.playModeStateChanged += OnPlayerModeStateChanged;
 
+        if (Window == null)
+        {
+            Window = this;
+        }
+
         // reinitialize the window after recompilation
         if (GetSettings().LastSelectedBehaviorTree != null)
         {
