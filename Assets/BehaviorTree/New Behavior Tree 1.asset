@@ -17,35 +17,13 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: c9aeb3f26391edb4f9c2ef179573ca29
-  Position: {x: -188.06248, y: 166.48752}
+  Position: {x: -176.09775, y: 166.00003}
   ViewDetails:
     Name: Parallel
     Description: 
   Children:
-  - {fileID: 7248940234983473958}
   - {fileID: -137445886426513323}
---- !u!114 &-7059999520422384627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c557a60da994f6e4e80df3aeb4f1a2ef, type: 3}
-  m_Name: RootNode
-  m_EditorClassIdentifier: 
-  State: 0
-  _isStarted: 0
-  Blackboard: {fileID: 710772736044294976}
-  Agent: {fileID: 0}
-  GUID: 11a1c6e5b5473de48952e96b3ae95bd1
-  Position: {x: 0, y: 0}
-  ViewDetails:
-    Name: Root
-    Description: 
-  Child: {fileID: -8065706114420773898}
+  - {fileID: 7248940234983473958}
 --- !u!114 &-6471702116067880049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,11 +41,33 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: 1af1b39704b1b324db8b0686386aeb03
-  Position: {x: 0.000022888184, y: 525.935}
+  Position: {x: -25.999971, y: 554}
   ViewDetails:
     Name: Print
     Description: 
   _message: 
+--- !u!114 &-1007909553852326468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c557a60da994f6e4e80df3aeb4f1a2ef, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  State: 0
+  _isStarted: 0
+  Blackboard: {fileID: 710772736044294976}
+  Agent: {fileID: 0}
+  GUID: caffe181561118e408afd25de780e58a
+  Position: {x: -176, y: 7}
+  ViewDetails:
+    Name: Root
+    Description: 
+  Child: {fileID: -8065706114420773898}
 --- !u!114 &-137445886426513323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +85,7 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: e9a129534f8782043ad3fff05b6c131b
-  Position: {x: -250.99997, y: 352.50003}
+  Position: {x: -384.57248, y: 404}
   ViewDetails:
     Name: Sequence
     Description: 
@@ -103,20 +103,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30b5fbc36ae5f1b498af6acf767bf414, type: 3}
   m_Name: New Behavior Tree 1
   m_EditorClassIdentifier: 
-  RootNode: {fileID: -7059999520422384627}
+  RootNode: {fileID: -1007909553852326468}
   TreeState: 0
   Nodes:
-  - {fileID: -7059999520422384627}
   - {fileID: 7248940234983473958}
   - {fileID: -6471702116067880049}
   - {fileID: -8065706114420773898}
   - {fileID: 9160687288809519710}
   - {fileID: -137445886426513323}
+  - {fileID: -1007909553852326468}
   BlackboardContainer: {fileID: 710772736044294976}
-  IsMinimapDisplayed: 0
+  IsMinimapDisplayed: 1
   IsBlackboardDisplayed: 0
-  ViewPosition: {x: 440, y: 60, z: 0}
-  ViewZoom: {x: 0.7561437, y: 0.7561437, z: 1}
+  ViewPosition: {x: 597, y: 270, z: 0}
+  ViewZoom: {x: 1, y: 1, z: 1}
 --- !u!114 &710772736044294976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: 349930d324052c74284468f245562a4d
-  Position: {x: 0.000019788742, y: 301}
+  Position: {x: -26.44998, y: 404.00003}
   ViewDetails:
     Name: Sequence
     Description: 
@@ -173,7 +173,7 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: 44d205ff7319d0440886d24c62a704fc
-  Position: {x: -178.53748, y: 563.385}
+  Position: {x: -384.57248, y: 554}
   ViewDetails:
     Name: Print
     Description: 

@@ -133,37 +133,25 @@ public class BehaviorTreeView : GraphView
         {
             graphViewChange.elementsToRemove.ForEach(e =>
             {
-                NodeView nodeView = e as NodeView;
-
-                if(nodeView != null)
+                if (e is NodeView nodeView)
                 {
-                    _tree.DeleteNode(nodeView.Node);
+                    if (nodeView != null)
+                    {
+                        if(nodeView.Node is RootNode)
+                        {
+                            EditorUtility.DisplayDialog("Warning", "The Root node cannot be deleted. Reopen the behavior tree and connect the root node back.", "OK");
+                        }
+
+                        _tree.DeleteNode(nodeView.Node);
+                    }
                 }
 
-                // TODO: check the type before casting
-                Edge edge = e as Edge;
-
-                if (edge != null)
+                if (e is Edge edge)
                 {
                     NodeView parentView = edge.output.node as NodeView;
                     NodeView childView = edge.input.node as NodeView;
                     parentView.Node.RemoveChild(childView.Node);
                 }
-
-                //if (e is NodeView nodeView)
-                //{
-                //    if (nodeView != null)
-                //    {
-                //        _tree.DeleteNode(nodeView.Node);
-                //    }
-                //}
-
-                //if (e is Edge edge)
-                //{
-                //    NodeView parentView = edge.output.node as NodeView;
-                //    NodeView childView = edge.input.node as NodeView;
-                //    parentView.Node.RemoveChild(childView.Node);
-                //}
             });
         }
 

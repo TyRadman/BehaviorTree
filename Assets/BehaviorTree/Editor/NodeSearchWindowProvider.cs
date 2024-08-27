@@ -14,6 +14,7 @@ public class NodeSearchWindowProvider : ScriptableObject, ISearchWindowProvider
     private BehaviorTreeEditor _behaviorTreeEditor;
     private Texture2D _icon;
     public static NodeSearchWindowProvider Instance;
+    private BehaviorTreeSearchDirectories _nodesDictionary;
 
     public NodeSearchWindowProvider(BehaviorTreeView treeView)
     {
@@ -59,11 +60,11 @@ public class NodeSearchWindowProvider : ScriptableObject, ISearchWindowProvider
 
     private void GenerateNodeEntries(List<SearchTreeEntry> tree, SearchTreeGroupEntry rootGroup)
     {
-        BehaviorTreeSearchDirectories dictionary = GetMenuOptionsDictionary();
-       
-        dictionary.RefreshDictionary();
+        _nodesDictionary = GetMenuOptionsDictionary();
 
-        var sortedDirectories = dictionary.Directories.OrderBy(d => d.Directory).ToList();
+        _nodesDictionary.RefreshDictionary();
+
+        var sortedDirectories = _nodesDictionary.Directories.OrderBy(d => d.Directory).ToList();
 
         // cache for tracking existing group paths
         var groupPaths = new Dictionary<string, SearchTreeGroupEntry>();
@@ -114,20 +115,25 @@ public class NodeSearchWindowProvider : ScriptableObject, ISearchWindowProvider
 
     private BehaviorTreeSearchDirectories GetMenuOptionsDictionary()
     {
-        BehaviorTreeSearchDirectories dictionary = AssetDatabase.FindAssets($"t:{nameof(BehaviorTreeSearchDirectories)}")
+        if(_nodesDictionary != null)
+        {
+            return _nodesDictionary;
+        }
+
+        _nodesDictionary = AssetDatabase.FindAssets($"t:{nameof(BehaviorTreeSearchDirectories)}")
                .Select(guid => AssetDatabase.LoadAssetAtPath<BehaviorTreeSearchDirectories>(AssetDatabase.GUIDToAssetPath(guid)))
                .FirstOrDefault();
 
         // if there is no dictionary, then create one
-        if (dictionary == null)
+        if (_nodesDictionary == null)
         {
             string path = BehaviorTreeSettings.CORE_DIRECTORY;
-            dictionary = ScriptableObject.CreateInstance<BehaviorTreeSearchDirectories>();
-            AssetDatabase.CreateAsset(dictionary, path);
+            _nodesDictionary = ScriptableObject.CreateInstance<BehaviorTreeSearchDirectories>();
+            AssetDatabase.CreateAsset(_nodesDictionary, path);
             AssetDatabase.SaveAssets();
         }
 
-        return dictionary;
+        return _nodesDictionary;
     }
 
     private void GenerateNodesScriptCreationEntries(List<SearchTreeEntry> tree)

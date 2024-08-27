@@ -7,7 +7,7 @@ namespace BT.Nodes
 {
     public class RootNode : BaseNode
     {
-        [HideInInspector]
+        //[HideInInspector]
         [SerializeField]
         private BaseNode Child;
 
