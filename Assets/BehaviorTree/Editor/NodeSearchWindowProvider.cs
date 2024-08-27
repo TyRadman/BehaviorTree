@@ -13,9 +13,11 @@ public class NodeSearchWindowProvider : ScriptableObject, ISearchWindowProvider
     private NodeScriptGenerator _scriptGenerator;
     private BehaviorTreeEditor _behaviorTreeEditor;
     private Texture2D _icon;
+    public static NodeSearchWindowProvider Instance;
 
     public NodeSearchWindowProvider(BehaviorTreeView treeView)
     {
+        Instance = this;
         _graphView = treeView;
         _scriptGenerator = _graphView.ScriptGenerator;
         _behaviorTreeEditor = _graphView.BehaviorTreeEditor;

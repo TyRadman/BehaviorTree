@@ -8,7 +8,7 @@ namespace BT.Nodes
 {
     public abstract class CompositeNode : BaseNode
     {
-        [HideInInspector]
+        //[HideInInspector]
         public List<BaseNode> Children = new List<BaseNode>();
 
         protected override void OnAwake()
@@ -19,6 +19,7 @@ namespace BT.Nodes
         public override void AddChild(BaseNode child)
         {
             Undo.RecordObject(this, "Behavior Tree (Add Child)");
+            Debug.Log($"Added {child}");
             Children.Add(child);
             base.AddChild(child);
         }

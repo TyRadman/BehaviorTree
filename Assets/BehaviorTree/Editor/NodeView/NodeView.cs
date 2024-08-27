@@ -19,6 +19,8 @@ namespace BT.NodesView
         private Label _stateLabel;
         private bool _isRunning = false;
         private VisualElement _nodeBackground;
+        private static BehaviorTreeView _view;
+        private static NodeViewPort _port;
 
         public NodeView() : base(NODE_VIEW_UXML_DIRECTORY)
         {
@@ -32,8 +34,9 @@ namespace BT.NodesView
         }
 
         #region Set up
-        public virtual void Initialize(BaseNode node)
+        public virtual void Initialize(BaseNode node, BehaviorTreeView view)
         {
+            _view = view;
             this.Node = node;
             this.viewDataKey = node.GUID;
             _stateLabel = this.Q<Label>("state-title");
@@ -125,62 +128,12 @@ namespace BT.NodesView
             EditorUtility.SetDirty(Node);
         }
 
+        #region Ports
         protected void CreatePort(Orientation orientation, Direction direction, Port.Capacity capacity)
         {
-            Port port = InstantiatePort(orientation, direction, capacity, typeof(bool));
-
-            // position and size the inner layer of the port
-            VisualElement connector = port.Q<VisualElement>("connector");
-            connector.pickingMode = PickingMode.Position;
-            connector.style.height = 100;
-            connector.style.width = 100;
-            connector.style.borderBottomWidth = 0;
-            connector.style.borderTopWidth = 0;
-
-            if(direction == Direction.Output)
-            {
-                connector.style.borderBottomRightRadius = 0;
-                connector.style.borderBottomLeftRadius = 0;
-            }
-            else
-            {
-                connector.style.borderTopRightRadius = 0;
-                connector.style.borderTopLeftRadius = 0;
-            }
-
-            // position and size the outer layer of the port
-            VisualElement cap = port.Q<VisualElement>("cap");
-            cap.pickingMode = PickingMode.Position;
-            cap.style.height = 100;
-            cap.style.width = 100;
-
-            if (direction == Direction.Output)
-            {
-                cap.style.borderBottomRightRadius = 0;
-                cap.style.borderBottomLeftRadius = 0;
-            }
-            else
-            {
-                cap.style.borderTopRightRadius = 0;
-                cap.style.borderTopLeftRadius = 0;
-            }
-
-            Label label = port.Q<Label>("type");
-            label.RemoveFromHierarchy();
-
-            if (direction == Direction.Input)
-            {
-                port.style.flexDirection = FlexDirection.Column;
-                inputContainer.Add(port);
-                InputPort = port;
-            }
-            else
-            {
-                port.style.flexDirection = FlexDirection.ColumnReverse;
-                outputContainer.Add(port);
-                OutputPort = port;
-            }
+            new NodeViewPort(this, _view, orientation, direction, capacity);
         }
+        #endregion
 
         #region Sort children based on position
         public void SortChildren()
@@ -235,15 +188,32 @@ namespace BT.NodesView
                 _stateLabel.visible = true;
             }
         }
-
-        //private void SubscribeToUpdate()
-        //{
-        //    EditorApplication.update += OnUpdate;
-        //}
-
-        //private void OnUpdate()
-        //{
-        //    if()
-        //}
     }
+
+    public class CustomEdgeConnectorListener : IEdgeConnectorListener
+    {
+        private bool _connectionSuccessful;
+
+        public bool ConnectionSuccessful => _connectionSuccessful;
+
+        public void OnDropOutsidePort(Edge edge, Vector2 position)
+        {
+            // The drop was outside a port, so the connection is not successful
+            _connectionSuccessful = false;
+        }
+
+        public void OnDrop(GraphView graphView, Edge edge)
+        {
+            // The drop was onto a valid port, check if both ends are connected
+            if (edge.input != null && edge.output != null)
+            {
+                _connectionSuccessful = true;
+            }
+            else
+            {
+                _connectionSuccessful = false;
+            }
+        }
+    }
+
 }

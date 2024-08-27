@@ -31,6 +31,7 @@ public class BehaviorTreeView : GraphView
 
     public NodeScriptGenerator ScriptGenerator { get; internal set; }
 
+    #region Initialization
     public BehaviorTreeView()
     {
         Insert(0, new GridBackground());
@@ -68,6 +69,7 @@ public class BehaviorTreeView : GraphView
         this.AddManipulator(new SelectionDragger());
         this.AddManipulator(new RectangleSelector());
     }
+    #endregion
 
     private void OnUndoRedo()
     {
@@ -138,7 +140,6 @@ public class BehaviorTreeView : GraphView
                     _tree.DeleteNode(nodeView.Node);
                 }
 
-
                 // TODO: check the type before casting
                 Edge edge = e as Edge;
 
@@ -200,13 +201,77 @@ public class BehaviorTreeView : GraphView
             nodeView = Activator.CreateInstance(nodeViewType) as NodeView;
         }
 
-        nodeView.Initialize(node);
+        nodeView.Initialize(node, this);
         nodeView.SetPosition(new Rect(position, Vector2.zero));
         // subscribe so that we call the action whenever the node is selected
         nodeView.OnNodeSelected = OnNodeSelected;
         AddElement(nodeView);
+
+        CheckForExistingConnections(nodeView);
         return nodeView;
     }
+
+    /// <summary>
+    /// Checks if the node created was the result of a port drag and drop and connect the new node to the parent/child that was dragged.
+    /// </summary>
+    /// <param name="node"></param>
+    private void CheckForExistingConnections(NodeView node)
+    {
+        if(node.Node is RootNode)
+        {
+            ConnectNodeToDraggedParent(node);
+            return;
+        }
+
+        if (node.Node is ActionNode)
+        {
+            ConnectNodeToDraggedChild(node);
+            return;
+        }
+
+        ConnectNodeToDraggedParent(node);
+        ConnectNodeToDraggedChild(node);
+    }
+
+    #region Connecting nodes to nodes that were dragged from
+    private NodeView _parentNodeDraggedFrom;
+    private NodeView _childNodeDraggedFrom;
+
+    public void SetParentNodeDraggedFrom(NodeView node)
+    {
+        _parentNodeDraggedFrom = node;
+    }
+
+    public void SetChildNodeDraggedFrom(NodeView node)
+    {
+        _childNodeDraggedFrom = node;
+    }
+
+    private void ConnectNodeToDraggedParent(NodeView node)
+    {
+        if(_parentNodeDraggedFrom == null)
+        {
+            return;
+        }
+
+        Debug.Log($"{_parentNodeDraggedFrom.Node.name}");
+        _parentNodeDraggedFrom.Node.AddChild(node.Node);
+        _parentNodeDraggedFrom = null;
+        PopulateView(_tree);
+    }
+
+    private void ConnectNodeToDraggedChild(NodeView node)
+    {
+        if (_childNodeDraggedFrom == null)
+        {
+            return;
+        }
+
+        node.Node.AddChild(_childNodeDraggedFrom.Node);
+        _childNodeDraggedFrom = null;
+        PopulateView(_tree);
+    }
+    #endregion
 
     public void UpdateNodeStates()
     {
