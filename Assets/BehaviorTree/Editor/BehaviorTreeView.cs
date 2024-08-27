@@ -149,6 +149,21 @@ public class BehaviorTreeView : GraphView
                     NodeView childView = edge.input.node as NodeView;
                     parentView.Node.RemoveChild(childView.Node);
                 }
+
+                //if (e is NodeView nodeView)
+                //{
+                //    if (nodeView != null)
+                //    {
+                //        _tree.DeleteNode(nodeView.Node);
+                //    }
+                //}
+
+                //if (e is Edge edge)
+                //{
+                //    NodeView parentView = edge.output.node as NodeView;
+                //    NodeView childView = edge.input.node as NodeView;
+                //    parentView.Node.RemoveChild(childView.Node);
+                //}
             });
         }
 
@@ -212,25 +227,24 @@ public class BehaviorTreeView : GraphView
     }
 
     /// <summary>
-    /// Checks if the node created was the result of a port drag and drop and connect the new node to the parent/child that was dragged.
+    /// Checks if the node created was the result of a port drag and drop and connect the new node to the parent/child that was dragged
     /// </summary>
     /// <param name="node"></param>
     private void CheckForExistingConnections(NodeView node)
     {
         if(node.Node is RootNode)
         {
-            ConnectNodeToDraggedParent(node);
             return;
         }
 
         if (node.Node is ActionNode)
         {
-            ConnectNodeToDraggedChild(node);
+            ConnectNodeToDraggedFromParent(node);
             return;
         }
 
-        ConnectNodeToDraggedParent(node);
-        ConnectNodeToDraggedChild(node);
+        ConnectNodeToDraggedFromParent(node);
+        ConnectNodeToDraggedFromChild(node);
     }
 
     #region Connecting nodes to nodes that were dragged from
@@ -247,20 +261,19 @@ public class BehaviorTreeView : GraphView
         _childNodeDraggedFrom = node;
     }
 
-    private void ConnectNodeToDraggedParent(NodeView node)
+    private void ConnectNodeToDraggedFromParent(NodeView node)
     {
         if(_parentNodeDraggedFrom == null)
         {
             return;
         }
 
-        Debug.Log($"{_parentNodeDraggedFrom.Node.name}");
         _parentNodeDraggedFrom.Node.AddChild(node.Node);
         _parentNodeDraggedFrom = null;
         PopulateView(_tree);
     }
 
-    private void ConnectNodeToDraggedChild(NodeView node)
+    private void ConnectNodeToDraggedFromChild(NodeView node)
     {
         if (_childNodeDraggedFrom == null)
         {
