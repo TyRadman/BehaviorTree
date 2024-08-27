@@ -53,7 +53,7 @@ namespace BT
 
             Undo.RegisterCreatedObjectUndo(node, UNDO_REDO_CREATE_NODE_ID);
 
-            node.ViewDetails.Name = node.GetType().Name.ToString();
+            node.ViewDetails.Name = ObjectNames.NicifyVariableName(node.GetType().Name.Replace("Node", string.Empty));
 
             AssetDatabase.SaveAssets();
             return node;

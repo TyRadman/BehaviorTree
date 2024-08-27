@@ -9,6 +9,11 @@ namespace BT.Nodes
     {
         [HideInInspector] public BaseNode Child;
 
+        protected override void OnAwake()
+        {
+
+        }
+
         public override void AddChild(BaseNode child)
         {
             Undo.RecordObject(this, "Behavior Tree (Add Child)");
@@ -36,6 +41,7 @@ namespace BT.Nodes
 
         public override BaseNode Clone()
         {
+            OnAwake();
             // we need to clone the node and its child and then assign the child to its new parent
             DecoratorNode node = Instantiate(this);
             node.Child = Child.Clone();
@@ -52,10 +58,15 @@ namespace BT.Nodes
 
         }
 
-        public override void StopNode()
+        public override void ForceStopNode()
         {
             State = NodeState.Success;
-            Child.StopNode();
+            Child.ForceStopNode();
+        }
+
+        public override void ClearChildren()
+        {
+            Child = null;
         }
     }
 }

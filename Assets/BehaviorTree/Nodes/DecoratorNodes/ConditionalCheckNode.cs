@@ -1,0 +1,17 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace BT.Nodes
+{
+    public abstract class ConditionalCheckNode : DecoratorNode
+    {
+        protected abstract bool IsTrue();
+
+        protected override NodeState OnUpdate()
+        {
+            NodeState state = Child.Update();
+            return IsTrue() ? state : NodeState.Failure;
+        }
+    }
+}

@@ -20,6 +20,13 @@ public class BehaviorTreeView : GraphView
     private List<NodeView> _nodesToCopy = new List<NodeView>();
 
     public List<ExposedProperty> ExposedProperties = new List<ExposedProperty>();
+    private Dictionary<Type, Type> _nodeTypeToNodeViewType = new Dictionary<Type, Type>()
+    {
+        {typeof(RootNode), typeof(RootNodeView) },
+        {typeof(ActionNode), typeof(ActionNodeView) },
+        {typeof(CompositeNode), typeof(CompositeNodeView) },
+        {typeof(DecoratorNode), typeof(DecorateNodeView) },
+    };
     //private NodeView _nodeToCopy;
 
     public NodeScriptGenerator ScriptGenerator { get; internal set; }
@@ -176,22 +183,21 @@ public class BehaviorTreeView : GraphView
     private NodeView CreateNodeView(BaseNode node, Vector2 position)
     {
         NodeView nodeView = null;
+        Type nodeType = node.GetType();
+        Type nodeViewType = null;
 
-        if (node is ActionNode)
+        foreach (var key in _nodeTypeToNodeViewType.Keys)
         {
-            nodeView = new ActionNodeView();
+            if(key.IsAssignableFrom(nodeType))
+            {
+                nodeViewType = _nodeTypeToNodeViewType[key];
+                break;
+            }
         }
-        else if (node is CompositeNode)
+
+        if(nodeViewType != null)
         {
-            nodeView = new CompositeNodeView();
-        }
-        else if (node is DecoratorNode)
-        {
-            nodeView = new DecorateNodeView();
-        }
-        else if (node is RootNode)
-        {
-            nodeView = new RootNodeView();
+            nodeView = Activator.CreateInstance(nodeViewType) as NodeView;
         }
 
         nodeView.Initialize(node);
@@ -287,6 +293,7 @@ public class BehaviorTreeView : GraphView
     {
         BaseNode node = _tree.CreateNode(nodeToCopy.Node.GetType());
         EditorUtility.CopySerialized(nodeToCopy.Node, node);
+        node.ClearChildren();
         node.GUID = GUID.Generate().ToString();
         return CreateNodeView(node, position);
     }

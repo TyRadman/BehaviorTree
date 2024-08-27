@@ -25,13 +25,23 @@ namespace BT
         {
             typeof(PrintNode), typeof(WaitNode), typeof(SequenceNode), 
             typeof(RepeatNode), typeof(SelectorNode),
-            typeof(LoopNode), typeof(InvertNode)
+            typeof(LoopNode), typeof(InvertNode), typeof(ParallelNode)
             
         };
 
         public void RefreshDictionary()
         {
             TypeCache.TypeCollection nodeTypes = TypeCache.GetTypesDerivedFrom(typeof(BaseNode));
+            List<Type> projectTypes = nodeTypes.ToList();
+
+            // Remove types that don't exist in the project
+            for (int i = Directories.Count - 1; i >= 0; i--)
+            {
+                if(!projectTypes.Exists(t => t == Directories[i].ClassType))
+                {
+                    Directories.RemoveAt(i);
+                }
+            }
 
             for (int i = Directories.Count - 1; i >= 0; i--)
             {
@@ -44,21 +54,21 @@ namespace BT
                 }
             }
 
-            foreach (Type node in nodeTypes)
+            foreach (Type nodeType in nodeTypes)
             {
-                if(Directories.Exists(d => d.ClassName == node.Name) || node.IsAbstract || node == typeof(RootNode))
+                if(Directories.Exists(d => d.ClassType == nodeType) || nodeType.IsAbstract || nodeType == typeof(RootNode))
                 {
                     continue;
                 }
 
-                string directory = DefaultNodes.Exists(n => n == node) ? "Defaults/" : "Custom/";
-                string childDirectory = $"{ObjectNames.NicifyVariableName(node.BaseType.Name + "s")}/{ObjectNames.NicifyVariableName(node.Name)}";
+                string directory = DefaultNodes.Exists(n => n == nodeType) ? "Defaults/" : "Custom/";
+                string childDirectory = $"{ObjectNames.NicifyVariableName(nodeType.BaseType.Name + "s")}/{ObjectNames.NicifyVariableName(nodeType.Name)}";
 
                 Directories.Add(new NodeSearchDirectory()
                 {
-                    ClassName = node.Name,
+                    ClassName = nodeType.Name,
                     Directory = directory + childDirectory,
-                    ClassType = node
+                    ClassType = nodeType
                 });
             }
         }

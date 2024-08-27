@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
 using BT.Nodes;
@@ -7,8 +5,6 @@ using System;
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BT.NodesView
 {
@@ -95,7 +91,7 @@ namespace BT.NodesView
             titleLabel.bindingPath = "ViewDetails.Name";
             titleLabel.Bind(new SerializedObject(Node));
 
-            if(Node.ViewDetails.Name.Length == 0)
+            if (Node.ViewDetails.Name.Length == 0)
             {
                 Node.ViewDetails.Name = Node.GetType().Name;
                 titleLabel.text = Node.ViewDetails.Name;

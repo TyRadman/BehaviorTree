@@ -48,7 +48,7 @@ namespace BT
             "namespace BT.Nodes\n{\n\t" +
             "public class #SCRIPTNAME# : ConditionalCheckNode" +
             "\n\t{" +
-            "\n\t\tpublic override bool IsTrue()" +
+            "\n\t\tprotected override bool IsTrue()" +
             "\n\t\t{\n\t\t\t// condition\n\t\t\treturn true;\n\t\t}" +
             "\n\t}\n}";
 

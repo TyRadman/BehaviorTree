@@ -11,6 +11,11 @@ namespace BT.Nodes
         [HideInInspector]
         public List<BaseNode> Children = new List<BaseNode>();
 
+        protected override void OnAwake()
+        {
+
+        }
+
         public override void AddChild(BaseNode child)
         {
             Undo.RecordObject(this, "Behavior Tree (Add Child)");
@@ -40,6 +45,7 @@ namespace BT.Nodes
 
         public override BaseNode Clone()
         {
+            OnAwake();
             // we need to clone the node and its child and then assign the child to its new parent
             CompositeNode node = Instantiate(this);
             node.Children = Children.ConvertAll(c => c.Clone());
@@ -51,10 +57,15 @@ namespace BT.Nodes
             Children = Children.OrderBy(c => c.Position.y).ToList();
         }
 
-        public override void StopNode()
+        public override void ForceStopNode()
         {
             State = NodeState.Success;
-            Children.ForEach(c => c.StopNode());
+            Children.ForEach(c => c.ForceStopNode());
+        }
+
+        public override void ClearChildren()
+        {
+            Children.Clear();
         }
     }
 }

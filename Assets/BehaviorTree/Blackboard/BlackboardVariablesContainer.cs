@@ -48,6 +48,19 @@ namespace BT
             return (T)Variables.Find(p => p.PropertyName == key).GetValue();
         }
 
+        public void SetValue<T>(string key, T value)
+        {
+            ExposedProperty property = Variables.Find(v => v.PropertyName == key);
+
+            if(property == null)
+            {
+                Debug.LogError($"Blackboard doesn't contain a property with the key {key}");
+                return;
+            }
+
+            property.SetValue(value);
+        }
+
         public Rect GetDimensions()
         {
             return new Rect(Position, Size);

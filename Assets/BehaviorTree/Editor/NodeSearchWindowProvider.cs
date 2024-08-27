@@ -149,9 +149,9 @@ public class NodeSearchWindowProvider : ScriptableObject, ISearchWindowProvider
     {
         var worldMousePosition = _graphView.GetLocalMousePosition(context.screenMousePosition, true);
 
-        if (searchTreeEntry.userData is NodeType)
+        if (searchTreeEntry.userData is NodeType type)
         {
-            _scriptGenerator.GenerateNodeScript((NodeType)searchTreeEntry.userData);
+            _scriptGenerator.GenerateNodeScript(type);
             return true;
         }
 

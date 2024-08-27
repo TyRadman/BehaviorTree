@@ -11,6 +11,11 @@ namespace BT.Nodes
         [SerializeField]
         private BaseNode Child;
 
+        protected override void OnAwake()
+        {
+
+        }
+
         protected override void OnStart()
         {
 
@@ -59,16 +64,17 @@ namespace BT.Nodes
 
         public override BaseNode Clone()
         {
+            OnAwake();
             // we need to clone the node and its child and then assign the child to its new parent
             RootNode node = Instantiate(this);
             node.Child = Child.Clone();
             return node;
         }
 
-        public override void StopNode()
+        public override void ForceStopNode()
         {
             State = NodeState.Success;
-            Child.StopNode();
+            Child.ForceStopNode();
         }
     }
 }

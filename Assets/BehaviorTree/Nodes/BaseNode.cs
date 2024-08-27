@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 namespace BT.Nodes
 {
@@ -30,6 +31,16 @@ namespace BT.Nodes
         }
 
         public NodeViewDetails ViewDetails = new NodeViewDetails();
+        
+        public virtual string GetNodeViewName()
+        {
+            return "Node Name";
+        }
+
+        public virtual void ClearChildren()
+        {
+
+        }
 #endif
 
         public NodeState Update()
@@ -46,12 +57,14 @@ namespace BT.Nodes
             if(State == NodeState.Failure || State == NodeState.Success)
             {
                 OnStop();
+                ForceStopNode();
                 _isStarted = false;
             }
 
             return State;
         }
 
+        protected abstract void OnAwake();
         protected abstract void OnStart();
         protected abstract void OnStop();
         protected abstract NodeState OnUpdate();
@@ -59,7 +72,7 @@ namespace BT.Nodes
         /// <summary>
         /// Called when the node is force-stopped
         /// </summary>
-        public abstract void StopNode();
+        public abstract void ForceStopNode();
 
         public virtual void AddChild(BaseNode child)
         {
@@ -89,6 +102,8 @@ namespace BT.Nodes
         /// <returns>The copy of the node.</returns>
         public virtual BaseNode Clone()
         {
+            // Called when the nodes are created
+            OnAwake();
             return Instantiate(this);
         }
     }

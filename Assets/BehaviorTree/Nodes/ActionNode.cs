@@ -6,6 +6,11 @@ namespace BT.Nodes
 {
     public abstract class ActionNode : BaseNode
     {
+        protected override void OnAwake()
+        {
+
+        }
+
         public override List<BaseNode> GetChildren()
         {
             base.GetChildren();
@@ -17,7 +22,7 @@ namespace BT.Nodes
             return false;
         }
 
-        public override void StopNode()
+        public override void ForceStopNode()
         {
             State = NodeState.Success;
         }
