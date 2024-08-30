@@ -15,6 +15,7 @@ namespace BT
             Tree = Tree.Clone();
             // pass the controller of the B
             Tree.Bind(gameObject);
+            Tree.Start();
         }
 
         private void Update()

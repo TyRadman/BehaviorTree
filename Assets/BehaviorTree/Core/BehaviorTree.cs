@@ -16,6 +16,11 @@ namespace BT
         public List<BaseNode> Nodes = new List<BaseNode>();
         public BlackboardVariablesContainer BlackboardContainer;
 
+        public void Start()
+        {
+            RootNode.State = NodeState.Running;
+        }
+
         public NodeState Update()
         {
             if(RootNode.State == NodeState.Running )

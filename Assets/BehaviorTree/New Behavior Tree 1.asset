@@ -110,11 +110,11 @@ MonoBehaviour:
     Name: Sequence
     Description: 
   Children:
+  - {fileID: 3013204980527009483}
   - {fileID: 7262542819757569443}
   - {fileID: -289840224620330403}
   - {fileID: -4004298558531847820}
   - {fileID: 9144768076117377972}
-  - {fileID: 3013204980527009483}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
