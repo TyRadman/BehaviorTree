@@ -257,6 +257,7 @@ public class BehaviorTreeView : GraphView
         }
 
         _parentNodeDraggedFrom.Node.AddChild(node.Node);
+        _parentNodeDraggedFrom.SortChildren();
         _parentNodeDraggedFrom = null;
         PopulateView(_tree);
     }

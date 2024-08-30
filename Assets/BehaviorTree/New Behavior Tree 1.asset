@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7718841087107639257
+--- !u!114 &-4004298558531847820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,19 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7127b1e2a2347040a9eda51db84d046, type: 3}
-  m_Name: PrintNode
+  m_Script: {fileID: 11500000, guid: 064b0d7593232a04a802fba0e4179b43, type: 3}
+  m_Name: ActionCheck
   m_EditorClassIdentifier: 
-  State: 0
+  State: 16
   IsStarted: 0
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
-  GUID: 61ff0ff8961ce11449ab111077ba6af5
-  Position: {x: 167.33328, y: 376.6667}
+  GUID: f99b5568662f1ff48b7297412d4621f6
+  Position: {x: -176.66666, y: 377.33337}
   ViewDetails:
-    Name: Print
+    Name: Action Check
     Description: 
-  _message: Hello
+  _pass: 0
 --- !u!114 &-3105025200232707075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,28 +44,6 @@ MonoBehaviour:
     Name: Repeat
     Description: 
   Child: {fileID: -137445886426513323}
---- !u!114 &-1025208445853985449
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: 
-  State: 2
-  IsStarted: 0
-  Blackboard: {fileID: 710772736044294976}
-  Agent: {fileID: 0}
-  GUID: 378b137cdddb56c4ca75e297a4f8bb6a
-  Position: {x: -359.61337, y: 376.6667}
-  ViewDetails:
-    Name: Wait
-    Description: 
-  Duration: 1
 --- !u!114 &-1007909553852326468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +66,28 @@ MonoBehaviour:
     Name: Root
     Description: 
   Child: {fileID: -3105025200232707075}
+--- !u!114 &-289840224620330403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  State: 16
+  IsStarted: 0
+  Blackboard: {fileID: 710772736044294976}
+  Agent: {fileID: 0}
+  GUID: 43d403d7eee701546bb39c5862c4d144
+  Position: {x: -324.672, y: 377.3333}
+  ViewDetails:
+    Name: Wait
+    Description: 
+  Duration: 1
 --- !u!114 &-137445886426513323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,11 +110,11 @@ MonoBehaviour:
     Name: Sequence
     Description: 
   Children:
-  - {fileID: -1025208445853985449}
-  - {fileID: 2794851651005523058}
   - {fileID: 7262542819757569443}
-  - {fileID: -7718841087107639257}
+  - {fileID: -289840224620330403}
+  - {fileID: -4004298558531847820}
   - {fileID: 9144768076117377972}
+  - {fileID: 3013204980527009483}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,16 +133,16 @@ MonoBehaviour:
   - {fileID: -137445886426513323}
   - {fileID: -1007909553852326468}
   - {fileID: -3105025200232707075}
-  - {fileID: -1025208445853985449}
   - {fileID: 7262542819757569443}
   - {fileID: 9144768076117377972}
-  - {fileID: -7718841087107639257}
-  - {fileID: 2794851651005523058}
+  - {fileID: -4004298558531847820}
+  - {fileID: -289840224620330403}
+  - {fileID: 3013204980527009483}
   BlackboardContainer: {fileID: 710772736044294976}
   IsMinimapDisplayed: 1
   IsBlackboardDisplayed: 0
-  ViewPosition: {x: 451.33334, y: 62.666668, z: 0}
-  ViewZoom: {x: 0.7561437, y: 0.7561437, z: 1}
+  ViewPosition: {x: 591.09375, y: 4.6666665, z: 0}
+  ViewZoom: {x: 0.57175326, y: 0.57175326, z: 1}
 --- !u!114 &710772736044294976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 0, y: 0}
   <Size>k__BackingField: {x: 299.99997, y: 300}
   <Variables>k__BackingField: []
---- !u!114 &2794851651005523058
+--- !u!114 &3013204980527009483
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,20 +168,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f881db70534153f47ac2afad7ae866d6, type: 3}
-  m_Name: BehaviorTreeNode
+  m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
+  m_Name: WaitNode
   m_EditorClassIdentifier: 
-  State: 0
+  State: 16
   IsStarted: 0
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
-  GUID: db36666a9d5216c45b0745a3e63453f1
-  Position: {x: -176.66669, y: 376.6667}
+  GUID: 1a5244581776e0f4681188f968c3cd60
+  Position: {x: -660.70514, y: 362.62732}
   ViewDetails:
-    Name: Behavior Tree
+    Name: Wait
     Description: 
-  _behaviorTree: {fileID: 11400000, guid: d4e4c608178dadb4499335b28ec6da2b, type: 2}
-  RootNode: {fileID: 2720384744057613063, guid: d4e4c608178dadb4499335b28ec6da2b, type: 2}
+  Duration: 1
 --- !u!114 &7262542819757569443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,12 +193,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
   m_Name: WaitNode
   m_EditorClassIdentifier: 
-  State: 0
+  State: 16
   IsStarted: 0
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: f68e47b72aa6e7f4fbb9e385494f8e75
-  Position: {x: 14.130032, y: 376.6667}
+  Position: {x: -496.5067, y: 377.33334}
   ViewDetails:
     Name: Wait
     Description: 
@@ -216,12 +215,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
   m_Name: WaitNode
   m_EditorClassIdentifier: 
-  State: 0
+  State: 16
   IsStarted: 0
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: fc09f377f4fde264793e6b8b4cfbc7f4
-  Position: {x: 296.5983, y: 376.66666}
+  Position: {x: 59.3011, y: 377.83267}
   ViewDetails:
     Name: Wait
     Description: 

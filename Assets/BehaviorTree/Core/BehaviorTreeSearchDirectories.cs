@@ -25,8 +25,8 @@ namespace BT
         {
             typeof(PrintNode), typeof(WaitNode), typeof(SequenceNode), 
             typeof(RepeatNode), typeof(SelectorNode),
-            typeof(LoopNode), typeof(InvertNode), typeof(ParallelNode)
-            
+            typeof(LoopNode), typeof(InvertNode), typeof(ParallelNode), typeof(BehaviorTreeNode)
+
         };
 
         public void RefreshDictionary()

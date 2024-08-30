@@ -19,7 +19,6 @@ namespace BT.NodesView
         private Label _stateLabel;
         private VisualElement _nodeBackground;
         private static BehaviorTreeView _view;
-        private static NodeViewPort _port;
         private NodeState _currentState = NodeState.NONE;
         private string _lastAddedClass = string.Empty;
 
@@ -178,50 +177,29 @@ namespace BT.NodesView
             RemoveFromClassList(_lastAddedClass);
 
             NodeState state = Node.State;
+            _currentState = state;
 
             switch(state)
             {
                 case NodeState.Running:
-                    _currentState = state;
                     _lastAddedClass = "running";
-                    AddToClassList(_lastAddedClass);
                     _stateLabel.text = "running";
-                    _stateLabel.visible = true;
+                    AddToClassList(_lastAddedClass);
                     break;
                 case NodeState.Failure:
-                    _currentState = state;
+                    Debug.LogError("Failed");
                     _lastAddedClass = "failure";
                     _stateLabel.text = "failure";
                     AddToClassList(_lastAddedClass);
-                    _stateLabel.visible = true;
                     break;
                 case NodeState.Success:
-                    _currentState = state;
                     _lastAddedClass = "success";
                     _stateLabel.text = "success";
                     AddToClassList(_lastAddedClass);
-                    _stateLabel.visible = true;
                     break;
             }
 
-            //if(Node.State != NodeState.Running)
-            //{
-            //    _isRunning = false;
-            //    RemoveFromClassList("running");
-            //    _stateLabel.visible = false;
-            //}
-
-            //if (_isRunning)
-            //{
-            //    return;
-            //}
-
-            //if (Node.State == NodeState.Running && Node.IsStarted)
-            //{
-            //    _isRunning = true;
-            //    AddToClassList("running");
-            //    _stateLabel.visible = true;
-            //}
+            _stateLabel.visible = true;
         }
     }
 

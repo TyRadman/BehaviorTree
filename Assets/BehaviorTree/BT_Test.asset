@@ -34,7 +34,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
   m_Name: WaitNode
   m_EditorClassIdentifier: 
-  State: 0
+  State: 2
   IsStarted: 0
   Blackboard: {fileID: 7236725654942319294}
   Agent: {fileID: 0}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adcbfa1d75c90b4fa473d14022b58ef, type: 3}
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
-  State: 0
+  State: 2
   IsStarted: 0
   Blackboard: {fileID: 7236725654942319294}
   Agent: {fileID: 0}

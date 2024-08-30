@@ -338,6 +338,7 @@ public class BehaviorTreeEditor : EditorWindow
         if(BehaviorTree != null)
         {
             _lastBehaviorTree = BehaviorTree;
+            Settings.LastSelectedBehaviorTree = BehaviorTree;
         }
     }
 
@@ -345,10 +346,12 @@ public class BehaviorTreeEditor : EditorWindow
     {
         Window.rootVisualElement.Clear();
 
-        if (_lastBehaviorTree != null)
+        if (SelectedBehaviorTree == null)
         {
-            SelectedBehaviorTree = _lastBehaviorTree;
-            OpenEditor();
+            OpenBehaviorTree(Settings.LastSelectedBehaviorTree);
+            //SelectedBehaviorTree = Settings.LastSelectedBehaviorTree;
+            //SelectedBehaviorTree = _lastBehaviorTree;
+            //OpenEditor();
         }
     }
     #endregion

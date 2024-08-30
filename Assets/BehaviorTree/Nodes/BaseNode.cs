@@ -54,10 +54,10 @@ namespace BT.Nodes
             State = OnUpdate();
 
             // if the node fails or succeeds, stop it
-            if(State == NodeState.Failure || State == NodeState.Success)
+            if (State == NodeState.Failure || State == NodeState.Success)
             {
                 OnStop();
-                ForceStopNode();
+                //ForceStopNode();
                 IsStarted = false;
             }
 
