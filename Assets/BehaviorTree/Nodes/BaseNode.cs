@@ -9,9 +9,9 @@ namespace BT.Nodes
     public abstract class BaseNode : ScriptableObject
     {
         [HideInInspector]
-        public NodeState State = NodeState.Running;
+        public NodeState State = NodeState.NONE;
         [HideInInspector]
-        public bool _isStarted = false;
+        public bool IsStarted = false;
         [HideInInspector]
         public BlackboardVariablesContainer Blackboard;
         [HideInInspector]
@@ -45,10 +45,10 @@ namespace BT.Nodes
 
         public NodeState Update()
         {
-            if(!_isStarted)
+            if(!IsStarted)
             {
                 OnStart();
-                _isStarted = true;
+                IsStarted = true;
             }
 
             State = OnUpdate();
@@ -58,7 +58,7 @@ namespace BT.Nodes
             {
                 OnStop();
                 ForceStopNode();
-                _isStarted = false;
+                IsStarted = false;
             }
 
             return State;
@@ -102,6 +102,7 @@ namespace BT.Nodes
         /// <returns>The copy of the node.</returns>
         public virtual BaseNode Clone()
         {
+            State = NodeState.NONE;
             // Called when the nodes are created
             OnAwake();
             return Instantiate(this);

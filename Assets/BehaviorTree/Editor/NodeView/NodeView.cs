@@ -17,10 +17,11 @@ namespace BT.NodesView
         public abstract string StyleClassName { get; set; }
         private const string NODE_VIEW_UXML_DIRECTORY = BehaviorTreeSettings.CORE_DIRECTORY + "Editor/NodeView/NodeView.uxml";
         private Label _stateLabel;
-        private bool _isRunning = false;
         private VisualElement _nodeBackground;
         private static BehaviorTreeView _view;
         private static NodeViewPort _port;
+        private NodeState _currentState = NodeState.NONE;
+        private string _lastAddedClass = string.Empty;
 
         public NodeView() : base(NODE_VIEW_UXML_DIRECTORY)
         {
@@ -169,24 +170,58 @@ namespace BT.NodesView
                 return;
             }
 
-            if(Node.State != NodeState.Running)
-            {
-                _isRunning = false;
-                RemoveFromClassList("running");
-                _stateLabel.visible = false;
-            }
-
-            if (_isRunning)
+            if (Node.State == _currentState)
             {
                 return;
             }
 
-            if (Node.State == NodeState.Running && Node._isStarted)
+            RemoveFromClassList(_lastAddedClass);
+
+            NodeState state = Node.State;
+
+            switch(state)
             {
-                _isRunning = true;
-                AddToClassList("running");
-                _stateLabel.visible = true;
+                case NodeState.Running:
+                    _currentState = state;
+                    _lastAddedClass = "running";
+                    AddToClassList(_lastAddedClass);
+                    _stateLabel.text = "running";
+                    _stateLabel.visible = true;
+                    break;
+                case NodeState.Failure:
+                    _currentState = state;
+                    _lastAddedClass = "failure";
+                    _stateLabel.text = "failure";
+                    AddToClassList(_lastAddedClass);
+                    _stateLabel.visible = true;
+                    break;
+                case NodeState.Success:
+                    _currentState = state;
+                    _lastAddedClass = "success";
+                    _stateLabel.text = "success";
+                    AddToClassList(_lastAddedClass);
+                    _stateLabel.visible = true;
+                    break;
             }
+
+            //if(Node.State != NodeState.Running)
+            //{
+            //    _isRunning = false;
+            //    RemoveFromClassList("running");
+            //    _stateLabel.visible = false;
+            //}
+
+            //if (_isRunning)
+            //{
+            //    return;
+            //}
+
+            //if (Node.State == NodeState.Running && Node.IsStarted)
+            //{
+            //    _isRunning = true;
+            //    AddToClassList("running");
+            //    _stateLabel.visible = true;
+            //}
         }
     }
 

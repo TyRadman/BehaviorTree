@@ -128,24 +128,23 @@
     transition-duration: 0.3s;
 }
 
-.running #node-state {
-    background-color: rgb(255, 155, 0);
-    border-left-color: rgb(255, 155, 0);
-    border-right-color: rgb(255, 155, 0);
-    border-top-color: rgb(255, 155, 0);
-    border-bottom-color: rgb(255, 155, 0);
-    border-top-width: 10px;
-    border-right-width: 10px;
-    border-bottom-width: 10px;
-    border-left-width: 10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    transition-duration: 0.1s;
-    display: flex;
-    visibility: visible;
-    overflow: visible;
+#title-background {
+}
+
+.action {
+    background-image: url('project://database/Assets/BehaviorTree/Icons/T_PurpleGradient.png?fileID=2800000&guid=23be94b57b966d149b65614e9a3b59fc&type=3#T_PurpleGradient');
+}
+
+.root {
+    background-image: url('project://database/Assets/BehaviorTree/Icons/T_GrayGradient_01.psd?fileID=2800000&guid=519b45745dee4f445a1d1281ab35b617&type=3#T_GrayGradient_01');
+}
+
+.composite {
+    background-image: url('project://database/Assets/BehaviorTree/Icons/T_GrayGradient_01.psd?fileID=2800000&guid=519b45745dee4f445a1d1281ab35b617&type=3#T_GrayGradient_01');
+}
+
+.decorator {
+    background-image: url('project://database/Assets/BehaviorTree/Icons/T_GrayGradient_01.psd?fileID=2800000&guid=519b45745dee4f445a1d1281ab35b617&type=3#T_GrayGradient_01');
 }
 
 .not-running #node-state {
@@ -168,21 +167,62 @@
     overflow: visible;
 }
 
-#title-background {
+.running #node-state {
+    background-color: rgb(255, 155, 0);
+    border-left-color: rgb(255, 155, 0);
+    border-right-color: rgb(255, 155, 0);
+    border-top-color: rgb(255, 155, 0);
+    border-bottom-color: rgb(255, 155, 0);
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    transition-duration: 0.1s;
+    display: flex;
+    visibility: visible;
+    overflow: visible;
 }
 
-.action {
-    background-image: url("project://database/Assets/BehaviorTree/Icons/T_PurpleGradient.png?fileID=2800000&guid=23be94b57b966d149b65614e9a3b59fc&type=3#T_PurpleGradient");
+.failure #node-state {
+    background-color: rgb(255, 0, 23);
+    border-left-color: rgb(255, 0, 23);
+    border-right-color: rgb(255, 0, 23);
+    border-top-color: rgb(255, 0, 23);
+    border-bottom-color: rgb(255, 0, 23);
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    transition-duration: 0.1s;
+    display: flex;
+    visibility: visible;
+    overflow: visible;
 }
 
-.root {
-    background-image: url("project://database/Assets/BehaviorTree/Icons/T_GrayGradient_01.psd?fileID=2800000&guid=519b45745dee4f445a1d1281ab35b617&type=3#T_GrayGradient_01");
-}
-
-.composite {
-    background-image: url("project://database/Assets/BehaviorTree/Icons/T_GrayGradient_01.psd?fileID=2800000&guid=519b45745dee4f445a1d1281ab35b617&type=3#T_GrayGradient_01");
-}
-
-.decorator {
-    background-image: url("project://database/Assets/BehaviorTree/Icons/T_GrayGradient_01.psd?fileID=2800000&guid=519b45745dee4f445a1d1281ab35b617&type=3#T_GrayGradient_01");
+.success #node-state {
+    background-color: rgb(69, 255, 0);
+    border-left-color: rgb(69, 255, 0);
+    border-right-color: rgb(69, 255, 0);
+    border-top-color: rgb(69, 255, 0);
+    border-bottom-color: rgb(69, 255, 0);
+    border-top-width: 10px;
+    border-right-width: 10px;
+    border-bottom-width: 10px;
+    border-left-width: 10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    transition-duration: 0.1s;
+    display: flex;
+    visibility: visible;
+    overflow: visible;
 }

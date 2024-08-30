@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PrintNode
   m_EditorClassIdentifier: 
   State: 0
-  _isStarted: 0
+  IsStarted: 0
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: 61ff0ff8961ce11449ab111077ba6af5
@@ -35,7 +35,7 @@ MonoBehaviour:
   m_Name: RepeatNode
   m_EditorClassIdentifier: 
   State: 0
-  _isStarted: 1
+  IsStarted: 0
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: 5df669cdaf5c1564f94babc31f105fee
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Name: WaitNode
   m_EditorClassIdentifier: 
   State: 2
-  _isStarted: 0
+  IsStarted: 0
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: 378b137cdddb56c4ca75e297a4f8bb6a
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: RootNode
   m_EditorClassIdentifier: 
   State: 0
-  _isStarted: 1
+  IsStarted: 0
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: caffe181561118e408afd25de780e58a
@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
   State: 0
-  _isStarted: 1
+  IsStarted: 0
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: e9a129534f8782043ad3fff05b6c131b
@@ -111,7 +111,7 @@ MonoBehaviour:
     Description: 
   Children:
   - {fileID: -1025208445853985449}
-  - {fileID: 873034930321372223}
+  - {fileID: 2794851651005523058}
   - {fileID: 7262542819757569443}
   - {fileID: -7718841087107639257}
   - {fileID: 9144768076117377972}
@@ -135,13 +135,13 @@ MonoBehaviour:
   - {fileID: -3105025200232707075}
   - {fileID: -1025208445853985449}
   - {fileID: 7262542819757569443}
-  - {fileID: 873034930321372223}
   - {fileID: 9144768076117377972}
   - {fileID: -7718841087107639257}
+  - {fileID: 2794851651005523058}
   BlackboardContainer: {fileID: 710772736044294976}
   IsMinimapDisplayed: 1
   IsBlackboardDisplayed: 0
-  ViewPosition: {x: 392.66666, y: -5.3333335, z: 0}
+  ViewPosition: {x: 451.33334, y: 62.666668, z: 0}
   ViewZoom: {x: 0.7561437, y: 0.7561437, z: 1}
 --- !u!114 &710772736044294976
 MonoBehaviour:
@@ -159,7 +159,7 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 0, y: 0}
   <Size>k__BackingField: {x: 299.99997, y: 300}
   <Variables>k__BackingField: []
---- !u!114 &873034930321372223
+--- !u!114 &2794851651005523058
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,11 +172,11 @@ MonoBehaviour:
   m_Name: BehaviorTreeNode
   m_EditorClassIdentifier: 
   State: 0
-  _isStarted: 1
+  IsStarted: 0
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
-  GUID: f10c8d9adb3f9424c9c4ea57b645ccb8
-  Position: {x: -176.66667, y: 376.6667}
+  GUID: db36666a9d5216c45b0745a3e63453f1
+  Position: {x: -176.66669, y: 376.6667}
   ViewDetails:
     Name: Behavior Tree
     Description: 
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: WaitNode
   m_EditorClassIdentifier: 
   State: 0
-  _isStarted: 0
+  IsStarted: 0
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: f68e47b72aa6e7f4fbb9e385494f8e75
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_Name: WaitNode
   m_EditorClassIdentifier: 
   State: 0
-  _isStarted: 0
+  IsStarted: 0
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: fc09f377f4fde264793e6b8b4cfbc7f4

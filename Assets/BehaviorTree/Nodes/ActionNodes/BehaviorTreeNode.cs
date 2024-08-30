@@ -5,6 +5,7 @@ namespace BT.Nodes
 	public class BehaviorTreeNode : ActionNode
 	{
 		[SerializeField] BehaviorTree _behaviorTree;
+		[HideInInspector]
 		public RootNode RootNode;
 
         protected override void OnAwake()

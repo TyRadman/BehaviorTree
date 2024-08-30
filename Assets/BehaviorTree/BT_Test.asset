@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PrintNode
   m_EditorClassIdentifier: 
   State: 2
-  _isStarted: 0
+  IsStarted: 0
   Blackboard: {fileID: 7236725654942319294}
   Agent: {fileID: 0}
   GUID: 044e278eeec7bf241bd3ea9d7e06be28
@@ -34,8 +34,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
   m_Name: WaitNode
   m_EditorClassIdentifier: 
-  State: 2
-  _isStarted: 0
+  State: 0
+  IsStarted: 0
   Blackboard: {fileID: 7236725654942319294}
   Agent: {fileID: 0}
   GUID: 1d22c97e8233c514bb737eff534411b3
@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Name: WaitNode
   m_EditorClassIdentifier: 
   State: 2
-  _isStarted: 0
+  IsStarted: 0
   Blackboard: {fileID: 7236725654942319294}
   Agent: {fileID: 0}
   GUID: 0374f373ec36f634ca19cdb3d0d6ed46
@@ -90,7 +90,7 @@ MonoBehaviour:
   BlackboardContainer: {fileID: 7236725654942319294}
   IsMinimapDisplayed: 0
   IsBlackboardDisplayed: 0
-  ViewPosition: {x: 206.66667, y: 68.666664, z: 0}
+  ViewPosition: {x: 253.33333, y: 23.333334, z: 0}
   ViewZoom: {x: 1, y: 1, z: 1}
 --- !u!114 &2720384744057613063
 MonoBehaviour:
@@ -105,7 +105,7 @@ MonoBehaviour:
   m_Name: RootNode
   m_EditorClassIdentifier: 
   State: 0
-  _isStarted: 0
+  IsStarted: 0
   Blackboard: {fileID: 7236725654942319294}
   Agent: {fileID: 0}
   GUID: 0952cad0fbbeccb41aee2acde61c09bd
@@ -127,7 +127,7 @@ MonoBehaviour:
   m_Name: PrintNode
   m_EditorClassIdentifier: 
   State: 2
-  _isStarted: 0
+  IsStarted: 0
   Blackboard: {fileID: 7236725654942319294}
   Agent: {fileID: 0}
   GUID: 63aece215fe311749afe32fe4261732d
@@ -148,8 +148,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5adcbfa1d75c90b4fa473d14022b58ef, type: 3}
   m_Name: SequenceNode
   m_EditorClassIdentifier: 
-  State: 2
-  _isStarted: 0
+  State: 0
+  IsStarted: 0
   Blackboard: {fileID: 7236725654942319294}
   Agent: {fileID: 0}
   GUID: f21327b5f90666b41b9a813804680f63

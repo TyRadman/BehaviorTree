@@ -16,6 +16,6 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="node-state" picking-mode="Ignore" style="font-size: 14px; -unity-text-align: middle-center; align-items: center; position: relative; flex-grow: 0;">
-        <ui:Label display-tooltip-when-elided="true" name="state-title" text="Running" enable-rich-text="false" style="display: flex; visibility: visible; overflow: visible; font-size: 14px; -unity-font-style: bold;" />
+        <ui:Label display-tooltip-when-elided="true" name="state-title" text="Running" enable-rich-text="false" style="display: flex; visibility: visible; overflow: visible; font-size: 14px; -unity-font-style: bold; color: rgba(66, 66, 66, 255);" />
     </ui:VisualElement>
 </ui:UXML>
