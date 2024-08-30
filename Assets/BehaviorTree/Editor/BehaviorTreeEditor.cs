@@ -79,6 +79,18 @@ public class BehaviorTreeEditor : EditorWindow
         Window.GenerateAllVisual();
     }
 
+    public static void OpenBehaviorTree(BehaviorTree behaviorTree)
+    {
+        if(behaviorTree == null)
+        {
+            return;
+        }
+
+        Selection.activeObject = behaviorTree;
+        EditorUtility.FocusProjectWindow();
+        OpenEditor();
+    }
+
     public BehaviorTreeSettings GetSettings()
     {
         if(Settings != null)

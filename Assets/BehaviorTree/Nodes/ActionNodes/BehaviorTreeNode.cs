@@ -4,7 +4,7 @@ namespace BT.Nodes
 {
 	public class BehaviorTreeNode : ActionNode
 	{
-		[SerializeField] private BehaviorTree _behaviorTree;
+		[SerializeField] BehaviorTree _behaviorTree;
 		public RootNode RootNode;
 
         protected override void OnAwake()
@@ -51,5 +51,10 @@ namespace BT.Nodes
 		{
 
 		}
+
+		public BehaviorTree GetBehaviorTree()
+        {
+			return _behaviorTree;
+        }
 	}
 }
