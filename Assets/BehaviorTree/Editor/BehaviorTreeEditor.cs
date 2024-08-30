@@ -57,17 +57,20 @@ public class BehaviorTreeEditor : EditorWindow
     [MenuItem("Tanklike/Behavior Tree Editor")]
     public static void OpenEditor()
     {
-        Debug.Log("Opened");
+        if (Window == null)
+        {
+            //Window = this;
+            Window = GetWindow<BehaviorTreeEditor>();
+        }
 
         if (HasOpenInstances<BehaviorTreeEditor>())
         {
-            Window = GetWindow<BehaviorTreeEditor>();
-            //Debug.Log("Exists");
+            Debug.Log("Exists");
         }
         else
         {
-            //Debug.Log("Exists not");
-            Window = GetWindow<BehaviorTreeEditor>();
+            Debug.Log("Exists not");
+            //Window = GetWindow<BehaviorTreeEditor>();//
             Window.titleContent = new GUIContent(BEHAVIOR_TREE_WINDOW_TITLE);
             Window.Show();
         }

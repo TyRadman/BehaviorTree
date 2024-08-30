@@ -97,7 +97,7 @@ namespace BT.Nodes
         }
 
         /// <summary>
-        /// Returns a copy of this node. (Runtime copy)
+        /// Returns a copy of the node (Runtime copy) and clones its children if applicable.
         /// </summary>
         /// <returns>The copy of the node.</returns>
         public virtual BaseNode Clone()

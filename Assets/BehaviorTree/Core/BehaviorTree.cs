@@ -89,12 +89,15 @@ namespace BT
 
         public void Traverse(BaseNode node, System.Action<BaseNode> visitor)
         {
-            if(node)
+            if (node == null)
             {
-                visitor?.Invoke(node);
-                var children = node.GetChildren();
-                children.ForEach(n => Traverse(n, visitor));
+                return;
             }
+         
+            visitor?.Invoke(node);
+            List<BaseNode> children = node.GetChildren();
+            children.ForEach(n => Traverse(n, visitor));
+
         }
 
         public void Bind(GameObject agent)
