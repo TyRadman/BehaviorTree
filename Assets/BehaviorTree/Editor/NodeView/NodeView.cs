@@ -5,6 +5,7 @@ using System;
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using System.Collections.Generic;
 
 namespace BT.NodesView
 {
@@ -16,6 +17,7 @@ namespace BT.NodesView
         public Port OutputPort;
         public abstract string StyleClassName { get; set; }
         private const string NODE_VIEW_UXML_DIRECTORY = BehaviorTreeSettings.CORE_DIRECTORY + "Editor/NodeView/NodeView.uxml";
+        private const string NODE_ICONS_PATH = BehaviorTreeSettings.CORE_DIRECTORY + "/Icons/NodesIcons/";
         private Label _stateLabel;
         private VisualElement _nodeBackground;
         private static BehaviorTreeView _view;
@@ -43,6 +45,7 @@ namespace BT.NodesView
             _stateLabel.visible = false;
             _nodeBackground = this.Q<VisualElement>("node-border");
 
+
             SetNodeInitialPosition();
 
             CreateInputPort();
@@ -50,37 +53,13 @@ namespace BT.NodesView
 
             VisualElement bg = this.Q<VisualElement>("title-background");
 
-            if(bg == null)
-            {
-                Debug.LogError("No");
-            }
-
             bg.AddToClassList(StyleClassName);
 
             BindTitleLabelToName();
             BindTooltipToDescription();
-            //BindNodeColorChange();
-
+            Stylize();
+            //Stylize();
         }
-
-        #region Node coloring
-        //private void BindNodeColorChange()
-        //{
-        //    RegisterCallback<DetachFromPanelEvent>(UnsubscribeFromBaseNode);
-        //    //Node.ViewDetails.OnColorChanged += ChangeNodeColor;
-        //}
-
-        //private void ChangeNodeColor()
-        //{
-        //    _nodeBackground.style.backgroundColor = Node.ViewDetails.NodeColor;
-        //}
-
-        //private void UnsubscribeFromBaseNode(DetachFromPanelEvent evt)
-        //{
-        //    Debug.Log("Removed");
-        //    //Node.ViewDetails.OnColorChanged -= ChangeNodeColor;
-        //}
-        #endregion
 
         private void SetNodeInitialPosition()
         {
@@ -178,28 +157,60 @@ namespace BT.NodesView
 
             NodeState state = Node.State;
             _currentState = state;
+            _lastAddedClass = state.ToString().ToLower();
+            _stateLabel.text = _lastAddedClass;
+            AddToClassList(_lastAddedClass);
+            _stateLabel.visible = true;
+        }
 
-            switch(state)
+        private void Stylize()
+        {
+            string path = NODE_ICONS_PATH;
+
+            if (Node is SequenceNode)
             {
-                case NodeState.Running:
-                    _lastAddedClass = "running";
-                    _stateLabel.text = "running";
-                    AddToClassList(_lastAddedClass);
-                    break;
-                case NodeState.Failure:
-                    Debug.LogError("Failed");
-                    _lastAddedClass = "failure";
-                    _stateLabel.text = "failure";
-                    AddToClassList(_lastAddedClass);
-                    break;
-                case NodeState.Success:
-                    _lastAddedClass = "success";
-                    _stateLabel.text = "success";
-                    AddToClassList(_lastAddedClass);
-                    break;
+                path += "T_Sequence.png";
+            }
+            else if(Node is SelectorNode)
+            {
+                path += "T_Selector.png";
+            }
+            else if (Node is ParallelNode)
+            {
+                path += "T_Parallel.png";
+            }
+            else if (Node is LoopNode)
+            {
+                path += "T_Loop.png";
+            }
+            else if (Node is ConditionalCheckNode)
+            {
+                path += "T_Check.png";
+            }
+            else if (Node is RootNode)
+            {
+                path += "T_Root.png";
+            }
+            else if (Node is InvertNode)
+            {
+                path += "T_Invert.png";
+            }
+            else if (Node is RepeatNode)
+            {
+                path += "T_Repeat.png";
+            }
+            else if (Node is BehaviorTreeNode)
+            {
+                path += "T_BehaviorTree.png";
+            }
+            else if (Node is ActionNode)
+            {
+                path += "T_Action.png";
             }
 
-            _stateLabel.visible = true;
+            Texture2D gradient = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
+            VisualElement icon = this.Q<VisualElement>("node-icon");
+            icon.style.backgroundImage = gradient;
         }
     }
 

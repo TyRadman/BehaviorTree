@@ -17,11 +17,13 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: f99b5568662f1ff48b7297412d4621f6
-  Position: {x: -176.66666, y: 377.33337}
+  Position: {x: -176.6665, y: 563.91895}
   ViewDetails:
     Name: Action Check
     Description: 
   _pass: 0
+  Key:
+    <Value>k__BackingField: 
 --- !u!114 &-3105025200232707075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43,7 +45,7 @@ MonoBehaviour:
   ViewDetails:
     Name: Repeat
     Description: 
-  Child: {fileID: -137445886426513323}
+  Child: {fileID: 8034996416029937388}
 --- !u!114 &-1007909553852326468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,7 +85,7 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: 43d403d7eee701546bb39c5862c4d144
-  Position: {x: -324.672, y: 377.3333}
+  Position: {x: -325.3332, y: 563.91895}
   ViewDetails:
     Name: Wait
     Description: 
@@ -105,7 +107,7 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: e9a129534f8782043ad3fff05b6c131b
-  Position: {x: -176.66667, y: 156.61508}
+  Position: {x: -176.6665, y: 342.5857}
   ViewDetails:
     Name: Sequence
     Description: 
@@ -138,11 +140,12 @@ MonoBehaviour:
   - {fileID: -4004298558531847820}
   - {fileID: -289840224620330403}
   - {fileID: 3013204980527009483}
+  - {fileID: 8034996416029937388}
   BlackboardContainer: {fileID: 710772736044294976}
   IsMinimapDisplayed: 1
-  IsBlackboardDisplayed: 0
-  ViewPosition: {x: 591.09375, y: 4.6666665, z: 0}
-  ViewZoom: {x: 0.57175326, y: 0.57175326, z: 1}
+  IsBlackboardDisplayed: 1
+  ViewPosition: {x: 508, y: 193.33333, z: 0}
+  ViewZoom: {x: 0.7561437, y: 0.7561437, z: 1}
 --- !u!114 &710772736044294976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +161,8 @@ MonoBehaviour:
   BehaviorTree: {fileID: 11400000}
   <Position>k__BackingField: {x: 0, y: 0}
   <Size>k__BackingField: {x: 299.99997, y: 300}
-  <Variables>k__BackingField: []
+  <Variables>k__BackingField:
+  - {fileID: 3718895484183502875}
 --- !u!114 &3013204980527009483
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,11 +180,26 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: 1a5244581776e0f4681188f968c3cd60
-  Position: {x: -660.70514, y: 362.62732}
+  Position: {x: -648.99023, y: 563.3333}
   ViewDetails:
     Name: Wait
     Description: 
   Duration: 1
+--- !u!114 &3718895484183502875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0db62fc8d923ea5419a1caa38a5ed895, type: 3}
+  m_Name: Float
+  m_EditorClassIdentifier: 
+  PropertyName: Float
+  <Expanded>k__BackingField: 0
+  Value: 0
 --- !u!114 &7262542819757569443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,11 +217,34 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: f68e47b72aa6e7f4fbb9e385494f8e75
-  Position: {x: -496.5067, y: 377.33334}
+  Position: {x: -496.66663, y: 563.91895}
   ViewDetails:
     Name: Wait
     Description: 
   Duration: 1
+--- !u!114 &8034996416029937388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1647faf130ce54cb8de546b8e6de4a, type: 3}
+  m_Name: BoolCheckNode
+  m_EditorClassIdentifier: 
+  State: 16
+  IsStarted: 0
+  Blackboard: {fileID: 710772736044294976}
+  Agent: {fileID: 0}
+  GUID: 94cdf519f1cd2ed4e8ea3a2aeb7cccf8
+  Position: {x: -168, y: 174.11568}
+  ViewDetails:
+    Name: Bool Check
+    Description: 
+  Child: {fileID: -137445886426513323}
+  _pass: 1
 --- !u!114 &9144768076117377972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,7 +262,7 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: fc09f377f4fde264793e6b8b4cfbc7f4
-  Position: {x: 59.3011, y: 377.83267}
+  Position: {x: 58.666836, y: 563.91895}
   ViewDetails:
     Name: Wait
     Description: 

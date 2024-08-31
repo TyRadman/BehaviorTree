@@ -11,7 +11,7 @@ namespace BT.Nodes
         //[HideInInspector]
         public List<BaseNode> Children = new List<BaseNode>();
 
-        protected override void OnAwake()
+        public override void OnAwake()
         {
 
         }
@@ -58,10 +58,10 @@ namespace BT.Nodes
             Children = Children.OrderBy(c => c.Position.y).ToList();
         }
 
-        public override void ForceStopNode()
+        public override void OnForceStopNode()
         {
-            State = NodeState.Success;
-            Children.ForEach(c => c.ForceStopNode());
+            State = NodeState.Failure;
+            Children.ForEach(c => c.OnForceStopNode());
         }
 
         public override void ClearChildren()

@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
-	public class BoolCheckNode : ConditionalCheckNode
+	public abstract class BoolCheckNode : ConditionalCheckNode
 	{
 		[SerializeField] private bool _pass = true;
 

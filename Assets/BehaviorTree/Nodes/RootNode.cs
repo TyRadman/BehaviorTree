@@ -11,7 +11,7 @@ namespace BT.Nodes
         [SerializeField]
         private BaseNode Child;
 
-        protected override void OnAwake()
+        public override void OnAwake()
         {
 
         }
@@ -71,10 +71,10 @@ namespace BT.Nodes
             return node;
         }
 
-        public override void ForceStopNode()
+        public override void OnForceStopNode()
         {
             State = NodeState.Success;
-            Child.ForceStopNode();
+            Child.OnForceStopNode();
         }
     }
 }

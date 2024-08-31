@@ -8,7 +8,7 @@ namespace BT.Nodes
 		[HideInInspector]
 		public RootNode RootNode;
 
-        protected override void OnAwake()
+        public override void OnAwake()
         {
             base.OnAwake();
         }

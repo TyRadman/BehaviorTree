@@ -19,6 +19,7 @@ namespace BT
         public void Start()
         {
             RootNode.State = NodeState.Running;
+            RootNode.OnAwake();
         }
 
         public NodeState Update()

@@ -9,7 +9,7 @@ namespace BT.Nodes
     {
         [HideInInspector] public BaseNode Child;
 
-        protected override void OnAwake()
+        public override void OnAwake()
         {
 
         }
@@ -58,10 +58,10 @@ namespace BT.Nodes
 
         }
 
-        public override void ForceStopNode()
+        public override void OnForceStopNode()
         {
             State = NodeState.Success;
-            Child.ForceStopNode();
+            Child.OnForceStopNode();
         }
 
         public override void ClearChildren()

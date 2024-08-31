@@ -128,23 +128,20 @@
     transition-duration: 0.3s;
 }
 
-#title-background {
-}
-
 .action {
-    background-image: url('project://database/Assets/BehaviorTree/Icons/T_PurpleGradient.png?fileID=2800000&guid=23be94b57b966d149b65614e9a3b59fc&type=3#T_PurpleGradient');
+    background-image: url("project://database/Assets/BehaviorTree/Icons/T_Gradient_Purple.png?fileID=2800000&guid=46b707df99afb9e4a8855e6eb33509d0&type=3#T_Gradient_Purple");
 }
 
 .root {
-    background-image: url('project://database/Assets/BehaviorTree/Icons/T_GrayGradient_01.psd?fileID=2800000&guid=519b45745dee4f445a1d1281ab35b617&type=3#T_GrayGradient_01');
+    background-image: url("project://database/Assets/BehaviorTree/Icons/T_Gradient_Gray.png?fileID=21300000&guid=8be8a10f82e746a499b17e2f3ae8e2c6&type=3#T_Gradient_Gray");
 }
 
 .composite {
-    background-image: url('project://database/Assets/BehaviorTree/Icons/T_GrayGradient_01.psd?fileID=2800000&guid=519b45745dee4f445a1d1281ab35b617&type=3#T_GrayGradient_01');
+    background-image: url("project://database/Assets/BehaviorTree/Icons/T_Gradient_Gray.png?fileID=21300000&guid=8be8a10f82e746a499b17e2f3ae8e2c6&type=3#T_Gradient_Gray");
 }
 
 .decorator {
-    background-image: url('project://database/Assets/BehaviorTree/Icons/T_GrayGradient_01.psd?fileID=2800000&guid=519b45745dee4f445a1d1281ab35b617&type=3#T_GrayGradient_01');
+    background-image: url("project://database/Assets/BehaviorTree/Icons/T_Gradient_Gray.png?fileID=21300000&guid=8be8a10f82e746a499b17e2f3ae8e2c6&type=3#T_Gradient_Gray");
 }
 
 .not-running #node-state {
@@ -225,4 +222,14 @@
     display: flex;
     visibility: visible;
     overflow: visible;
+}
+
+#center-parent {
+    -unity-flex-direction: row;
+    align-items: auto;
+    justify-content: flex-start;
+    flex-shrink: 1;
+    flex-grow: 1;
+    flex-direction: row;
+    flex-wrap: nowrap;
 }

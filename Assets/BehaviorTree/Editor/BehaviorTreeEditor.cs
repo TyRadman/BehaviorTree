@@ -12,7 +12,7 @@ public class BehaviorTreeEditor : EditorWindow
     private BehaviorTreeSettings Settings;
     private BehaviorTreeView _treeView;
     private InspectorView _inspectorView;
-    // TODO: uncomment
+    // TODO: add the toolbar
     private ToolBarMenuView _toolBar;
     public BehaviorTree BehaviorTree;
     private static BehaviorTree SelectedBehaviorTree;
@@ -63,14 +63,8 @@ public class BehaviorTreeEditor : EditorWindow
             Window = GetWindow<BehaviorTreeEditor>();
         }
 
-        if (HasOpenInstances<BehaviorTreeEditor>())
+        if (!HasOpenInstances<BehaviorTreeEditor>())
         {
-            Debug.Log("Exists");
-        }
-        else
-        {
-            Debug.Log("Exists not");
-            //Window = GetWindow<BehaviorTreeEditor>();//
             Window.titleContent = new GUIContent(BEHAVIOR_TREE_WINDOW_TITLE);
             Window.Show();
         }
@@ -150,7 +144,8 @@ public class BehaviorTreeEditor : EditorWindow
         {
             return;
         }
-        else if (!Application.isPlaying)
+        
+        if (!Application.isPlaying)
         {
             GetSettings().LastSelectedBehaviorTree = SelectedBehaviorTree;
             behaviorTreeToSet = GetSettings().LastSelectedBehaviorTree;
@@ -276,7 +271,6 @@ public class BehaviorTreeEditor : EditorWindow
     {
         if (BehaviorTree != null)
         {
-            //return BehaviorTree.SaveData.IsMinimapDisplayed;
             return BehaviorTree.IsMinimapDisplayed;
         }
 
@@ -331,13 +325,10 @@ public class BehaviorTreeEditor : EditorWindow
         }
     }
 
-    private static BehaviorTree _lastBehaviorTree;
-
     private void CacheLastBehaviorTree()
     {
         if(BehaviorTree != null)
         {
-            _lastBehaviorTree = BehaviorTree;
             Settings.LastSelectedBehaviorTree = BehaviorTree;
         }
     }
@@ -349,9 +340,6 @@ public class BehaviorTreeEditor : EditorWindow
         if (SelectedBehaviorTree == null)
         {
             OpenBehaviorTree(Settings.LastSelectedBehaviorTree);
-            //SelectedBehaviorTree = Settings.LastSelectedBehaviorTree;
-            //SelectedBehaviorTree = _lastBehaviorTree;
-            //OpenEditor();
         }
     }
     #endregion

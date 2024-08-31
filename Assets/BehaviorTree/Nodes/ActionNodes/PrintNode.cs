@@ -8,7 +8,6 @@ namespace BT.Nodes
     {
         [TextArea(2, 4)] 
         [SerializeField] private string _message;
-        //public override string SearchDirectory { get; set; } = "Defaults/Action";
 
         protected override void OnStart()
         {
@@ -17,12 +16,11 @@ namespace BT.Nodes
 
         protected override void OnStop()
         {
-            //Debug.Log($"OnStop: {_message}");
+
         }
 
         protected override NodeState OnUpdate()
         {
-            //Debug.Log($"OnUpdate: {_message}");
             return NodeState.Success;
         }
     }

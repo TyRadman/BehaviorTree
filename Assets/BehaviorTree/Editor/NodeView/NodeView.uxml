@@ -7,8 +7,11 @@
                 <ui:VisualElement name="input" picking-mode="Ignore" style="max-width: 106px; min-width: 106px; border-top-left-radius: 0; border-top-right-radius: 0; padding-bottom: 3px; padding-right: 0; padding-left: 0; padding-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;" />
                 <ui:VisualElement name="divider" picking-mode="Ignore" class="vertical" style="margin-top: 0;" />
                 <ui:VisualElement name="title" picking-mode="Ignore" style="font-size: 14px; -unity-font-style: bold; -unity-text-align: middle-center; padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; margin-top: 1px; margin-right: 1px; margin-bottom: 1px; margin-left: 1px; max-width: 300px; min-width: 106px;">
-                    <ui:VisualElement name="title-background" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(26, 26, 26); border-right-color: rgb(26, 26, 26); border-top-color: rgb(26, 26, 26); border-bottom-color: rgb(26, 26, 26); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px; background-image: url(&quot;project://database/Assets/BehaviorTree/Icons/T_Gradient_Purple.png?fileID=2800000&amp;guid=46b707df99afb9e4a8855e6eb33509d0&amp;type=3#T_Gradient_Purple&quot;);" />
-                    <ui:Label name="title-label" text="Node" picking-mode="Ignore" class="unity-text-element unity-label" style="align-items: center; justify-content: flex-start; -unity-text-align: middle-center; flex-wrap: nowrap; white-space: normal;" />
+                    <ui:VisualElement name="title-background" style="position: absolute; left: 0; top: 0; right: 0; bottom: 0; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 1px; border-left-color: rgb(26, 26, 26); border-right-color: rgb(26, 26, 26); border-top-color: rgb(26, 26, 26); border-bottom-color: rgb(26, 26, 26); border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-bottom-left-radius: 5px;" />
+                    <ui:VisualElement name="center-parent">
+                        <ui:VisualElement name="node-icon" style="width: 25px; height: 25px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 0; margin-right: 5px; margin-bottom: 0; margin-left: 0;" />
+                        <ui:Label name="title-label" text="Node" picking-mode="Ignore" class="unity-text-element unity-label" style="align-items: center; justify-content: flex-start; -unity-text-align: middle-center; flex-wrap: nowrap; white-space: normal;" />
+                    </ui:VisualElement>
                 </ui:VisualElement>
                 <ui:VisualElement name="divider" picking-mode="Ignore" class="horizontal" />
                 <ui:VisualElement name="output" picking-mode="Ignore" style="max-width: 106px; min-width: 106px; padding-top: 3px; margin-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; border-top-left-radius: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 0; border-bottom-left-radius: 0;" />
@@ -16,6 +19,6 @@
         </ui:VisualElement>
     </ui:VisualElement>
     <ui:VisualElement name="node-state" picking-mode="Ignore" style="font-size: 14px; -unity-text-align: middle-center; align-items: center; position: relative; flex-grow: 0;">
-        <ui:Label display-tooltip-when-elided="true" name="state-title" text="Running" enable-rich-text="false" style="display: flex; visibility: visible; overflow: visible; font-size: 14px; -unity-font-style: bold; color: rgba(66, 66, 66, 255);" />
+        <ui:Label display-tooltip-when-elided="true" name="state-title" text="Running" enable-rich-text="false" style="display: flex; visibility: visible; overflow: visible; font-size: 14px; -unity-font-style: bold; color: rgb(66, 66, 66);" />
     </ui:VisualElement>
 </ui:UXML>

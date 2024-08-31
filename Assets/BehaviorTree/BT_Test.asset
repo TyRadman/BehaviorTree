@@ -39,7 +39,7 @@ MonoBehaviour:
   Blackboard: {fileID: 7236725654942319294}
   Agent: {fileID: 0}
   GUID: 1d22c97e8233c514bb737eff534411b3
-  Position: {x: 394.66663, y: 290.6667}
+  Position: {x: 391.14005, y: 288.66666}
   ViewDetails:
     Name: Wait
     Description: 
@@ -90,8 +90,8 @@ MonoBehaviour:
   BlackboardContainer: {fileID: 7236725654942319294}
   IsMinimapDisplayed: 0
   IsBlackboardDisplayed: 0
-  ViewPosition: {x: 253.33333, y: 23.333334, z: 0}
-  ViewZoom: {x: 1, y: 1, z: 1}
+  ViewPosition: {x: 95.333336, y: 108, z: 0}
+  ViewZoom: {x: 0.7561437, y: 0.7561437, z: 1}
 --- !u!114 &2720384744057613063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ MonoBehaviour:
   GUID: f21327b5f90666b41b9a813804680f63
   Position: {x: 0, y: 120.66669}
   ViewDetails:
-    Name: Sequence
+    Name: 'Sequence  '
     Description: 
   Children:
   - {fileID: 3728825443904953869}

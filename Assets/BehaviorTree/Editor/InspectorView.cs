@@ -97,6 +97,8 @@ public class InspectorView : VisualElement
         Texture2D icon = GetBlackboardKeyIcon();
 
         // Create GUIContent with the icon and the label text
+        float iconWidth = 16f;
+        float iconHeight = 16f;
         GUIContent dropdownLabel = new GUIContent(" " + name, icon);
 
         List<string> options = GetBlackboardKeys();
@@ -139,7 +141,7 @@ public class InspectorView : VisualElement
             return S_BlackBoardKeyIcon;
         }
 
-        string path = BehaviorTreeSettings.CORE_DIRECTORY + "/Icons/T_KeyIcon.png";
+        string path = BehaviorTreeSettings.CORE_DIRECTORY + "/Icons/T_KeyIcon_small.png";
         S_BlackBoardKeyIcon = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
         return S_BlackBoardKeyIcon;
     }

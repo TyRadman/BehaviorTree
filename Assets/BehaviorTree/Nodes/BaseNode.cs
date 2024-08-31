@@ -57,14 +57,19 @@ namespace BT.Nodes
             if (State == NodeState.Failure || State == NodeState.Success)
             {
                 OnStop();
-                //ForceStopNode();
+
+                if (State == NodeState.Failure)
+                {
+                    OnForceStopNode();
+                }
+
                 IsStarted = false;
             }
 
             return State;
         }
 
-        protected abstract void OnAwake();
+        public abstract void OnAwake();
         protected abstract void OnStart();
         protected abstract void OnStop();
         protected abstract NodeState OnUpdate();
@@ -72,7 +77,7 @@ namespace BT.Nodes
         /// <summary>
         /// Called when the node is force-stopped
         /// </summary>
-        public abstract void ForceStopNode();
+        public abstract void OnForceStopNode();
 
         public virtual void AddChild(BaseNode child)
         {

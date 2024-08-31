@@ -11,7 +11,6 @@ namespace BT.Nodes
         protected override void OnStart()
         {
             _currentChild = 0;
-            Debug.Log("Started sequence");
         }
 
         protected override void OnStop()
@@ -32,12 +31,10 @@ namespace BT.Nodes
                     }
                 case NodeState.Failure:
                     {
-                        Debug.Log($"Failure {_currentChild}");
                         return NodeState.Failure;
                     }
                 case NodeState.Success:
                     {
-                        Debug.Log($"Success {_currentChild}");
                         break;
                     }
             }

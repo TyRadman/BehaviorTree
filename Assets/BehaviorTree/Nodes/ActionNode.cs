@@ -6,7 +6,7 @@ namespace BT.Nodes
 {
     public abstract class ActionNode : BaseNode
     {
-        protected override void OnAwake()
+        public override void OnAwake()
         {
 
         }
@@ -22,9 +22,9 @@ namespace BT.Nodes
             return false;
         }
 
-        public override void ForceStopNode()
+        public override void OnForceStopNode()
         {
-            State = NodeState.Success;
+            State = NodeState.Failure;
         }
     }
 }
