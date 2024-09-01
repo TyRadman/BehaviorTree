@@ -17,12 +17,22 @@ namespace BT
 
         public void AddRecentBehaviorTree(BehaviorTree behaviorTree)
         {
+            ClearNullBehaviorTrees();
+
             if (RecentOpenedBehaviorTrees.Contains(behaviorTree))
             {
                 return;
             }
 
             RecentOpenedBehaviorTrees.Insert(0, behaviorTree);
+        }
+
+        /// <summary>
+        /// Remove null recent Behavior Trees from the list.
+        /// </summary>
+        public void ClearNullBehaviorTrees()
+        {
+            RecentOpenedBehaviorTrees.RemoveAll(bt => bt == null);
         }
 
         public List<BehaviorTree> GetRecentBehaviorTrees()

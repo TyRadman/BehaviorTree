@@ -11,6 +11,7 @@ namespace BT
     public class ToolBarMenuView : VisualElement
     {
         private ToolbarMenu _dropDownMenu;
+        private Toolbar _toolBar;
 
         public new class UxmlFactory : UxmlFactory<ToolBarMenuView, UxmlTraits> { }
 
@@ -21,11 +22,24 @@ namespace BT
 
         public ToolBarMenuView()
         {
-            Toolbar toolbar = new Toolbar();
+            Initialize();
+        }
 
-            // Create the dropdown menu button
-            _dropDownMenu = new ToolbarMenu();
-            _dropDownMenu.text = "File";
+        public void Initialize()
+        {
+
+            if (_toolBar == null)
+            {
+                _toolBar = new Toolbar();
+            }
+
+            if(_dropDownMenu == null)
+            {
+                _dropDownMenu = new ToolbarMenu();
+                _dropDownMenu.text = "File";
+            }
+
+            _dropDownMenu.menu.MenuItems().Clear();
 
             // Add items to the dropdown
             _dropDownMenu.menu.AppendAction("Create new behavior tree", CreateNewBehaviorTree);
@@ -34,15 +48,15 @@ namespace BT
             AddRecentlyOpenedOptions();
             _dropDownMenu.menu.AppendAction("Save", (DropdownMenuAction action) => { Debug.Log("Action 3 selected"); }, DropdownMenuAction.AlwaysDisabled);
             AddSeparator();
-            _dropDownMenu.menu.AppendAction("Settings", (DropdownMenuAction action) => { Debug.Log("Action 3 selected"); } , DropdownMenuAction.AlwaysDisabled);
+            _dropDownMenu.menu.AppendAction("Settings", (DropdownMenuAction action) => { Debug.Log("Action 3 selected"); }, DropdownMenuAction.AlwaysDisabled);
             AddSeparator();
             _dropDownMenu.menu.AppendAction("Close", CloseWindow);
 
             // Add the dropdown menu to the toolbar
-            toolbar.Add(_dropDownMenu);
+            _toolBar.Add(_dropDownMenu);
 
             // Add the toolbar to the main container
-            Add(toolbar);
+            Add(_toolBar);
         }
 
         private void CloseWindow(DropdownMenuAction obj)
@@ -109,8 +123,13 @@ namespace BT
 
         private void AddRecentlyOpenedOptions()
         {
-
             List<BehaviorTree> lastBTs = BehaviorTreeSettings.GetSettings().GetRecentBehaviorTrees();
+
+            if(lastBTs == null || lastBTs.Count == 0)
+            {
+                _dropDownMenu.menu.AppendAction("Open Recent", null, DropdownMenuAction.Status.Disabled);
+                return;
+            }
 
             for (int i = 0; i < lastBTs.Count; i++)
             {
@@ -121,6 +140,14 @@ namespace BT
 
         private void AddRecentBehaviorTree(BehaviorTree behaviorTree)
         {
+            if(behaviorTree == null)
+            {
+                EditorUtility.DisplayDialog("Error", "Selected Behavior Tree doesn't exist", "OK");
+                BehaviorTreeSettings.GetSettings().ClearNullBehaviorTrees();
+                Initialize();
+                return;
+            }
+
             EditorUtility.FocusProjectWindow();
             Selection.activeObject = behaviorTree;
 
