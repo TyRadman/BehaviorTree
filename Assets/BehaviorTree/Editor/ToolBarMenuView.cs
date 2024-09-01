@@ -1,6 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -9,6 +10,8 @@ namespace BT
 {
     public class ToolBarMenuView : VisualElement
     {
+        private ToolbarMenu _dropDownMenu;
+
         public new class UxmlFactory : UxmlFactory<ToolBarMenuView, UxmlTraits> { }
 
         public void Initialize(BehaviorTreeEditor behaviorTreeEditor)
@@ -21,19 +24,108 @@ namespace BT
             Toolbar toolbar = new Toolbar();
 
             // Create the dropdown menu button
-            ToolbarMenu dropdownMenu = new ToolbarMenu();
-            dropdownMenu.text = "File";
+            _dropDownMenu = new ToolbarMenu();
+            _dropDownMenu.text = "File";
 
             // Add items to the dropdown
-            dropdownMenu.menu.AppendAction("Action 1", (DropdownMenuAction action) => { Debug.Log("Action 1 selected"); });
-            dropdownMenu.menu.AppendAction("Action 2", (DropdownMenuAction action) => { Debug.Log("Action 2 selected"); });
-            dropdownMenu.menu.AppendAction("Action 3", (DropdownMenuAction action) => { Debug.Log("Action 3 selected"); });
+            _dropDownMenu.menu.AppendAction("Create new behavior tree", CreateNewBehaviorTree);
+            AddSeparator();
+            _dropDownMenu.menu.AppendAction("Open", OpenBehaviorTree);
+            AddRecentlyOpenedOptions();
+            _dropDownMenu.menu.AppendAction("Save", (DropdownMenuAction action) => { Debug.Log("Action 3 selected"); }, DropdownMenuAction.AlwaysDisabled);
+            AddSeparator();
+            _dropDownMenu.menu.AppendAction("Settings", (DropdownMenuAction action) => { Debug.Log("Action 3 selected"); } , DropdownMenuAction.AlwaysDisabled);
+            AddSeparator();
+            _dropDownMenu.menu.AppendAction("Close", CloseWindow);
 
             // Add the dropdown menu to the toolbar
-            toolbar.Add(dropdownMenu);
+            toolbar.Add(_dropDownMenu);
 
             // Add the toolbar to the main container
             Add(toolbar);
+        }
+
+        private void CloseWindow(DropdownMenuAction obj)
+        {
+            BehaviorTreeEditor.CloseWindow();
+        }
+
+        private void AddSeparator()
+        {
+            _dropDownMenu.menu.AppendSeparator();
+        }
+
+        private void CreateNewBehaviorTree(DropdownMenuAction action)
+        {
+            string folderPath = "Assets/YourDefaultFolder"; // Update with your desired default folder
+
+            string path = EditorUtility.SaveFilePanelInProject(
+                "Create New Behavior Tree",
+                "NewBehaviorTree",
+                "asset",
+                "Please enter a file name to save the behavior tree to",
+                folderPath
+            );
+
+            if (!string.IsNullOrEmpty(path))
+            {
+                BehaviorTree newBehaviorTree = ScriptableObject.CreateInstance<BehaviorTree>();
+
+                AssetDatabase.CreateAsset(newBehaviorTree, path);
+                AssetDatabase.SaveAssets();
+
+                EditorUtility.FocusProjectWindow();
+                Selection.activeObject = newBehaviorTree;
+
+                EditorUtility.FocusProjectWindow();
+                BehaviorTreeEditor.OpenBehaviorTree(newBehaviorTree);
+            }
+        }
+
+        private void OpenBehaviorTree(DropdownMenuAction action)
+        {
+            string folderPath = "Assets/"; // Update with your specific folder path
+
+            string path = EditorUtility.OpenFilePanelWithFilters("Select Behavior Tree", folderPath, new string[] { "Behavior Tree", "asset" });
+
+            if (!string.IsNullOrEmpty(path))
+            {
+                // Load the selected asset
+                string assetPath = "Assets" + path.Substring(Application.dataPath.Length);
+                Object selectedAsset = AssetDatabase.LoadAssetAtPath<Object>(assetPath);
+
+                if (selectedAsset is BehaviorTree behaviorTree)
+                {
+                    // Perform your custom action here
+                    Debug.Log("BehaviorTree selected: " + selectedAsset.name);
+                    BehaviorTreeEditor.OpenBehaviorTree(behaviorTree);
+                }
+                else
+                {
+                    EditorUtility.DisplayDialog("Error", "You can only open behavior tree files.", "OK");
+                }
+            }
+        }
+
+        private void AddRecentlyOpenedOptions()
+        {
+
+            List<BehaviorTree> lastBTs = BehaviorTreeSettings.GetSettings().GetRecentBehaviorTrees();
+
+            for (int i = 0; i < lastBTs.Count; i++)
+            {
+                BehaviorTree bt = lastBTs[i];
+                _dropDownMenu.menu.AppendAction($"Open Recent/{bt.name}", (DropdownMenuAction action) => { AddRecentBehaviorTree(bt); });
+            }
+        }
+
+        private void AddRecentBehaviorTree(BehaviorTree behaviorTree)
+        {
+            EditorUtility.FocusProjectWindow();
+            Selection.activeObject = behaviorTree;
+
+            EditorUtility.FocusProjectWindow();
+            BehaviorTreeEditor.OpenBehaviorTree(behaviorTree);
         }
     }
 }

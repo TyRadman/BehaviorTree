@@ -17,7 +17,7 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: f99b5568662f1ff48b7297412d4621f6
-  Position: {x: -176.6665, y: 563.91895}
+  Position: {x: 10.021687, y: 544.6667}
   ViewDetails:
     Name: Action Check
     Description: 
@@ -45,7 +45,7 @@ MonoBehaviour:
   ViewDetails:
     Name: Repeat
     Description: 
-  Child: {fileID: 8034996416029937388}
+  Child: {fileID: -137445886426513323}
 --- !u!114 &-1007909553852326468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,7 +85,7 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: 43d403d7eee701546bb39c5862c4d144
-  Position: {x: -325.3332, y: 563.91895}
+  Position: {x: -176.66666, y: 544.6667}
   ViewDetails:
     Name: Wait
     Description: 
@@ -107,7 +107,7 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: e9a129534f8782043ad3fff05b6c131b
-  Position: {x: -176.6665, y: 342.5857}
+  Position: {x: -176.66669, y: 195.67862}
   ViewDetails:
     Name: Sequence
     Description: 
@@ -140,12 +140,11 @@ MonoBehaviour:
   - {fileID: -4004298558531847820}
   - {fileID: -289840224620330403}
   - {fileID: 3013204980527009483}
-  - {fileID: 8034996416029937388}
   BlackboardContainer: {fileID: 710772736044294976}
   IsMinimapDisplayed: 1
   IsBlackboardDisplayed: 1
-  ViewPosition: {x: 508, y: 193.33333, z: 0}
-  ViewZoom: {x: 0.7561437, y: 0.7561437, z: 1}
+  ViewPosition: {x: 478.66666, y: 166.66667, z: 0}
+  ViewZoom: {x: 0.57175326, y: 0.57175326, z: 1}
 --- !u!114 &710772736044294976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BehaviorTree: {fileID: 11400000}
   <Position>k__BackingField: {x: 0, y: 0}
-  <Size>k__BackingField: {x: 299.99997, y: 300}
+  <Size>k__BackingField: {x: 208, y: 306.6667}
   <Variables>k__BackingField:
   - {fileID: 3718895484183502875}
 --- !u!114 &3013204980527009483
@@ -180,7 +179,7 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: 1a5244581776e0f4681188f968c3cd60
-  Position: {x: -648.99023, y: 563.3333}
+  Position: {x: -540.8883, y: 544.8183}
   ViewDetails:
     Name: Wait
     Description: 
@@ -217,7 +216,7 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: f68e47b72aa6e7f4fbb9e385494f8e75
-  Position: {x: -496.66663, y: 563.91895}
+  Position: {x: -388.22168, y: 544.8183}
   ViewDetails:
     Name: Wait
     Description: 
@@ -262,7 +261,7 @@ MonoBehaviour:
   Blackboard: {fileID: 710772736044294976}
   Agent: {fileID: 0}
   GUID: fc09f377f4fde264793e6b8b4cfbc7f4
-  Position: {x: 58.666836, y: 563.91895}
+  Position: {x: 248.66165, y: 544.6668}
   ViewDetails:
     Name: Wait
     Description: 

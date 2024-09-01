@@ -85,23 +85,9 @@ public class BehaviorTreeEditor : EditorWindow
         OpenEditor();
     }
 
-    public BehaviorTreeSettings GetSettings()
+    public static void CloseWindow()
     {
-        if(Settings != null)
-        {
-            return Settings;
-        }
-
-        string path = BehaviorTreeSettings.PATH;
-        Settings = AssetDatabase.LoadAssetAtPath<BehaviorTreeSettings>(path);
-
-        if(Settings == null)
-        {
-            Debug.LogError($"Couldn't find the settings in {path}");
-            return null;
-        }
-
-        return Settings;
+        Window.Close();
     }
 
     #region Graph and elements creation
@@ -147,8 +133,8 @@ public class BehaviorTreeEditor : EditorWindow
         
         if (!Application.isPlaying)
         {
-            GetSettings().LastSelectedBehaviorTree = SelectedBehaviorTree;
-            behaviorTreeToSet = GetSettings().LastSelectedBehaviorTree;
+            BehaviorTreeSettings.GetSettings().LastSelectedBehaviorTree = SelectedBehaviorTree;
+            behaviorTreeToSet = BehaviorTreeSettings.GetSettings().LastSelectedBehaviorTree;
         }
         else
         {
@@ -156,7 +142,7 @@ public class BehaviorTreeEditor : EditorWindow
             behaviorTreeToSet = SelectedBehaviorTree;
         }
 
-        if (GetSettings().LastSelectedBehaviorTree == null)
+        if (BehaviorTreeSettings.GetSettings().LastSelectedBehaviorTree == null)
         {
             Debug.LogError("No behavior Tree passed");
             return;
@@ -169,6 +155,8 @@ public class BehaviorTreeEditor : EditorWindow
             BehaviorTree.Refresh();
             BehaviorTree.CreateBlackboardContainer();
         }
+
+        BehaviorTreeSettings.GetSettings().AddRecentBehaviorTree(SelectedBehaviorTree);
     }
 
     private void CreateBehaviorTreeFromUXML()
@@ -294,7 +282,7 @@ public class BehaviorTreeEditor : EditorWindow
         }
 
         // reinitialize the window after recompilation
-        if (GetSettings().LastSelectedBehaviorTree != null)
+        if (BehaviorTreeSettings.GetSettings().LastSelectedBehaviorTree != null)
         {
             var existingWindows = Resources.FindObjectsOfTypeAll<BehaviorTreeEditor>();
             OpenEditor();

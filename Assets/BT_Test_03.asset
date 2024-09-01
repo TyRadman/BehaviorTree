@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8607117520234438534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c557a60da994f6e4e80df3aeb4f1a2ef, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  State: 16
+  IsStarted: 0
+  Blackboard: {fileID: -3460611670965154082}
+  Agent: {fileID: 0}
+  GUID: b32446470a9f2804383fb2c0bb1f9e98
+  Position: {x: 0, y: 0}
+  ViewDetails:
+    Name: Root
+    Description: 
+  Child: {fileID: 0}
+--- !u!114 &-3460611670965154082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c039a3decff42274094f327750976c48, type: 3}
+  m_Name: Blackboard
+  m_EditorClassIdentifier: 
+  BehaviorTree: {fileID: 11400000}
+  <Position>k__BackingField: {x: 0, y: 0}
+  <Size>k__BackingField: {x: 299.99997, y: 300}
+  <Variables>k__BackingField: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b5fbc36ae5f1b498af6acf767bf414, type: 3}
+  m_Name: BT_Test_03
+  m_EditorClassIdentifier: 
+  RootNode: {fileID: -8607117520234438534}
+  TreeState: 0
+  Nodes:
+  - {fileID: -8607117520234438534}
+  BlackboardContainer: {fileID: -3460611670965154082}
+  IsMinimapDisplayed: 0
+  IsBlackboardDisplayed: 0
+  ViewPosition: {x: 431, y: 358, z: 0}
+  ViewZoom: {x: 1, y: 1, z: 1}
