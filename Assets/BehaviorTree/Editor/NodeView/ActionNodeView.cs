@@ -38,6 +38,7 @@ namespace BT.NodesView
             if (e.clickCount == 2)
             {
                 BehaviorTree bt = ((BehaviorTreeNode)Node).GetBehaviorTree();
+
                 BehaviorTreeEditor.OpenBehaviorTree(bt);
             }
         }

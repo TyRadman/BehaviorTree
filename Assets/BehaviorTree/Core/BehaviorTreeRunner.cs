@@ -9,11 +9,20 @@ namespace BT
     public class BehaviorTreeRunner : MonoBehaviour
     {
         public BehaviorTree Tree;
+        [SerializeField] private bool _runOnStart = false;
 
         private void Start()
         {
-            Tree = Tree.Clone();
+            if (_runOnStart)
+            {
+                Run();
+            }
+        }
+
+        public void Run()
+        {
             // pass the controller of the B
+            Tree = Tree.Clone();
             Tree.Bind(gameObject);
             Tree.Start();
         }

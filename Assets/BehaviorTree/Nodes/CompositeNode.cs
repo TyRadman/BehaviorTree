@@ -13,7 +13,14 @@ namespace BT.Nodes
 
         public override void OnAwake()
         {
-
+            try
+            {
+                Children.ForEach(c => c.OnAwake());
+            }
+            catch
+            {
+                Debug.Log(ViewDetails.Name);
+            }
         }
 
         public override void AddChild(BaseNode child)
@@ -46,7 +53,6 @@ namespace BT.Nodes
 
         public override BaseNode Clone()
         {
-            OnAwake();
             // we need to clone the node and its child and then assign the child to its new parent
             CompositeNode node = Instantiate(this);
             node.Children = Children.ConvertAll(c => c.Clone());
@@ -60,6 +66,8 @@ namespace BT.Nodes
 
         public override void OnForceStopNode()
         {
+            base.OnForceStopNode();
+
             State = NodeState.Failure;
             Children.ForEach(c => c.OnForceStopNode());
         }

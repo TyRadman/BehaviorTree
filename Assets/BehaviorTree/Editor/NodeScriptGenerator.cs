@@ -56,7 +56,7 @@ namespace BT
             "namespace BT.Nodes\n{\n\t" +
             "public class #SCRIPTNAME# : ConditionalLoopNode" +
             "\n\t{" +
-            "\n\t\tprotected override bool IsConditionTrue()" +
+            "\n\t\tprotected override bool IsTrue()" +
             "\n\t\t{\n\t\t\t// condition. If true, the loop will go on, otherwise, it will stop.\n\t\t\treturn true;\n\t\t}" +
             "\n\t}\n}";
 

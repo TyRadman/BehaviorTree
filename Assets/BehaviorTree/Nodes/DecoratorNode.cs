@@ -11,7 +11,7 @@ namespace BT.Nodes
 
         public override void OnAwake()
         {
-
+            Child.OnAwake();
         }
 
         public override void AddChild(BaseNode child)
@@ -41,7 +41,6 @@ namespace BT.Nodes
 
         public override BaseNode Clone()
         {
-            OnAwake();
             // we need to clone the node and its child and then assign the child to its new parent
             DecoratorNode node = Instantiate(this);
             node.Child = Child.Clone();
@@ -60,7 +59,9 @@ namespace BT.Nodes
 
         public override void OnForceStopNode()
         {
-            State = NodeState.Success;
+            base.OnForceStopNode();
+
+            State = NodeState.Failure;
             Child.OnForceStopNode();
         }
 

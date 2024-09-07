@@ -77,7 +77,10 @@ namespace BT.Nodes
         /// <summary>
         /// Called when the node is force-stopped
         /// </summary>
-        public abstract void OnForceStopNode();
+        public virtual void OnForceStopNode()
+        {
+            IsStarted = false;
+        }
 
         public virtual void AddChild(BaseNode child)
         {
@@ -109,7 +112,6 @@ namespace BT.Nodes
         {
             State = NodeState.NONE;
             // Called when the nodes are created
-            OnAwake();
             return Instantiate(this);
         }
     }

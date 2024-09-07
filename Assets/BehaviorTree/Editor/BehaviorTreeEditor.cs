@@ -8,19 +8,15 @@ using BT.NodesView;
 
 public class BehaviorTreeEditor : EditorWindow
 {
-    // caches
-    private BehaviorTreeSettings Settings;
     private BehaviorTreeView _treeView;
     private InspectorView _inspectorView;
-    // TODO: add the toolbar
-    private ToolBarMenuView _toolBar;
-    public BehaviorTree BehaviorTree;
-    private static BehaviorTree SelectedBehaviorTree;
+    //public BehaviorTree BehaviorTree;
+    public static BehaviorTree SelectedBehaviorTree;
     private static BehaviorTreeEditor Window;
 
     private MiniMap _minimap;
     private Toggle _minimapToggle;
-    
+
     private Toggle _blackboardToggle;
     private CustomBlackboard _blackboard;
 
@@ -32,7 +28,7 @@ public class BehaviorTreeEditor : EditorWindow
 
 
     /// <summary>
-    /// Responsible for opening the BT editor if a BTSO is opened
+    /// Responsible for opening the BT editor if a BehaviorTreeSO is opened
     /// </summary>
     /// <param name="instanceID"></param>
     /// <param name="line"></param>
@@ -40,13 +36,15 @@ public class BehaviorTreeEditor : EditorWindow
     [OnOpenAsset]
     public static bool OnOpenAsset(int instanceID, int line)
     {
-        if (Selection.activeObject is BehaviorTree)
+        Object selectedAsset = Selection.activeObject;
+
+        if (selectedAsset is BehaviorTree selectedBehaviorTree)
         {
             EditorWindow currentWindow = EditorWindow.focusedWindow;
 
             if (currentWindow != null && currentWindow.GetType().Name == "ProjectBrowser")
             {
-                OpenEditor();
+                OpenBehaviorTree(selectedBehaviorTree);
                 return true;
             }
         }
@@ -75,8 +73,9 @@ public class BehaviorTreeEditor : EditorWindow
 
     public static void OpenBehaviorTree(BehaviorTree behaviorTree)
     {
-        if(behaviorTree == null)
+        if (behaviorTree == null)
         {
+            Debug.LogError("Attampting to open a BT but no BT passed.");
             return;
         }
 
@@ -95,15 +94,15 @@ public class BehaviorTreeEditor : EditorWindow
     {
         SetBehaviorTree();
 
-        if(BehaviorTree == null)
+        if (SelectedBehaviorTree == null)
         {
+            Debug.Log("Opening attempted");
             return;
         }
 
         CreateBehaviorTreeFromUXML();
         AddStyleSheets();
         CacheInspectorView();
-        CacheToolbarMenu();
 
         _treeView.OnNodeSelected = OnNodeSelectionChanged;
 
@@ -113,50 +112,49 @@ public class BehaviorTreeEditor : EditorWindow
         GenerateBlackBoard();
         LoadViewData();
 
-        _treeView.PopulateView(BehaviorTree);
+        _treeView.PopulateView(SelectedBehaviorTree);
     }
 
 
     private void SetBehaviorTree()
     {
-        if (Selection.activeObject is BehaviorTree && !Application.isPlaying)
+        Object selectedAsset = Selection.activeObject;
+
+        if (selectedAsset is BehaviorTree selectedBehaviorTree)
         {
-            SelectedBehaviorTree = Selection.activeObject as BehaviorTree;
+            SelectedBehaviorTree = selectedBehaviorTree;
+        }
+        else
+        {
+            GameObject selectedGameObject = Selection.activeGameObject;
+
+            if (selectedGameObject != null)
+            {
+                if (selectedGameObject.TryGetComponent(out BehaviorTreeRunner selectedBTRunner))
+                {
+                    SelectedBehaviorTree = selectedBTRunner.Tree;
+                }
+            }
         }
 
-        BehaviorTree behaviorTreeToSet;
+        if(Application.isPlaying && SelectedBehaviorTree == null)
+        {
+            SelectedBehaviorTree = BehaviorTreeSettings.GetSettings().LastSelectedBehaviorTree;
+        }
 
         if (SelectedBehaviorTree == null)
         {
             return;
         }
-        
+
         if (!Application.isPlaying)
         {
             BehaviorTreeSettings.GetSettings().LastSelectedBehaviorTree = SelectedBehaviorTree;
-            behaviorTreeToSet = BehaviorTreeSettings.GetSettings().LastSelectedBehaviorTree;
-        }
-        else
-        {
-            // if the game is running, we just cache the selected bt (which will be the object in run time) and avoid setting it as the last selected one in the settings
-            behaviorTreeToSet = SelectedBehaviorTree;
+            BehaviorTreeSettings.GetSettings().AddRecentBehaviorTree(SelectedBehaviorTree);
         }
 
-        if (BehaviorTreeSettings.GetSettings().LastSelectedBehaviorTree == null)
-        {
-            Debug.LogError("No behavior Tree passed");
-            return;
-        }
-
-        if (BehaviorTree == null || BehaviorTree != behaviorTreeToSet)
-        {
-            BehaviorTree = behaviorTreeToSet;
-            // TODO: temporary
-            BehaviorTree.Refresh();
-            BehaviorTree.CreateBlackboardContainer();
-        }
-
-        BehaviorTreeSettings.GetSettings().AddRecentBehaviorTree(SelectedBehaviorTree);
+        SelectedBehaviorTree.Refresh();
+        SelectedBehaviorTree.CreateBlackboardContainer();
     }
 
     private void CreateBehaviorTreeFromUXML()
@@ -183,12 +181,6 @@ public class BehaviorTreeEditor : EditorWindow
         _inspectorView = rootVisualElement.Q<InspectorView>();
     }
 
-    private void CacheToolbarMenu()
-    {
-        //_toolBar = rootVisualElement.Q<ToolBarMenuView>();
-        //_toolBar.Initialize(this);
-    }
-
     #region Blackboard
     private void GenerateBlackBoard()
     {
@@ -213,7 +205,7 @@ public class BehaviorTreeEditor : EditorWindow
         _blackboardToggle.RegisterValueChangedCallback(evt =>
         {
             _blackboard.visible = evt.newValue;
-            BehaviorTree.IsBlackboardDisplayed = evt.newValue;
+            SelectedBehaviorTree.IsBlackboardDisplayed = evt.newValue;
         });
 
         LoadBlackboardVisibility();
@@ -221,9 +213,9 @@ public class BehaviorTreeEditor : EditorWindow
 
     private bool IsBlackboardDisplayed()
     {
-        if(BehaviorTree != null)
+        if (SelectedBehaviorTree != null)
         {
-            return BehaviorTree.IsBlackboardDisplayed;
+            return SelectedBehaviorTree.IsBlackboardDisplayed;
         }
 
         return false;
@@ -249,7 +241,7 @@ public class BehaviorTreeEditor : EditorWindow
         _minimapToggle.RegisterValueChangedCallback(evt =>
         {
             _minimap.visible = evt.newValue;
-            BehaviorTree.IsMinimapDisplayed = evt.newValue;
+            SelectedBehaviorTree.IsMinimapDisplayed = evt.newValue;
         });
 
         LoadMinimapVisibility();
@@ -257,9 +249,9 @@ public class BehaviorTreeEditor : EditorWindow
 
     private bool IsMinimapDisplayed()
     {
-        if (BehaviorTree != null)
+        if (SelectedBehaviorTree != null)
         {
-            return BehaviorTree.IsMinimapDisplayed;
+            return SelectedBehaviorTree.IsMinimapDisplayed;
         }
 
         return false;
@@ -304,8 +296,9 @@ public class BehaviorTreeEditor : EditorWindow
             case PlayModeStateChange.ExitingEditMode:
                 break;
             case PlayModeStateChange.EnteredPlayMode:
-                OnSelectionChange();
-                CacheLastBehaviorTree();
+                //OnSelectionChange();
+                OpenEditor();
+                //CacheLastBehaviorTree();
                 break;
             case PlayModeStateChange.ExitingPlayMode:
                 OnPlayModeExit();
@@ -313,22 +306,22 @@ public class BehaviorTreeEditor : EditorWindow
         }
     }
 
-    private void CacheLastBehaviorTree()
-    {
-        if(BehaviorTree != null)
-        {
-            Settings.LastSelectedBehaviorTree = BehaviorTree;
-        }
-    }
+    //private void CacheLastBehaviorTree()
+    //{
+    //    if (SelectedBehaviorTree != null)
+    //    {
+    //        BehaviorTreeSettings.GetSettings().LastSelectedBehaviorTree = SelectedBehaviorTree;
+    //    }
+    //}
 
     private void OnPlayModeExit()
     {
         Window.rootVisualElement.Clear();
 
-        if (SelectedBehaviorTree == null)
-        {
-            OpenBehaviorTree(Settings.LastSelectedBehaviorTree);
-        }
+        //if (SelectedBehaviorTree == null)
+        //{
+            OpenBehaviorTree(BehaviorTreeSettings.GetSettings().LastSelectedBehaviorTree);
+        //}
     }
     #endregion
 
@@ -337,24 +330,21 @@ public class BehaviorTreeEditor : EditorWindow
     /// </summary>
     private void OnSelectionChange()
     {
-        // if there is a selected gameObject, and that selection has a behavior tree runner, then do the checks
-        if (Application.isPlaying && Selection.activeGameObject != null)
+        if (Selection.activeGameObject != null)
         {
+            // if there is a selected gameObject, and that selection has a behavior tree runner, then do the checks
             if (Selection.activeGameObject.TryGetComponent(out BehaviorTreeRunner runner))
             {
-                if(BehaviorTree == SelectedBehaviorTree && _treeView != null)
+                if (runner.Tree == null)
                 {
                     return;
                 }
 
-                if(runner.Tree == null)
+                if (runner.Tree != SelectedBehaviorTree)
                 {
-                    return;
+                    SelectedBehaviorTree = runner.Tree;
+                    OpenBehaviorTree(SelectedBehaviorTree);
                 }
-
-                SelectedBehaviorTree = runner.Tree;
-
-                OpenEditor();
             }
         }
     }
@@ -382,19 +372,19 @@ public class BehaviorTreeEditor : EditorWindow
 
     private void SavePopUpWindowsView()
     {
-        BehaviorTree.IsBlackboardDisplayed = _blackboard.visible;
-        BehaviorTree.IsMinimapDisplayed = _minimap.visible;
+        SelectedBehaviorTree.IsBlackboardDisplayed = _blackboard.visible;
+        SelectedBehaviorTree.IsMinimapDisplayed = _minimap.visible;
     }
 
     private void SaveViewData()
     {
-        if(BehaviorTree == null || _treeView == null)
+        if(SelectedBehaviorTree == null || _treeView == null)
         {
             return;
         }
 
-        BehaviorTree.ViewPosition = _treeView.viewTransform.position;
-        BehaviorTree.ViewZoom = _treeView.viewTransform.scale;
+        SelectedBehaviorTree.ViewPosition = _treeView.viewTransform.position;
+        SelectedBehaviorTree.ViewZoom = _treeView.viewTransform.scale;
     }
     #endregion
 
@@ -406,35 +396,35 @@ public class BehaviorTreeEditor : EditorWindow
 
     private void LoadMinimapVisibility()
     {
-        if (_minimap == null || BehaviorTree == null || _minimapToggle == null)
+        if (_minimap == null || SelectedBehaviorTree == null || _minimapToggle == null)
         {
             return;
         }
 
-        _minimap.visible = BehaviorTree.IsMinimapDisplayed;
+        _minimap.visible = SelectedBehaviorTree.IsMinimapDisplayed;
         _minimapToggle.value = _minimap.visible;
     }
 
     private void LoadBlackboardVisibility()
     {
-        if (_blackboard == null || BehaviorTree == null || _blackboardToggle == null)
+        if (_blackboard == null || SelectedBehaviorTree == null || _blackboardToggle == null)
         {
             return;
         }
 
-        _blackboard.visible = BehaviorTree.IsBlackboardDisplayed;
+        _blackboard.visible = SelectedBehaviorTree.IsBlackboardDisplayed;
         _blackboardToggle.value = _blackboard.visible;
     }
 
     private void LoadViewData()
     {
-        if (BehaviorTree == null || _treeView == null)
+        if (SelectedBehaviorTree == null || _treeView == null)
         {
             return;
         }
 
-        _treeView.viewTransform.position = BehaviorTree.ViewPosition;
-        _treeView.viewTransform.scale = BehaviorTree.ViewZoom;
+        _treeView.viewTransform.position = SelectedBehaviorTree.ViewPosition;
+        _treeView.viewTransform.scale = SelectedBehaviorTree.ViewZoom;
     }
     #endregion
 }

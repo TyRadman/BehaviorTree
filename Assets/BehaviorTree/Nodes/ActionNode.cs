@@ -8,7 +8,6 @@ namespace BT.Nodes
     {
         public override void OnAwake()
         {
-
         }
 
         public override List<BaseNode> GetChildren()
@@ -24,6 +23,8 @@ namespace BT.Nodes
 
         public override void OnForceStopNode()
         {
+            base.OnForceStopNode();
+
             State = NodeState.Failure;
         }
     }

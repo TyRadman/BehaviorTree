@@ -21,8 +21,9 @@ namespace BT.Nodes
         protected override NodeState OnUpdate()
         {
             BaseNode child = Children[_currentChild];
-            NodeState state = child.Update();
-
+            try
+            {
+                NodeState state = child.Update();
             switch (state)
             {
                 case NodeState.Running:
@@ -48,7 +49,14 @@ namespace BT.Nodes
             else
             {
                 return NodeState.Running;
+                }
             }
+            catch
+            {
+                Debug.Log(ViewDetails.Name);
+            }
+
+            return NodeState.Running;
         }
     }
 }

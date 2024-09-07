@@ -10,8 +10,12 @@ namespace BT.Nodes
 
         protected override NodeState OnUpdate()
         {
-            NodeState state = Child.Update();
-            return IsTrue() ? state : NodeState.Failure;
+            if (!IsTrue())
+            {
+                return NodeState.Failure;
+            }
+
+            return Child.Update();
         }
     }
 }

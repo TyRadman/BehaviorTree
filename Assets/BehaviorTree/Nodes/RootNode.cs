@@ -13,7 +13,7 @@ namespace BT.Nodes
 
         public override void OnAwake()
         {
-
+            Child.OnAwake();
         }
 
         protected override void OnStart()
@@ -64,7 +64,6 @@ namespace BT.Nodes
 
         public override BaseNode Clone()
         {
-            OnAwake();
             // we need to clone the node and its child and then assign the child to its new parent
             RootNode node = Instantiate(this);
             node.Child = Child.Clone();
@@ -73,6 +72,8 @@ namespace BT.Nodes
 
         public override void OnForceStopNode()
         {
+            base.OnForceStopNode();
+
             State = NodeState.Success;
             Child.OnForceStopNode();
         }

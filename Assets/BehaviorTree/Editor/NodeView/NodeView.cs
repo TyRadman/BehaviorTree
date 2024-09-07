@@ -187,6 +187,10 @@ namespace BT.NodesView
             {
                 path += "T_Check.png";
             }
+            else if (Node is ConditionalLoopNode)
+            {
+                path += "T_ConditionalCheck.png";
+            }
             else if (Node is RootNode)
             {
                 path += "T_Root.png";

@@ -25,7 +25,8 @@ namespace BT
         {
             _treeView = treeView;
             _editor = editor;
-            _blackboardVariables = _editor.BehaviorTree.BlackboardContainer;
+            //_blackboardVariables = _editor.BehaviorTree.BlackboardContainer;
+            _blackboardVariables = BehaviorTreeEditor.SelectedBehaviorTree.BlackboardContainer;
             InitializeBlackboard();
 
             this.RegisterCallback<KeyDownEvent>(evt =>

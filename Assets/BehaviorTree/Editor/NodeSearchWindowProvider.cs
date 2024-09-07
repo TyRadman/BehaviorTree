@@ -44,12 +44,14 @@ public class NodeSearchWindowProvider : ScriptableObject, ISearchWindowProvider
             _behaviorTreeEditor = _graphView.BehaviorTreeEditor;
         }
 
-        if(_behaviorTreeEditor.BehaviorTree == null)
+        //if(_behaviorTreeEditor.BehaviorTree == null)
+        if(BehaviorTreeEditor.SelectedBehaviorTree == null)
         {
             Debug.LogError("No bt");
         }
 
-        if (_behaviorTreeEditor != null && _behaviorTreeEditor.BehaviorTree != null)
+        //if (_behaviorTreeEditor != null && _behaviorTreeEditor.BehaviorTree != null)
+        if (_behaviorTreeEditor != null && BehaviorTreeEditor.SelectedBehaviorTree != null)
         {
             GenerateNodeEntries(tree, rootGroup);
         }
