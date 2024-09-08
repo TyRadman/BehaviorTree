@@ -118,9 +118,7 @@ public class BehaviorTreeEditor : EditorWindow
 
     private void SetBehaviorTree()
     {
-        Object selectedAsset = Selection.activeObject;
-
-        if (selectedAsset is BehaviorTree selectedBehaviorTree)
+        if (Selection.activeObject is BehaviorTree selectedBehaviorTree)
         {
             SelectedBehaviorTree = selectedBehaviorTree;
         }
@@ -137,7 +135,7 @@ public class BehaviorTreeEditor : EditorWindow
             }
         }
 
-        if(Application.isPlaying && SelectedBehaviorTree == null)
+        if(SelectedBehaviorTree == null)
         {
             SelectedBehaviorTree = BehaviorTreeSettings.GetSettings().LastSelectedBehaviorTree;
         }

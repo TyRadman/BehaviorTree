@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
+using System;
 
 namespace BT
 {
@@ -18,7 +19,7 @@ namespace BT
             new ExposedIntDisplay(), new ExposedFloatDisplay(),
             new ExposedBoolDisplay(), new ExposedStringDisplay(),
             new ExposedGameObjectDisplay(), new ExposedVector2Display(), new ExposedVector3Display(),
-            new ExposedColorDisplay(),
+            new ExposedColorDisplay(), new ExposedScriptableObjectDisplay()
         };
 
         public CustomBlackboard(BehaviorTreeView treeView, BehaviorTreeEditor editor) : base(treeView)
@@ -132,7 +133,6 @@ namespace BT
             menu.ShowAsContext();
         }
 
-        //#region Create Blackboard property visuals
         private void AddNewProperty(ExposedVariableDisplay display)
         {
             ExposedProperty property = GetPropertyInstance(display);
@@ -144,7 +144,7 @@ namespace BT
 
             AssetDatabase.SaveAssets();
 
-            if(_blackboardVariables == null)
+            if (_blackboardVariables == null)
             {
                 Debug.Log("Issue with variabels");
             }
@@ -173,6 +173,7 @@ namespace BT
             BlackboardField blackboardField = CreateBlackboardField(property, display.IconColor);
             container.Add(blackboardField);
             VisualElement propertyValueField = display.SetUpField(property);
+
             // the first parameter is the parent of the row and the second is the child
             BlackboardRow bbRow = CreateBlackboardRow(property, blackboardField, propertyValueField);
 
@@ -285,7 +286,7 @@ namespace BT
         {
             List<ExposedProperty> properties = _blackboardVariables.Variables;
 
-            if(properties == null || properties.Count == 0)
+            if (properties == null || properties.Count == 0)
             {
                 return;
             }
@@ -306,3 +307,4 @@ namespace BT
         //#endregion
     }
 }
+

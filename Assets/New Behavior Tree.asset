@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8810825326853909713
+--- !u!114 &-9137754718038350203
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8f48bd5375a194ba44f886e130c899, type: 3}
-  m_Name: Bool
+  m_Script: {fileID: 11500000, guid: ddf099a0ea2d948438f9fe2b96535892, type: 3}
+  m_Name: Int
   m_EditorClassIdentifier: 
-  PropertyName: PlayerInSight
+  PropertyName: Int_01
   <Expanded>k__BackingField: 0
   Value: 0
---- !u!114 &-8693389792450500825
+--- !u!114 &-9058001647504001617
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -24,12 +24,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d598e343a3601e45ab1d7524098daa6, type: 3}
-  m_Name: String
+  m_Script: {fileID: 11500000, guid: ddf099a0ea2d948438f9fe2b96535892, type: 3}
+  m_Name: Int_01_01
   m_EditorClassIdentifier: 
-  PropertyName: String
-  <Expanded>k__BackingField: 1
-  Value: Hello
+  PropertyName: Int_01_01_01
+  <Expanded>k__BackingField: 0
+  Value: 0
 --- !u!114 &-8347948407087543186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -52,6 +52,36 @@ MonoBehaviour:
     Name: Kill Player
     Description: 
   Duration: 1
+--- !u!114 &-8212955673985931600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf099a0ea2d948438f9fe2b96535892, type: 3}
+  m_Name: Int
+  m_EditorClassIdentifier: 
+  PropertyName: Int
+  <Expanded>k__BackingField: 0
+  Value: 0
+--- !u!114 &-7461085176904361733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddf099a0ea2d948438f9fe2b96535892, type: 3}
+  m_Name: Int_01
+  m_EditorClassIdentifier: 
+  PropertyName: Int_01_01
+  <Expanded>k__BackingField: 0
+  Value: 0
 --- !u!114 &-7419887120534817815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,21 +128,6 @@ MonoBehaviour:
     Name: Wait
     Description: 
   Duration: 1
---- !u!114 &-3697538930625350931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6270116dcafed31469a862d9fabec3cb, type: 3}
-  m_Name: Vector3
-  m_EditorClassIdentifier: 
-  PropertyName: Vector3
-  <Expanded>k__BackingField: 1
-  Value: {x: 0, y: 0, z: 0}
 --- !u!114 &-3624571565183203081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,36 +200,6 @@ MonoBehaviour:
   - {fileID: -3072622616571885905}
   - {fileID: -4078013633141951508}
   - {fileID: 5180399916857977337}
---- !u!114 &-2361212474110914991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8f48bd5375a194ba44f886e130c899, type: 3}
-  m_Name: Bool
-  m_EditorClassIdentifier: 
-  PropertyName: PlayerWithinKillDistance
-  <Expanded>k__BackingField: 0
-  Value: 0
---- !u!114 &-695656715030168323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1778976e70dd9024d8b2b82f3e442f76, type: 3}
-  m_Name: Vector2
-  m_EditorClassIdentifier: 
-  PropertyName: Vector2
-  <Expanded>k__BackingField: 0
-  Value: {x: 0, y: 0}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -247,23 +232,8 @@ MonoBehaviour:
   BlackboardContainer: {fileID: 1712000516566781064}
   IsMinimapDisplayed: 0
   IsBlackboardDisplayed: 1
-  ViewPosition: {x: 646, y: -210.66667, z: 0}
-  ViewZoom: {x: 0.7561437, y: 0.7561437, z: 1}
---- !u!114 &274256697049340632
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0db62fc8d923ea5419a1caa38a5ed895, type: 3}
-  m_Name: Float
-  m_EditorClassIdentifier: 
-  PropertyName: Float
-  <Expanded>k__BackingField: 0
-  Value: 0
+  ViewPosition: {x: 273.33334, y: -114.666664, z: 0}
+  ViewZoom: {x: 0.57175326, y: 0.57175326, z: 1}
 --- !u!114 &468789769140506619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -328,42 +298,12 @@ MonoBehaviour:
   Blackboard: {fileID: 1712000516566781064}
   Agent: {fileID: 0}
   GUID: 88aba8e97349aec4fba1b99e9787a336
-  Position: {x: -350.00006, y: 424.6667}
+  Position: {x: -349.99997, y: 430.0001}
   ViewDetails:
     Name: player out of sight
     Description: 
   Child: {fileID: -2635883888787580770}
   _pass: 1
---- !u!114 &1401369614448167642
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5ec3252b04c1cc43b44172b3da4425f, type: 3}
-  m_Name: Color
-  m_EditorClassIdentifier: 
-  PropertyName: IndicatorColor
-  <Expanded>k__BackingField: 0
-  Value: {r: 1, g: 0.31132066, b: 0.31132066, a: 1}
---- !u!114 &1688238117427013549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8f48bd5375a194ba44f886e130c899, type: 3}
-  m_Name: Bool
-  m_EditorClassIdentifier: 
-  PropertyName: Bool
-  <Expanded>k__BackingField: 1
-  Value: 0
 --- !u!114 &1712000516566781064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,20 +318,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BehaviorTree: {fileID: 11400000}
   <Position>k__BackingField: {x: 0, y: 0}
-  <Size>k__BackingField: {x: 311.99997, y: 315.33334}
+  <Size>k__BackingField: {x: 329.33334, y: 448.66666}
   <Variables>k__BackingField:
-  - {fileID: -8810825326853909713}
-  - {fileID: 6075052962669106282}
-  - {fileID: 1401369614448167642}
-  - {fileID: -2361212474110914991}
-  - {fileID: 6173228812371894335}
-  - {fileID: 274256697049340632}
-  - {fileID: 1688238117427013549}
-  - {fileID: -8693389792450500825}
-  - {fileID: 6218831123615470357}
-  - {fileID: -695656715030168323}
-  - {fileID: -3697538930625350931}
-  - {fileID: 2623679128838462288}
+  - {fileID: -8212955673985931600}
+  - {fileID: -9137754718038350203}
+  - {fileID: -7461085176904361733}
+  - {fileID: -9058001647504001617}
 --- !u!114 &1866415606025423908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,21 +391,6 @@ MonoBehaviour:
     Name: Select waypoint
     Description: 
   Duration: 1
---- !u!114 &2623679128838462288
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5ec3252b04c1cc43b44172b3da4425f, type: 3}
-  m_Name: Color
-  m_EditorClassIdentifier: 
-  PropertyName: ColorValue
-  <Expanded>k__BackingField: 0
-  Value: {r: 1, g: 0.216981, b: 0.216981, a: 0}
 --- !u!114 &5180399916857977337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,51 +414,6 @@ MonoBehaviour:
     Description: 
   _behaviorTree: {fileID: 11400000, guid: c1e19373ea90c6840b00e860f73c46a3, type: 2}
   RootNode: {fileID: 6268943190207095433, guid: c1e19373ea90c6840b00e860f73c46a3, type: 2}
---- !u!114 &6075052962669106282
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0db62fc8d923ea5419a1caa38a5ed895, type: 3}
-  m_Name: Float
-  m_EditorClassIdentifier: 
-  PropertyName: PlayerKillingDistance
-  <Expanded>k__BackingField: 0
-  Value: 1.5
---- !u!114 &6173228812371894335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddf099a0ea2d948438f9fe2b96535892, type: 3}
-  m_Name: Int_01_01
-  m_EditorClassIdentifier: 
-  PropertyName: IntegerValue
-  <Expanded>k__BackingField: 1
-  Value: 15
---- !u!114 &6218831123615470357
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3541bfb9546d3e94ba843351d12019d5, type: 3}
-  m_Name: GameObject
-  m_EditorClassIdentifier: 
-  PropertyName: GameObject
-  <Expanded>k__BackingField: 1
-  Value: {fileID: 0}
 --- !u!114 &6358799396181818810
 MonoBehaviour:
   m_ObjectHideFlags: 0
