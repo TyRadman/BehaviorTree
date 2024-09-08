@@ -176,9 +176,9 @@ MonoBehaviour:
   Blackboard: {fileID: 1712000516566781064}
   Agent: {fileID: 0}
   GUID: d0e7f754984d5ec49b0ec697c55cbce6
-  Position: {x: -376, y: 596}
+  Position: {x: -399.13077, y: 592.916}
   ViewDetails:
-    Name: Patrol sequence
+    Name: Patrol sequence Patrol sequence
     Description: 
   Children:
   - {fileID: 2567479939106467782}
@@ -247,8 +247,8 @@ MonoBehaviour:
   BlackboardContainer: {fileID: 1712000516566781064}
   IsMinimapDisplayed: 0
   IsBlackboardDisplayed: 1
-  ViewPosition: {x: 428, y: 137.33333, z: 0}
-  ViewZoom: {x: 0.25, y: 0.25, z: 1}
+  ViewPosition: {x: 646, y: -210.66667, z: 0}
+  ViewZoom: {x: 0.7561437, y: 0.7561437, z: 1}
 --- !u!114 &274256697049340632
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -491,7 +491,7 @@ MonoBehaviour:
   Blackboard: {fileID: 1712000516566781064}
   Agent: {fileID: 0}
   GUID: 1c4727d21610bd34eb99608fa50b0918
-  Position: {x: -360.6667, y: 763.3333}
+  Position: {x: -334.45218, y: 763.3334}
   ViewDetails:
     Name: Behavior Tree
     Description: 

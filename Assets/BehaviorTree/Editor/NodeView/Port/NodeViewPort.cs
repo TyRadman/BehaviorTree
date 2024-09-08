@@ -1,4 +1,5 @@
 using BT.NodesView;
+using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -164,8 +165,30 @@ public class NodeViewPort
             _view.SetChildNodeDraggedFrom(_node);
         }
 
-        //Debug.Log("Drag Ended");
-        SearchWindowContext context = new SearchWindowContext(position);
+        Rect graphViewRect = _view.contentContainer.worldBound;
+
+        // Adjust the position for maximized window vs. non-maximized
+        Vector2 adjustedPosition;
+
+        if (IsWindowMaximized())
+        {
+            Debug.Log("Maximized");
+            // If the window is maximized, adjust the position normally
+            adjustedPosition = position - graphViewRect.position;
+        }
+        else
+        {
+            adjustedPosition = position;
+            // If the window is not maximized, apply a different adjustment (depending on your layout, you may need a different approach)
+            //adjustedPosition = position - _view.LocalToWorld(Vector2.zero);
+        }
+
+        SearchWindowContext context = new SearchWindowContext(adjustedPosition);
         SearchWindow.Open(context, NodeSearchWindowProvider.Instance);
+    }
+
+    private bool IsWindowMaximized()
+    {
+        return EditorWindow.focusedWindow.maximized;
     }
 }

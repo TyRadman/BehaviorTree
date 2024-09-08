@@ -19,7 +19,6 @@ namespace BT.NodesView
         private const string NODE_VIEW_UXML_DIRECTORY = BehaviorTreeSettings.CORE_DIRECTORY + "Editor/NodeView/NodeView.uxml";
         private const string NODE_ICONS_PATH = BehaviorTreeSettings.CORE_DIRECTORY + "/Icons/NodesIcons/";
         private Label _stateLabel;
-        private VisualElement _nodeBackground;
         private static BehaviorTreeView _view;
         private NodeState _currentState = NodeState.NONE;
         private string _lastAddedClass = string.Empty;
@@ -43,8 +42,6 @@ namespace BT.NodesView
             this.viewDataKey = node.GUID;
             _stateLabel = this.Q<Label>("state-title");
             _stateLabel.visible = false;
-            _nodeBackground = this.Q<VisualElement>("node-border");
-
 
             SetNodeInitialPosition();
 
@@ -58,7 +55,7 @@ namespace BT.NodesView
             BindTitleLabelToName();
             BindTooltipToDescription();
             Stylize();
-            //Stylize();
+            SetClassNameLabel();
         }
 
         private void SetNodeInitialPosition()
@@ -215,6 +212,20 @@ namespace BT.NodesView
             Texture2D gradient = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
             VisualElement icon = this.Q<VisualElement>("node-icon");
             icon.style.backgroundImage = gradient;
+        }
+
+        private void SetClassNameLabel()
+        {
+            TextElement classText = this.Q<TextElement>("script-name");
+
+            if(classText == null)
+            {
+                return;
+            }
+
+            string name = Node.GetType().Name.Replace("Node", string.Empty);
+
+            classText.text = name;
         }
     }
 

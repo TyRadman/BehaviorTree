@@ -149,7 +149,7 @@ public class BehaviorTreeEditor : EditorWindow
 
         if (!Application.isPlaying)
         {
-            BehaviorTreeSettings.GetSettings().LastSelectedBehaviorTree = SelectedBehaviorTree;
+            BehaviorTreeSettings.GetSettings().SetBehaviorTree(SelectedBehaviorTree);
             BehaviorTreeSettings.GetSettings().AddRecentBehaviorTree(SelectedBehaviorTree);
         }
 

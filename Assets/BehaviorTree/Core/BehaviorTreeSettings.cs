@@ -12,7 +12,7 @@ namespace BT
         public static BehaviorTreeSettings Instance;
         public const string CORE_DIRECTORY = "Assets/BehaviorTree/";
         public const string PATH = "Assets/BehaviorTree/Settings/Settings.asset";
-        [field: SerializeField] public BehaviorTree LastSelectedBehaviorTree { get; set; }
+        [field: SerializeField] public BehaviorTree LastSelectedBehaviorTree { get; private set; }
         [field: SerializeField] public List<BehaviorTree> RecentOpenedBehaviorTrees { get; set; }
 
         public void AddRecentBehaviorTree(BehaviorTree behaviorTree)
@@ -56,6 +56,12 @@ namespace BT
             }
 
             return Instance;
+        }
+
+        public void SetBehaviorTree(BehaviorTree behaviorTree)
+        {
+            LastSelectedBehaviorTree = behaviorTree;
+            EditorUtility.SetDirty(this);
         }
     }
 }

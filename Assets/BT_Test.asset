@@ -17,7 +17,7 @@ MonoBehaviour:
   Blackboard: {fileID: -402540068299376606}
   Agent: {fileID: 0}
   GUID: 6883f52b7ca5e3444a086f7b6b7ac567
-  Position: {x: -8, y: 499.61337}
+  Position: {x: -0.000024318695, y: 499.33334}
   ViewDetails:
     Name: Wait
     Description: 
@@ -36,7 +36,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BehaviorTree: {fileID: 11400000}
   <Position>k__BackingField: {x: 0, y: 0}
-  <Size>k__BackingField: {x: 299.99997, y: 300}
+  <Size>k__BackingField: {x: 300, y: 300}
   <Variables>k__BackingField: []
 --- !u!114 &11400000
 MonoBehaviour:
@@ -61,7 +61,7 @@ MonoBehaviour:
   BlackboardContainer: {fileID: -402540068299376606}
   IsMinimapDisplayed: 0
   IsBlackboardDisplayed: 0
-  ViewPosition: {x: 484, y: 94.666664, z: 0}
+  ViewPosition: {x: 469.43997, y: -40.240013, z: 0}
   ViewZoom: {x: 0.57175326, y: 0.57175326, z: 1}
 --- !u!114 &1906244822297249407
 MonoBehaviour:
@@ -80,12 +80,13 @@ MonoBehaviour:
   Blackboard: {fileID: -402540068299376606}
   Agent: {fileID: 0}
   GUID: 4ef825a2cba1f9f41b3e769c545cc040
-  Position: {x: -3.183401, y: 277.82834}
+  Position: {x: -4.6667504, y: 184}
   ViewDetails:
     Name: Selector
     Description: 
   Children:
   - {fileID: 2937631579584372231}
+  - {fileID: 1906244822297249407}
   - {fileID: -595323858020799767}
   - {fileID: 2194689834461472166}
 --- !u!114 &2194689834461472166
@@ -105,7 +106,7 @@ MonoBehaviour:
   Blackboard: {fileID: -402540068299376606}
   Agent: {fileID: 0}
   GUID: 2fc6ad39a96297c42a70b47604e73098
-  Position: {x: 220.07336, y: 499.33334}
+  Position: {x: 236.96237, y: 499.33334}
   ViewDetails:
     Name: Wait
     Description: 
@@ -122,12 +123,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
   m_Name: WaitNode
   m_EditorClassIdentifier: 
-  State: 16
+  State: 2
   IsStarted: 0
   Blackboard: {fileID: -402540068299376606}
   Agent: {fileID: 0}
   GUID: 5ef36344a7bde844ba428713e707cf02
-  Position: {x: -243.34007, y: 486.67996}
+  Position: {x: -224.12172, y: 499.3334}
   ViewDetails:
     Name: Wait
     Description: 
