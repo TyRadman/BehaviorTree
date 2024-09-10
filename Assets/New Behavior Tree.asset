@@ -229,11 +229,12 @@ MonoBehaviour:
   - {fileID: -3624571565183203081}
   - {fileID: 5180399916857977337}
   - {fileID: -2635883888787580770}
+  - {fileID: 1604678511790329923}
   BlackboardContainer: {fileID: 1712000516566781064}
   IsMinimapDisplayed: 0
   IsBlackboardDisplayed: 1
-  ViewPosition: {x: 273.33334, y: -114.666664, z: 0}
-  ViewZoom: {x: 0.57175326, y: 0.57175326, z: 1}
+  ViewPosition: {x: -186.66667, y: -224, z: 0}
+  ViewZoom: {x: 0.7561437, y: 0.7561437, z: 1}
 --- !u!114 &468789769140506619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -304,6 +305,29 @@ MonoBehaviour:
     Description: 
   Child: {fileID: -2635883888787580770}
   _pass: 1
+--- !u!114 &1604678511790329923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 122b3e6507c8d0041bc50dab45ad8698, type: 3}
+  m_Name: ForceStateNode
+  m_EditorClassIdentifier: 
+  State: 16
+  IsStarted: 0
+  Blackboard: {fileID: 1712000516566781064}
+  Agent: {fileID: 0}
+  GUID: ea960541472d356459163bb3b70b1843
+  Position: {x: 791.7168, y: 469.89966}
+  ViewDetails:
+    Name: Force State
+    Description: 
+  Child: {fileID: 0}
+  _returnedState: 0
 --- !u!114 &1712000516566781064
 MonoBehaviour:
   m_ObjectHideFlags: 0

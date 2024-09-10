@@ -164,6 +164,7 @@ namespace BT.NodesView
         {
             string path = NODE_ICONS_PATH;
 
+
             if (Node is SequenceNode)
             {
                 path += "T_Sequence.png";
@@ -207,6 +208,10 @@ namespace BT.NodesView
             else if (Node is ActionNode)
             {
                 path += "T_Action.png";
+            }
+            else if (Node is ForceStateNode)
+            {
+                path += "T_ForceState.png";
             }
 
             Texture2D gradient = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
