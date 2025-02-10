@@ -22,7 +22,7 @@ namespace BT.Nodes
 
         }
 
-        protected override void OnStop()
+        protected override void OnExit()
         {
 
         }

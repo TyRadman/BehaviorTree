@@ -49,7 +49,7 @@ namespace BT.Nodes
 			return state;
 		}
 
-		protected override void OnStop()
+		protected override void OnExit()
 		{
 
 		}

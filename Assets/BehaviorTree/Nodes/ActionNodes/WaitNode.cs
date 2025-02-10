@@ -15,7 +15,7 @@ namespace BT.Nodes
             _elapsedTime = 0f;
         }
 
-        protected override void OnStop()
+        protected override void OnExit()
         {
 
         }

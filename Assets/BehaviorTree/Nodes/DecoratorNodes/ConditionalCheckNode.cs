@@ -15,12 +15,12 @@ namespace BT.Nodes
         /// the condition becomes false or allowed to complete before re-evaluation.
         /// </summary>
         [Tooltip("Defines how a condition node controls the execution flow of a behavior tree. Determines whether a running sequence is interrupted immediately when the condition becomes false or allowed to complete before re-evaluation.")]
-        [SerializeField] private ConditionInterruptionMode _interruptionMode;
+        [SerializeField] private InterruptionMode _interruptionMode;
         protected abstract bool IsTrue();
 
         protected override NodeState OnUpdate()
         {
-            if (_interruptionMode == ConditionInterruptionMode.Reactive)
+            if (_interruptionMode == InterruptionMode.Reactive)
             {
                 if (!IsTrue())
                 {
@@ -29,7 +29,7 @@ namespace BT.Nodes
 
                 return Child.Update();
             }
-            else if(_interruptionMode == ConditionInterruptionMode.Latched)
+            else if(_interruptionMode == InterruptionMode.Latched)
             {
                 if(Child.Update() != NodeState.Running)
                 {

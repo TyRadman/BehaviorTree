@@ -9,7 +9,6 @@ namespace BT.Nodes
 #if UNITY_EDITOR
     public abstract class CompositeNode : BaseNode
     {
-        //[HideInInspector]
         public List<BaseNode> Children = new List<BaseNode>();
 
         public override void OnAwake()

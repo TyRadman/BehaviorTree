@@ -59,7 +59,7 @@ namespace BT.Nodes
             // if the node fails or succeeds, stop it
             if (State == NodeState.Failure || State == NodeState.Success)
             {
-                OnStop();
+                OnExit();
 
                 if (State == NodeState.Failure)
                 {
@@ -74,7 +74,7 @@ namespace BT.Nodes
 
         public abstract void OnAwake();
         protected abstract void OnStart();
-        protected abstract void OnStop();
+        protected abstract void OnExit();
         protected abstract NodeState OnUpdate();
 
         /// <summary>

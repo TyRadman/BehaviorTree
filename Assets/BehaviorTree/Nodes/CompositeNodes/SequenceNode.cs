@@ -14,7 +14,7 @@ namespace BT.Nodes
             _currentChild = 0;
         }
 
-        protected override void OnStop()
+        protected override void OnExit()
         {
 
         }

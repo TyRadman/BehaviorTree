@@ -45,7 +45,7 @@ namespace BT.Nodes
 			return NodeState.Running;
 		}
 
-		protected override void OnStop()
+		protected override void OnExit()
 		{
 
 		}

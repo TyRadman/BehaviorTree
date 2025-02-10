@@ -17,7 +17,7 @@ namespace BT.Nodes
 			return _pass? NodeState.Success : NodeState.Failure;
 		}
 
-		protected override void OnStop()
+		protected override void OnExit()
 		{
 			// stop logic
 		}

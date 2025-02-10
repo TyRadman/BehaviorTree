@@ -23,7 +23,7 @@ namespace BT.Nodes
 			return _returnedState;
 		}
 
-		protected override void OnStop()
+		protected override void OnExit()
 		{
 			// end logic
 		}

@@ -154,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tree: {fileID: 11400000, guid: 53a0dadef4a524746bc4fc5e766e030c, type: 2}
   _runOnStart: 1
+  _agent: {fileID: 482928494}
 --- !u!4 &482928495
 Transform:
   m_ObjectHideFlags: 0

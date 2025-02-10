@@ -7,7 +7,7 @@ namespace BT.Utilities
     /// <summary>
     /// Controls whether a condition interrupts execution immediately or waits until completion.
     /// </summary>
-    public enum ConditionInterruptionMode
+    public enum InterruptionMode
     {
         /// <summary>
         /// Interrupts execution as soon as the condition becomes false.
