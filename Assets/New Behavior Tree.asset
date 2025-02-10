@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-7206758308370380235
+--- !u!114 &-7639794199392080655
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14,15 +14,112 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 16
   IsStarted: 0
-  Blackboard: {fileID: -1426145881168723680}
+  Blackboard: {fileID: 5108417172295971817}
   Agent: {fileID: 0}
-  GUID: d671382fb7138b84cbb998eb5ee6dba6
-  Position: {x: 299.52914, y: 784.99994}
+  GUID: adbabb358c3725540ad047f5dca5a860
+  Position: {x: -160.99998, y: 480.99997}
   ViewDetails:
     Name: Wait
     Description: 
-  Duration: 3
---- !u!114 &-7137123340255250600
+  VariableName: Wait
+  Duration: 1
+--- !u!114 &-6467447629319270118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c557a60da994f6e4e80df3aeb4f1a2ef, type: 3}
+  m_Name: RootNode
+  m_EditorClassIdentifier: 
+  State: 16
+  IsStarted: 0
+  Blackboard: {fileID: 5108417172295971817}
+  Agent: {fileID: 0}
+  GUID: 15a91917fc0df3e4f87a3bca0a8cf0fe
+  Position: {x: -29, y: -185}
+  ViewDetails:
+    Name: Root
+    Description: 
+  VariableName: 
+  Child: {fileID: 4146645113402171515}
+--- !u!114 &-5537813854978075789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5adcbfa1d75c90b4fa473d14022b58ef, type: 3}
+  m_Name: SequenceNode
+  m_EditorClassIdentifier: 
+  State: 16
+  IsStarted: 0
+  Blackboard: {fileID: 5108417172295971817}
+  Agent: {fileID: 0}
+  GUID: cc5839ea06b94c04e8366b03dfe682ee
+  Position: {x: -35.00002, y: 222.99998}
+  ViewDetails:
+    Name: Sequence
+    Description: 
+  VariableName: Hellofdssdfdsfsd
+  Children:
+  - {fileID: -7639794199392080655}
+  - {fileID: -4489020542285254370}
+--- !u!114 &-4489020542285254370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
+  m_Name: WaitNode
+  m_EditorClassIdentifier: 
+  State: 16
+  IsStarted: 0
+  Blackboard: {fileID: 5108417172295971817}
+  Agent: {fileID: 0}
+  GUID: 50856556718642a47b53dd10f2a72746
+  Position: {x: 105.7489, y: 481.39856}
+  ViewDetails:
+    Name: Wait
+    Description: 
+  VariableName: Waits
+  Duration: 1
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b5fbc36ae5f1b498af6acf767bf414, type: 3}
+  m_Name: New Behavior Tree
+  m_EditorClassIdentifier: 
+  RootNode: {fileID: -6467447629319270118}
+  TreeState: 0
+  Nodes:
+  - {fileID: -6467447629319270118}
+  - {fileID: -5537813854978075789}
+  - {fileID: -7639794199392080655}
+  - {fileID: -4489020542285254370}
+  - {fileID: 4146645113402171515}
+  BlackboardContainer: {fileID: 5108417172295971817}
+  IsMinimapDisplayed: 0
+  IsBlackboardDisplayed: 0
+  ViewPosition: {x: 351, y: 151, z: 0}
+  ViewZoom: {x: 0.57175326, y: 0.57175326, z: 1}
+--- !u!114 &4146645113402171515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -36,43 +133,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   State: 16
   IsStarted: 0
-  Blackboard: {fileID: -1426145881168723680}
+  Blackboard: {fileID: 5108417172295971817}
   Agent: {fileID: 0}
-  GUID: 456ec76c41a17374c8dc983f9aa9dd94
-  Position: {x: -24.000061, y: 15.772865}
+  GUID: bd9fac014c99f5b4692d5301e90f3b96
+  Position: {x: -28.999916, y: -7.000001}
   ViewDetails:
     Name: Loop
     Description: 
-  Child: {fileID: -3590396070148930504}
+  VariableName: Wai
+  Child: {fileID: -5537813854978075789}
   _loopMode: 0
   _loopsToComplete: 3
---- !u!114 &-3590396070148930504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da8cb0b9526f3b48b1ce0c3ae88805e, type: 3}
-  m_Name: ParallelNode
-  m_EditorClassIdentifier: 
-  State: 16
-  IsStarted: 0
-  Blackboard: {fileID: -1426145881168723680}
-  Agent: {fileID: 0}
-  GUID: b874f570073bf7140ad3685dccefd868
-  Position: {x: -24.000053, y: 253.749}
-  ViewDetails:
-    Name: Parallel
-    Description: 
-  Children:
-  - {fileID: 7692729465749459390}
-  - {fileID: 3609869794441667287}
-  _failureCondition: 0
-  ConditionalFailedChildrenCount: 0
---- !u!114 &-1426145881168723680
+--- !u!114 &5108417172295971817
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -88,216 +160,3 @@ MonoBehaviour:
   <Position>k__BackingField: {x: 0, y: 0}
   <Size>k__BackingField: {x: 300, y: 300}
   <Variables>k__BackingField: []
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30b5fbc36ae5f1b498af6acf767bf414, type: 3}
-  m_Name: New Behavior Tree
-  m_EditorClassIdentifier: 
-  RootNode: {fileID: 336631073160550730}
-  TreeState: 0
-  Nodes:
-  - {fileID: 336631073160550730}
-  - {fileID: 7916271989113757764}
-  - {fileID: 5602101602292783501}
-  - {fileID: 2562967569189595210}
-  - {fileID: -7137123340255250600}
-  - {fileID: -3590396070148930504}
-  - {fileID: 6636433441674244141}
-  - {fileID: -7206758308370380235}
-  - {fileID: 3966184766573443617}
-  - {fileID: 7692729465749459390}
-  - {fileID: 3609869794441667287}
-  BlackboardContainer: {fileID: -1426145881168723680}
-  IsMinimapDisplayed: 0
-  IsBlackboardDisplayed: 0
-  ViewPosition: {x: 301, y: 82, z: 0}
-  ViewZoom: {x: 0.57175326, y: 0.57175326, z: 1}
---- !u!114 &336631073160550730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c557a60da994f6e4e80df3aeb4f1a2ef, type: 3}
-  m_Name: RootNode
-  m_EditorClassIdentifier: 
-  State: 16
-  IsStarted: 0
-  Blackboard: {fileID: -1426145881168723680}
-  Agent: {fileID: 0}
-  GUID: 313a5a29d86a1bf408ad60bc67308cec
-  Position: {x: -24.000053, y: -192.39067}
-  ViewDetails:
-    Name: Root
-    Description: 
-  Child: {fileID: -7137123340255250600}
---- !u!114 &2562967569189595210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: 
-  State: 16
-  IsStarted: 0
-  Blackboard: {fileID: -1426145881168723680}
-  Agent: {fileID: 0}
-  GUID: b45d378fa9ad2a041b0a9b8ca8ba7f3b
-  Position: {x: -56.621826, y: 785.3509}
-  ViewDetails:
-    Name: Wait
-    Description: 
-  Duration: 3
---- !u!114 &3609869794441667287
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a5492e3dce81fd47b01b7483ab97890, type: 3}
-  m_Name: RandomSequenceNode
-  m_EditorClassIdentifier: 
-  State: 16
-  IsStarted: 0
-  Blackboard: {fileID: -1426145881168723680}
-  Agent: {fileID: 0}
-  GUID: 16ffa62211556ef4a92fb53f258da36f
-  Position: {x: 292.99997, y: 523}
-  ViewDetails:
-    Name: Random Sequence
-    Description: 
-  Children:
-  - {fileID: 6636433441674244141}
-  - {fileID: -7206758308370380235}
-  - {fileID: 3966184766573443617}
---- !u!114 &3966184766573443617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: 
-  State: 16
-  IsStarted: 0
-  Blackboard: {fileID: -1426145881168723680}
-  Agent: {fileID: 0}
-  GUID: d71457e4a91c94442bed46edd75df855
-  Position: {x: 492.5292, y: 784.99994}
-  ViewDetails:
-    Name: Wait
-    Description: 
-  Duration: 3
---- !u!114 &5602101602292783501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: 
-  State: 16
-  IsStarted: 0
-  Blackboard: {fileID: -1426145881168723680}
-  Agent: {fileID: 0}
-  GUID: 460c23002c85e244aaf2b552d294b2fa
-  Position: {x: -249.62183, y: 785.3509}
-  ViewDetails:
-    Name: Wait
-    Description: 
-  Duration: 3
---- !u!114 &6636433441674244141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: 
-  State: 16
-  IsStarted: 0
-  Blackboard: {fileID: -1426145881168723680}
-  Agent: {fileID: 0}
-  GUID: acc26f6f5e586024a973e14add6b13b4
-  Position: {x: 101.529175, y: 784.99994}
-  ViewDetails:
-    Name: Wait
-    Description: 
-  Duration: 3
---- !u!114 &7692729465749459390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5adcbfa1d75c90b4fa473d14022b58ef, type: 3}
-  m_Name: SequenceNode
-  m_EditorClassIdentifier: 
-  State: 16
-  IsStarted: 0
-  Blackboard: {fileID: -1426145881168723680}
-  Agent: {fileID: 0}
-  GUID: 5904aad42b277944abbf642c9a379abb
-  Position: {x: -246.60983, y: 522.9528}
-  ViewDetails:
-    Name: Sequence
-    Description: 
-  Children:
-  - {fileID: 7916271989113757764}
-  - {fileID: 5602101602292783501}
-  - {fileID: 2562967569189595210}
---- !u!114 &7916271989113757764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e5799a2d3c37624ea90319476aa8d6b, type: 3}
-  m_Name: WaitNode
-  m_EditorClassIdentifier: 
-  State: 16
-  IsStarted: 0
-  Blackboard: {fileID: -1426145881168723680}
-  Agent: {fileID: 0}
-  GUID: 369dff9844bb26f44b69d3e69a4660b8
-  Position: {x: -447.6218, y: 785.3509}
-  ViewDetails:
-    Name: Wait
-    Description: 
-  Duration: 3

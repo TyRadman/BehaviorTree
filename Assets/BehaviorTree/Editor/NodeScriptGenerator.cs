@@ -23,7 +23,7 @@ namespace BT
             "\n\t{" +
             "\n\t\tprotected override void OnStart()\n\t\t{\n\t\t\t// start logic\n\t\t}" +
             "\n\n\t\tprotected override NodeState OnUpdate()\n\t\t{\n\t\t\t// update logic\n\t\t\treturn NodeState.Success;\n\t\t}" +
-            "\n\n\t\tprotected override void OnStop()\n\t\t{\n\t\t\t// stop logic\n\t\t}" +
+            "\n\n\t\tprotected override void OnExit()\n\t\t{\n\t\t\t// stop logic\n\t\t}" +
             "\n\t}\n}";
 
         private const string COMPOSITE_NODE = "using UnityEngine;\n\n" +
@@ -32,7 +32,7 @@ namespace BT
             "\n\t{" +
             "\n\t\tprotected override void OnStart()\n\t\t{\n\t\t\t// start logic\n\t\t}" +
             "\n\n\t\tprotected override NodeState OnUpdate()\n\t\t{\n\t\t\t// update logic\n\t\t\treturn NodeState.Success;\n\t\t}" +
-            "\n\n\t\tprotected override void OnStop()\n\t\t{\n\t\t\t// end logic\n\t\t}" +
+            "\n\n\t\tprotected override void OnExit()\n\t\t{\n\t\t\t// end logic\n\t\t}" +
             "\n\t}\n}";
 
         private const string DECORATOR_NODE = "using UnityEngine;\n\n" +
@@ -41,7 +41,7 @@ namespace BT
             "\n\t{" +
             "\n\t\tprotected override void OnStart()\n\t\t{\n\t\t\t// start logic\n\t\t}" +
             "\n\n\t\tprotected override NodeState OnUpdate()\n\t\t{\n\t\t\t// update logic\n\t\t\treturn NodeState.Success;\n\t\t}" +
-            "\n\n\t\tprotected override void OnStop()\n\t\t{\n\t\t\t// end logic\n\t\t}" +
+            "\n\n\t\tprotected override void OnExit()\n\t\t{\n\t\t\t// end logic\n\t\t}" +
             "\n\t}\n}";
 
         private const string CONDITIONAL_CHECK_NODE = "using UnityEngine;\n\n" +

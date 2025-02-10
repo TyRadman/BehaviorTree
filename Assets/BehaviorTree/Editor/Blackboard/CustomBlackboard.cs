@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
-using System;
 
-namespace BT
+namespace BT.BTEditor
 {
     public class CustomBlackboard : Blackboard
     {

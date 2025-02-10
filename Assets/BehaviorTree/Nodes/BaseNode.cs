@@ -15,7 +15,9 @@ namespace BT.Nodes
         [HideInInspector]
         public MonoBehaviour Agent;
 
-#if UNITY_EDITOR
+        public BehaviorTree BehaviorTree { get; set; }
+
+        //#if UNITY_EDITOR
         [HideInInspector]
         public string GUID;
         [HideInInspector]
@@ -29,7 +31,12 @@ namespace BT.Nodes
         }
 
         public NodeViewDetails ViewDetails = new NodeViewDetails();
-        
+
+        /// <summary>
+        /// The variable name that will allow access to this node from outside the BT system
+        /// </summary>
+        public string VariableName;
+
         public virtual string GetNodeViewName()
         {
             return "Node Name";
@@ -39,7 +46,7 @@ namespace BT.Nodes
         {
 
         }
-#endif
+//#endif
 
         public T GetAgent<T>() where T : MonoBehaviour
         {

@@ -1,14 +1,15 @@
 using UnityEngine;
 using UnityEditor.Experimental.GraphView;
-using BT.Nodes;
 using System;
 using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using System.Collections.Generic;
 
-namespace BT.NodesView
+namespace BT.BTEditor
 {
+    using Nodes;
+
     public abstract class NodeView : Node
     {
         public Action<NodeView> OnNodeSelected;

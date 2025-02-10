@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-namespace BT.NodesView
+namespace BT.BTEditor
 {
     public class CompositeNodeView : NodeView
     {

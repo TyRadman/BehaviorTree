@@ -16,6 +16,8 @@ namespace BT
         public List<BaseNode> Nodes = new List<BaseNode>();
         public BlackboardVariablesContainer BlackboardContainer;
 
+        [HideInInspector] public Dictionary<BaseNode, string> _nodeVariables = new Dictionary<BaseNode, string>();
+        [HideInInspector] private Dictionary<string, BaseNode> _variableToNode = new();
 
         public void Start()
         {
@@ -33,7 +35,6 @@ namespace BT
             return TreeState;
         }
 
-#if UNITY_EDITOR
         private const string UNDO_REDO_CREATE_NODE_ID = "Behavior Tree (CreateNode)";
         private const string UNDO_REDO_DELETE_NODE_ID = "Behavior Tree (DeleteNode)";
         [HideInInspector] public bool IsMinimapDisplayed = false;
@@ -42,12 +43,45 @@ namespace BT
         [HideInInspector] public Vector3 ViewPosition = new Vector3(431, 358, 0f);
         [HideInInspector] public Vector3 ViewZoom = Vector3.one;
 
+        #region Node Variables
+        public void UpdateVariable(BaseNode node)
+        {
+            string variable = node.VariableName;
+
+            if(string.IsNullOrEmpty(variable))
+            {
+                _nodeVariables.Remove(node);
+            }
+
+            if (_nodeVariables.TryGetValue(node, out string previousVariable))
+            {
+                _variableToNode.Remove(previousVariable);
+            }
+
+            _nodeVariables[node] = variable;
+            _variableToNode[variable] = node;
+        }
+
+        public bool VariableNameExists(string variableName, BaseNode ownerNode)
+        {
+            return _variableToNode.TryGetValue(variableName, out BaseNode existingNode) && existingNode != ownerNode;
+        }
+
+        public BaseNode GetNodeByVariable(string variableName)
+        {
+            return _variableToNode.TryGetValue(variableName, out BaseNode node) ? node : null;
+        }
+        #endregion
+
         public BaseNode CreateNode(Type type)
         {
             BaseNode node = ScriptableObject.CreateInstance(type) as BaseNode;
             node.name = type.Name;
             node.GUID = GUID.Generate().ToString();
             node.Blackboard = BlackboardContainer;
+
+            // TODO: update the BT reference in the cloned nodes to be the cloned tree. So far, it's not needed.
+            node.BehaviorTree = this;
 
             Undo.RecordObject(this, UNDO_REDO_CREATE_NODE_ID);
             Nodes.Add(node);
@@ -139,7 +173,7 @@ namespace BT
 
         public void Refresh()
         {
-            if(BlackboardContainer == null)
+            if (BlackboardContainer == null)
             {
                 return;
             }
@@ -149,9 +183,6 @@ namespace BT
                 BlackboardContainer.BehaviorTree = this;
             }
 
-            string path = AssetDatabase.GetAssetPath(this);
-            UnityEngine.Object[] subAssets = AssetDatabase.LoadAllAssetsAtPath(path);
-
             Nodes.ForEach(n => n.Blackboard = BlackboardContainer);
 
             // TODO: uncomment
@@ -160,23 +191,63 @@ namespace BT
                 return;
             }
 
+            RefreshNodeVariables();
+
+            RefreshBlackBoard();
+        }
+
+        private void OnEnable()
+        {
+            RefreshNodeVariables();
+        }
+
+        private void RefreshNodeVariables()
+        {
+            if (_variableToNode.Count == 0)
+            {
+                _variableToNode.Clear();
+                _nodeVariables.Clear();
+
+                // refresh the variable names
+                for (int i = 0; i < Nodes.Count; i++)
+                {
+                    var node = Nodes[i];
+
+                    if (string.IsNullOrEmpty(node.VariableName))
+                    {
+                        continue;
+                    }
+
+                    if (_variableToNode.ContainsKey(node.VariableName))
+                    {
+                        continue;
+                    }
+
+                    _nodeVariables.Add(node, node.VariableName);
+                    _variableToNode.Add(node.VariableName, node);
+                }
+            }
+        }
+
+        private void RefreshBlackBoard()
+        {
+            string path = AssetDatabase.GetAssetPath(this);
+            UnityEngine.Object[] subAssets = AssetDatabase.LoadAllAssetsAtPath(path);
+
             foreach (var asset in subAssets)
             {
                 if (asset != this)
                 {
-                    if (asset is ExposedProperty && !BlackboardContainer.Variables.Contains((ExposedProperty)asset))
+                    if (asset is ExposedProperty property && !BlackboardContainer.Variables.Contains(property))
                     {
                         AssetDatabase.RemoveObjectFromAsset(asset);
 
-                        // Then, destroy the ScriptableObject
                         DestroyImmediate(asset, true);
 
-                        // Finally, save the changes to the AssetDatabase
                         AssetDatabase.SaveAssets();
                     }
                 }
             }
         }
-#endif
     }
 }
