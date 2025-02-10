@@ -1,29 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BT
 {
-    using Nodes;
-
     public class BehaviorTreeRunner : MonoBehaviour
     {
         public BehaviorTree Tree;
+
         [SerializeField] private bool _runOnStart = false;
+        [SerializeField] private MonoBehaviour _agent;
 
         private void Start()
         {
             if (_runOnStart)
             {
-                Run();
+                Run(_agent);
             }
         }
 
-        public void Run()
+        public void Run(MonoBehaviour agent)
         {
-            // pass the controller of the B
             Tree = Tree.Clone();
-            Tree.Bind(gameObject);
+            Tree.Bind(agent);
             Tree.Start();
         }
 

@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
+#if UNITY_EDITOR
     public abstract class DecoratorNode : BaseNode
     {
         [HideInInspector] public BaseNode Child;
@@ -70,4 +71,5 @@ namespace BT.Nodes
             Child = null;
         }
     }
+#endif
 }

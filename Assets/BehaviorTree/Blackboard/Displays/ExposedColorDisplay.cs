@@ -6,6 +6,7 @@ using UnityEngine.UIElements;
 
 namespace BT
 {
+#if UNITY_EDITOR
     public class ExposedColorDisplay : ExposedVariableDisplay
     {
         public override void Initialize()
@@ -38,4 +39,5 @@ namespace BT
             return colorField;
         }
     }
+#endif
 }

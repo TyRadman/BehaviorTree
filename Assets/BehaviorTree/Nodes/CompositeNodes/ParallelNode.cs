@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
+#if UNITY_EDITOR
 	public class ParallelNode : CompositeNode
 	{
 		public enum ParallelType
@@ -92,4 +93,5 @@ namespace BT.Nodes
 
 		}
 	}
+#endif
 }

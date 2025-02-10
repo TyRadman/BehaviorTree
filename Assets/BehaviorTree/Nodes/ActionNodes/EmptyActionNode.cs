@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
+#if UNITY_EDITOR
     public class EmptyActionNode : ActionNode
     {
         [SerializeField] private NodeState _nodeState = NodeState.Success;
@@ -22,4 +23,5 @@ namespace BT.Nodes
             return _nodeState;
         }
     }
+#endif
 }

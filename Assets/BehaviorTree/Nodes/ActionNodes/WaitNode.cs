@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
+#if UNITY_EDITOR
     public class WaitNode : ActionNode
     {
         public float Duration = 1f;
@@ -30,4 +31,5 @@ namespace BT.Nodes
             return NodeState.Success;
         }
     }
+#endif
 }

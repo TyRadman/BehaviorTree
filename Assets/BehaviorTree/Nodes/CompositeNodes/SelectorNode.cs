@@ -2,7 +2,8 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
-	public class SelectorNode : CompositeNode
+#if UNITY_EDITOR
+    public class SelectorNode : CompositeNode
     {
         private int _currentChild;
         
@@ -48,4 +49,5 @@ namespace BT.Nodes
 			// end logic
 		}
 	}
+#endif
 }

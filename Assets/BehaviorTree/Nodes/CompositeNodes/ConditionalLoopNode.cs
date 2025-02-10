@@ -4,7 +4,8 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
-    public abstract class ConditionalLoopNode : DecoratorNode
+#if UNITY_EDITOR
+	public abstract class ConditionalLoopNode : DecoratorNode
     {
 		private int _loopsCompleted;
 		[SerializeField] private int _loopsToComplete = 3;
@@ -49,4 +50,5 @@ namespace BT.Nodes
 
 		}
 	}
+#endif
 }

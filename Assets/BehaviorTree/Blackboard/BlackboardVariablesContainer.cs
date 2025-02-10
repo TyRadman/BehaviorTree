@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace BT
 {
+#if UNITY_EDITOR
     public class BlackboardVariablesContainer : ScriptableObject
     {
         public BehaviorTree BehaviorTree;
@@ -76,4 +77,5 @@ namespace BT
             Variables.Add(property);
         }
     }
+#endif
 }

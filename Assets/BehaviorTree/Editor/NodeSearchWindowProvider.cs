@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using BT;
-using BT.Nodes;
 using UnityEditor;
 
 public class NodeSearchWindowProvider : ScriptableObject, ISearchWindowProvider
@@ -157,7 +156,7 @@ public class NodeSearchWindowProvider : ScriptableObject, ISearchWindowProvider
 
     public bool OnSelectEntry(SearchTreeEntry searchTreeEntry, SearchWindowContext context)
     {
-        var worldMousePosition = _graphView.GetLocalMousePosition(context.screenMousePosition, true);
+        Vector2 worldMousePosition = _graphView.GetLocalMousePosition(context.screenMousePosition, true);
 
         if (searchTreeEntry.userData is NodeType type)
         {
@@ -165,7 +164,8 @@ public class NodeSearchWindowProvider : ScriptableObject, ISearchWindowProvider
             return true;
         }
 
-        Type nodeType = Type.GetType($"{typeof(BaseNode).Namespace}.{searchTreeEntry.userData as string}, Assembly-CSharp");
+        Type nodeType = Type.GetType($"{searchTreeEntry.userData as string}, Assembly-CSharp");
+        //Type nodeType = Type.GetType($"{typeof(BaseNode).Namespace}.{searchTreeEntry.userData as string}, Assembly-CSharp");
 
         if (nodeType == null)
         {

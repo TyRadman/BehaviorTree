@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
+#if UNITY_EDITOR
     public class PrintNode : ActionNode
     {
         public enum DebugType
@@ -52,4 +53,5 @@ namespace BT.Nodes
             }
         }
     }
+#endif
 }

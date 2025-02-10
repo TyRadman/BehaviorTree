@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
+#if UNITY_EDITOR
     public class RepeatNode : DecoratorNode
     {
         protected override void OnStart()
@@ -23,4 +24,5 @@ namespace BT.Nodes
             return NodeState.Running;
         }
     }
+#endif
 }

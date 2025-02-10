@@ -6,6 +6,7 @@ using UnityEditor;
 
 namespace BT.Nodes
 {
+#if UNITY_EDITOR
     public abstract class CompositeNode : BaseNode
     {
         //[HideInInspector]
@@ -26,7 +27,6 @@ namespace BT.Nodes
         public override void AddChild(BaseNode child)
         {
             Undo.RecordObject(this, "Behavior Tree (Add Child)");
-            Debug.Log($"Added {child}");
             Children.Add(child);
             base.AddChild(child);
         }
@@ -77,4 +77,5 @@ namespace BT.Nodes
             Children.Clear();
         }
     }
+#endif
 }

@@ -36,7 +36,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BehaviorTree: {fileID: 11400000}
   <Position>k__BackingField: {x: 0, y: 0}
-  <Size>k__BackingField: {x: 299.99997, y: 300}
+  <Size>k__BackingField: {x: 300, y: 300}
   <Variables>k__BackingField: []
 --- !u!114 &11400000
 MonoBehaviour:
@@ -61,8 +61,8 @@ MonoBehaviour:
   BlackboardContainer: {fileID: -402540068299376606}
   IsMinimapDisplayed: 0
   IsBlackboardDisplayed: 0
-  ViewPosition: {x: 364, y: -226.66667, z: 0}
-  ViewZoom: {x: 1, y: 1, z: 1}
+  ViewPosition: {x: 423, y: 184, z: 0}
+  ViewZoom: {x: 0.57175326, y: 0.57175326, z: 1}
 --- !u!114 &1906244822297249407
 MonoBehaviour:
   m_ObjectHideFlags: 0

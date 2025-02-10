@@ -7,12 +7,13 @@ using UnityEngine;
 
 namespace BT
 {
+#if UNITY_EDITOR
     using Nodes;
 
     [System.Serializable]
     public class NodeSearchDirectory
     {
-        [HideInInspector] public string ClassName;
+        [HideInInspector] public string ClassName { get; set; }
         public string Directory;
         public Type ClassType;
     }
@@ -66,7 +67,7 @@ namespace BT
 
                 Directories.Add(new NodeSearchDirectory()
                 {
-                    ClassName = nodeType.Name,
+                    ClassName = nodeType.FullName,
                     Directory = directory + childDirectory,
                     ClassType = nodeType
                 });
@@ -78,4 +79,5 @@ namespace BT
             Directories.Clear();
         }
     }
+#endif
 }

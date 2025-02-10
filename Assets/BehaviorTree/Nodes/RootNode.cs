@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
+#if UNITY_EDITOR
     public class RootNode : BaseNode
     {
         //[HideInInspector]
@@ -78,4 +79,5 @@ namespace BT.Nodes
             Child.OnForceStopNode();
         }
     }
+#endif
 }

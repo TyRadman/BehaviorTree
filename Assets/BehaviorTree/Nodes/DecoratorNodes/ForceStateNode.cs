@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
+#if UNITY_EDITOR
 	public class ForceStateNode : DecoratorNode
 	{
 		[SerializeField] private NodeState _returnedState;
@@ -27,4 +28,5 @@ namespace BT.Nodes
 			// end logic
 		}
 	}
+#endif
 }

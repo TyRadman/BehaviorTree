@@ -16,6 +16,7 @@ namespace BT
         public List<BaseNode> Nodes = new List<BaseNode>();
         public BlackboardVariablesContainer BlackboardContainer;
 
+
         public void Start()
         {
             RootNode.State = NodeState.Running;
@@ -41,7 +42,7 @@ namespace BT
         [HideInInspector] public Vector3 ViewPosition = new Vector3(431, 358, 0f);
         [HideInInspector] public Vector3 ViewZoom = Vector3.one;
 
-        public BaseNode CreateNode(System.Type type)
+        public BaseNode CreateNode(Type type)
         {
             BaseNode node = ScriptableObject.CreateInstance(type) as BaseNode;
             node.name = type.Name;
@@ -93,7 +94,16 @@ namespace BT
             return tree;
         }
 
-        public void Traverse(BaseNode node, System.Action<BaseNode> visitor)
+        public void Bind(MonoBehaviour agent)
+        {
+            Traverse(RootNode, node =>
+            {
+                node.Agent = agent;
+                node.Blackboard = BlackboardContainer;
+            });
+        }
+
+        public void Traverse(BaseNode node, Action<BaseNode> visitor)
         {
             if (node == null)
             {
@@ -103,16 +113,6 @@ namespace BT
             visitor?.Invoke(node);
             List<BaseNode> children = node.GetChildren();
             children.ForEach(n => Traverse(n, visitor));
-
-        }
-
-        public void Bind(GameObject agent)
-        {
-            Traverse(RootNode, node =>
-            {
-                node.Agent = agent;
-                node.Blackboard = BlackboardContainer;
-            });
         }
 
         #region Blackboard

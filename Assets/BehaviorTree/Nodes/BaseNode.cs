@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using System;
 
 namespace BT.Nodes
 {
@@ -15,7 +13,7 @@ namespace BT.Nodes
         [HideInInspector]
         public BlackboardVariablesContainer Blackboard;
         [HideInInspector]
-        public GameObject Agent;
+        public MonoBehaviour Agent;
 
 #if UNITY_EDITOR
         [HideInInspector]
@@ -42,6 +40,11 @@ namespace BT.Nodes
 
         }
 #endif
+
+        public T GetAgent<T>() where T : MonoBehaviour
+        {
+            return Agent as T;
+        }
 
         public NodeState Update()
         {

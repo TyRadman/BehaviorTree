@@ -10,7 +10,6 @@ public class BehaviorTreeEditor : EditorWindow
 {
     private BehaviorTreeView _treeView;
     private InspectorView _inspectorView;
-    //public BehaviorTree BehaviorTree;
     public static BehaviorTree SelectedBehaviorTree;
     private static BehaviorTreeEditor Window;
 

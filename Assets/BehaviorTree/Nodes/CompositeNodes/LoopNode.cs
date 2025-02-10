@@ -2,10 +2,15 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
+	using Utilities;
+
+#if UNITY_EDITOR
 	public class LoopNode : DecoratorNode
 	{
-		private int _loopsCompleted;
+		[SerializeField] private LoopMode _loopMode = LoopMode.Finite;
 		[SerializeField] private int _loopsToComplete = 3;
+
+        private int _loopsCompleted;
 
 		protected override void OnStart()
 		{
@@ -18,17 +23,24 @@ namespace BT.Nodes
 		{
 			NodeState childState = Child.Update();
 
-			if(childState == NodeState.Failure || childState == NodeState.Success)
-            {
-				_loopsCompleted++;
-            }
-
-			if (_loopsCompleted >= _loopsToComplete)
+			if (_loopMode == LoopMode.Finite)
 			{
-				return NodeState.Success;
-            }
+				if (childState is NodeState.Failure or NodeState.Success)
+				{
+					_loopsCompleted++;
+				}
 
-			return NodeState.Running;
+				if (_loopsCompleted >= _loopsToComplete)
+				{
+					return NodeState.Success;
+				}
+
+				return NodeState.Running;
+			}
+			else
+			{
+				return NodeState.Running;
+			}
 		}
 
 		protected override void OnStop()
@@ -36,4 +48,5 @@ namespace BT.Nodes
 
 		}
 	}
+#endif
 }

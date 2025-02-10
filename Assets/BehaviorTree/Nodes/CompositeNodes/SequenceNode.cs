@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
+#if UNITY_EDITOR
     public class SequenceNode : CompositeNode
     {
         private int _currentChild;
@@ -21,9 +22,14 @@ namespace BT.Nodes
         protected override NodeState OnUpdate()
         {
             BaseNode child = Children[_currentChild];
-            try
+            NodeState state;
+
+            if (child == null)
             {
-                NodeState state = child.Update();
+                Debug.LogError($"Child is null. Index: {_currentChild} out of {Children.Count}");
+            }
+            state = child.Update();
+
             switch (state)
             {
                 case NodeState.Running:
@@ -49,14 +55,8 @@ namespace BT.Nodes
             else
             {
                 return NodeState.Running;
-                }
             }
-            catch
-            {
-                Debug.Log(ViewDetails.Name);
-            }
-
-            return NodeState.Running;
         }
     }
+#endif
 }

@@ -1,6 +1,5 @@
 using System;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -27,7 +26,6 @@ public class BehaviorTreeView : GraphView
         {typeof(CompositeNode), typeof(CompositeNodeView) },
         {typeof(DecoratorNode), typeof(DecorateNodeView) },
     };
-    //private NodeView _nodeToCopy;
 
     public NodeScriptGenerator ScriptGenerator { get; internal set; }
 

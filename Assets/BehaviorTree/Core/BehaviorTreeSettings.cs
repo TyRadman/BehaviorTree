@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace BT
 {
+#if UNITY_EDITOR
     [CreateAssetMenu()]
     public class BehaviorTreeSettings : ScriptableObject
     {
@@ -64,4 +65,5 @@ namespace BT
             EditorUtility.SetDirty(this);
         }
     }
+#endif
 }
