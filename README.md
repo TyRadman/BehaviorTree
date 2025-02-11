@@ -13,7 +13,7 @@ A Behavior Tree Framework designed for Unity 2023 and below, with support for Un
 ## Features
 
 ### Core Framework
-Provides the building blocks for creating, managing, and running behavior trees. The package is compatible with Unity 2023 and below (the Unity 6 version is still work in progress.)
+A framework for creating, managing, and running behavior trees. The package is compatible with Unity 2023 and below (the Unity 6 version is still work in progress.)
 
 ### Node System
 Includes over 17 customizable nodes for defining AI behaviors that can be extended through code.
