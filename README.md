@@ -73,8 +73,8 @@ Here's a list of shortcuts that can be used in the graph view:
 | Variable | Functionality |
 |-|-|
 | Tree| A reference of the Behavior Tree that will be run by the agent.|
-| RunOnStart| If true, the Behavior Tree will start running as soon as the game starts (will be called on Start)|
-| Agent| A reference to the agent. This should ideally, be a custom script to communicate with the Behavior Tree. It has to be extended from MonoBehavior. If you want to quickly test the Behavior Tree without having to create a custom agent controller, you can reference the `BehaviorTreeRunner` itself here|
+| RunOnStart| If true, the Behavior Tree will start running as soon as the game starts (will be called on Start.)|
+| Agent| A reference to the agent. This should ideally, be a custom script to communicate with the Behavior Tree. It has to be extended from MonoBehavior. If you want to quickly test the Behavior Tree without having to create a custom agent controller, you can reference the `BehaviorTreeRunner` itself here.|
 
 ![{CF4E86B3-D681-4177-A64A-06BE41BB74F6}](https://github.com/user-attachments/assets/919f4eca-ba21-4726-b251-dce814f6d6cc)
 
@@ -155,9 +155,9 @@ When working with the nodes in this framework, there are a couple of methods and
 
 |Member| Description|Can be overriden|
 |-|-|-|
-|`BlackboardVariableContainer Blackboard`| Returns the blackboard from which values can be retrieved using `BlackboardKey`s|No|
-|`NodeViewDetails ViewDetails`| An object that holds the node's name and description based on what was set in the `Node Inspector`|Yes, through the `Node Inspector`|
-|`string VariableName`| The unique variable name of the name if set in the `Node Inspector`|Yes, through the `Node Inspector`|
+|`BlackboardVariableContainer Blackboard`| Returns the blackboard from which values can be retrieved using `BlackboardKey`s.|No|
+|`NodeViewDetails ViewDetails`| An object that holds the node's name and description based on what was set in the `Node Inspector`.|Yes, through the `Node Inspector`|
+|`string VariableName`| The unique variable name of the name if set in the `Node Inspector`.|Yes, through the `Node Inspector`|
 |`void GetAgent<T>()`| Returns the agent controlling the Behavior Tree. T must be a Monobehavior.|No|
 |`NodeState Update()`| Returns the node's current state which can be Running, Failure, or Success.|No|
 |`void OnAwake`| Called once in the Behavior Tree's life cycle.| Yes|
