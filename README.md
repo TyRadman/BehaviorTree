@@ -28,6 +28,8 @@ Allows users to create scripts directly from the graph editor, with all necessar
 ### Debugging
 Displays runtime states of nodes for the selected behavior tree instance.
 
+![Behavior Tree in debug mode GIF](./GitResources/BT_Debug.gif)
+
 ### Blackboard
 Blackboard system for sharing values across nodes. Blackboard values can be accessed and modified through code as well as displayed as a drop-down in the inspector to avoid typos when setting values.
 
@@ -203,8 +205,6 @@ To access blackboard variables through the nodes, a variable of type `Blackboard
 
 ##### Adding variables to the Blackboard
 
-![Blackboard variables addition and assignment GIF](./GitResources/BT-Blackboard.git)
-
 ``` C#
 public class NewNode : ActionNode
 {
@@ -223,6 +223,8 @@ public class NewNode : ActionNode
 
 // rest of the script
 ```
+
+![Blackboard variables addition and assignment GIF](./GitResources/BT_Blackboard.gif)
 
 Currently, only 9 types are supported: `boolean`, `integer`, `float`, `string`, `Vector2`, `Vector3`, `Color`, `GameObject` (from the assets, not the scene), and `ScriptableObjects`. More data types are to be introduced in future interations. 
 
