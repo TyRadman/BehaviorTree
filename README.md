@@ -201,15 +201,24 @@ When a node is called by its parent node, `void OnStart()`, `NodeState OnUpdate(
 #### Blackboard keys
 To access blackboard variables through the nodes, a variable of type `BlackboardKey` has to be declared then assigned to a value in the `Node Inspector` based on what variables have been defined in the blackboard. Here's a snippent of how to use it:
 
+##### Adding variables to the Blackboard
+
+![Blackboard variables addition and assignment GIF](./GitResources/BT-Blackboard.git)
+
 ``` C#
 public class NewNode : ActionNode
 {
-	public BlackboardKey _intValue;
+	public BlackboardKey CustomKey;
 
 	protected override void OnStart()
 	{
-		int intValue = Blackboard.GetValue<int>(_intValue.Value);
-		Debug.Log($"Int value: {intValue}");
+		// if the key is intended to reference to an integer value
+		int intValue = Blackboard.GetValue<int>(CustomKey.Value);
+		// Vector2 vector2Value = Blackboard.GetValue<Vector2>(CustomKey.Value);
+		// GameObject gameObjectValue = Blackboard.GetValue<GameObject>(CustomKey.Value);
+		// and so on
+		
+		Debug.Log($"Blackboard value: {CustomKey}");
 	}
 
 // rest of the script
