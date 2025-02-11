@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BT.Nodes
 {
     using BT.Utilities;
 
-#if UNITY_EDITOR
     public abstract class ConditionalCheckNode : DecoratorNode
     {
         /// <summary>
@@ -18,7 +15,7 @@ namespace BT.Nodes
         [SerializeField] private InterruptionMode _interruptionMode;
         protected abstract bool IsTrue();
 
-        protected override NodeState OnUpdate()
+        protected sealed override NodeState OnUpdate()
         {
             if (_interruptionMode == InterruptionMode.Reactive)
             {
@@ -46,5 +43,4 @@ namespace BT.Nodes
             }
         }
     }
-#endif
 }

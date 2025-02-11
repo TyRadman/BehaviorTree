@@ -8,7 +8,7 @@ namespace BT
     using Nodes;
     using System;
 
-    [CreateAssetMenu()]
+    [CreateAssetMenu(fileName = "BT_NAME")]
     public class BehaviorTree : ScriptableObject
     {
         public BaseNode RootNode;

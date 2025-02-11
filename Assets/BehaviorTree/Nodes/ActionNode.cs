@@ -1,10 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace BT.Nodes
 {
-#if UNITY_EDITOR
     public abstract class ActionNode : BaseNode
     {
         public override void OnAwake()
@@ -29,5 +26,4 @@ namespace BT.Nodes
             State = NodeState.Failure;
         }
     }
-#endif
 }

@@ -1,10 +1,9 @@
-using UnityEngine;
-using UnityEditor.Experimental.GraphView;
 using System;
-using UnityEditor;
+using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEditor;
 using UnityEditor.UIElements;
-using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 
 namespace BT.BTEditor
 {
@@ -165,12 +164,11 @@ namespace BT.BTEditor
         {
             string path = NODE_ICONS_PATH;
 
-
             if (Node is SequenceNode)
             {
                 path += "T_Sequence.png";
             }
-            else if(Node is SelectorNode)
+            else if (Node is SelectorNode)
             {
                 path += "T_Selector.png";
             }
@@ -181,6 +179,22 @@ namespace BT.BTEditor
             else if (Node is LoopNode)
             {
                 path += "T_Loop.png";
+            }
+            else if (Node is SucceederNode)
+            {
+                path += "T_Success.png";
+            }
+            else if (Node is FailureNode)
+            {
+                path += "T_Failure.png";
+            }
+            else if (Node is CooldownNode)
+            {
+                path += "T_Cooldown.png";
+            }
+            else if(Node is TimeoutNode)
+            {
+                path += "T_Timeout.png";
             }
             else if (Node is ConditionalCheckNode)
             {

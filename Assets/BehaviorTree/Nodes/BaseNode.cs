@@ -11,7 +11,7 @@ namespace BT.Nodes
         [HideInInspector]
         public bool IsStarted = false;
         [HideInInspector]
-        public BlackboardVariablesContainer Blackboard;
+        public BlackboardVariablesContainer Blackboard { get; set; }
         [HideInInspector]
         public MonoBehaviour Agent;
 
