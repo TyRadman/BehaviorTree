@@ -28,20 +28,24 @@ Allows users to create scripts directly from the graph editor, with all necessar
 ### Debugging
 Displays runtime states of nodes for the selected behavior tree instance.
 
-### Data Sharing
+### Blackboard
 Blackboard system for sharing values across nodes. Blackboard values can be accessed and modified through code as well as displayed as a drop-down in the inspector to avoid typos when setting values.
 
 ### User Interface
 Unreal Engine inspired interface for creating, calling, and managing nodes and behaviors.
 
 ### Variable System
-Optional variable identifiers for nodes, similar to WPF’s `x:Name`, which Enables external classes to access specific nodes by their variable names. Variables and corresponding nodes are stored within the behavior tree.
+Optional variable identifiers for nodes, similar to WPF’s [WPF’s x:Name](https://learn.microsoft.com/en-us/dotnet/desktop/xaml-services/xname-directive), which Enables external classes to access specific nodes by their variable names. Variables and corresponding nodes are stored within the behavior tree.
+
+---
 
 ## Installation
 
 1. Download the package.
 2. Import the package into Unity by dragging the package file into the project files or check [this guide](https://docs.unity3d.com/6000.0/Documentation/Manual/AssetPackagesImport.html).
-3. You're good to go! Thanks, Unity, for making the process very easy.
+3. You're good to go!
+
+---
 
 ## Quick Start
 
@@ -193,6 +197,25 @@ When a node is called by its parent node, `void OnStart()`, `NodeState OnUpdate(
 | `BehaviorTreeNode`    | The root node that manages execution flow within the behavior tree. |
 | `PrintNode`          | Outputs a debug message to the console when executed. |
 | `WaitNode`           | Delays execution for a specified amount of time before returning `Success`. |
+
+#### Blackboard keys
+To access blackboard variables through the nodes, a variable of type `BlackboardKey` has to be declared then assigned to a value in the `Node Inspector` based on what variables have been defined in the blackboard. Here's a snippent of how to use it:
+
+``` C#
+public class NewNode : ActionNode
+{
+	public BlackboardKey _intValue;
+
+	protected override void OnStart()
+	{
+		int intValue = Blackboard.GetValue<int>(_intValue.Value);
+		Debug.Log($"Int value: {intValue}");
+	}
+
+// rest of the script
+```
+
+Currently, only 9 types are supported: `boolean`, `integer`, `float`, `string`, `Vector2`, `Vector3`, `Color`, `GameObject` (from the assets, not the scene), and `ScriptableObjects`. More data types are to be introduced in future interations. 
 
 ## Roadmap
 - [x] Add common nodes.
