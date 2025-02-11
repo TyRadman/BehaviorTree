@@ -228,6 +228,24 @@ public class NewNode : ActionNode
 
 Currently, only 9 types are supported: `boolean`, `integer`, `float`, `string`, `Vector2`, `Vector3`, `Color`, `GameObject` (from the assets, not the scene), and `ScriptableObjects`. More data types are to be introduced in future interations. 
 
+#### External Node Variable Identifiers
+Nodes can accessed from outside the Behavior Tree which is a good way to add a channel of communication between the framework and the rest of the game. It works in a similar fashion to how UI elements can be accessed from code in WPF where an optional variable name is declared in the node and can then be accessed anywhere through the Behavior Tree Runner. The following a clip of how to assign a variable name for a selected node followed by is a snippet of how it works in code (an extension for the agent script implemented above):
+
+![Node variable assignment GIF](./GitResources/BT-Variables.gif)
+
+``` C#
+public class SomeAgentClass : MonoBehaviour
+{
+    private const string NODE_VARIABLE_NAME = "preferablyCopiedName";
+
+    private void PrintNodeIntValue()
+    {
+	// Tree is reference to the BehaviorTree
+	int someIntValueInNode = _runner.Tree.GetNodeByVariable(NODE_VARIABLE_NAME);
+    }
+}
+```
+
 ## Roadmap
 - [x] Add common nodes.
 - [x] Add icons to different node types.
