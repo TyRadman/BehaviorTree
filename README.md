@@ -28,7 +28,7 @@ Allows users to create scripts directly from the graph editor, with all necessar
 ### Debugging
 Displays runtime states of nodes for the selected behavior tree instance.
 
-![Behavior Tree in debug mode GIF](./GitResources/BT_Debug.gif)
+![Behavior Tree in debug mode GIF](./GitResources/BT_DebugMode.gif)
 
 ### Blackboard
 Blackboard system for sharing values across nodes. Blackboard values can be accessed and modified through code as well as displayed as a drop-down in the inspector to avoid typos when setting values.
