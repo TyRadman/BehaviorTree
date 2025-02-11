@@ -13,14 +13,12 @@ A Behavior Tree Framework designed for Unity 2023 and below, with support for Un
 ## Features
 
 ### Core Framework
-A framework for creating, managing, and running behavior trees. The package is compatible with Unity 2023 and below (the Unity 6 version is still work in progress.)
+A framework for creating, managing, and running behavior trees. The package is compatible with Unity 2023 and below (The Unity 6 version is still a work in progress.)
 
 ### Node System
-Includes over 17 customizable nodes for defining AI behaviors that can be extended through code.
+Includes more than 17 customizable nodes for defining AI behaviors, which can be extended through code.
 
 ![{D861477E-03A8-4DFE-8367-DE039F00843A}](https://github.com/user-attachments/assets/7b131c36-0d45-4dd4-8e77-f6a61b204655)
-
-
 
 ### Script Generation
 Allows users to create scripts directly from the graph editor, with all necessary methods pre-generated.
@@ -31,13 +29,13 @@ Displays runtime states of nodes for the selected behavior tree instance.
 ![Behavior Tree in debug mode GIF](./GitResources/BT_DebugMode.gif)
 
 ### Blackboard
-Blackboard system for sharing values across nodes. Blackboard values can be accessed and modified through code as well as displayed as a drop-down in the inspector to avoid typos when setting values.
+Blackboard values can be accessed and modified through code and displayed in a dropdown menu in the Inspector to prevent typos when setting values.
 
 ### User Interface
-Unreal Engine inspired interface for creating, calling, and managing nodes and behaviors.
+An Unreal Engine-inspired interface for creating, calling, and managing nodes and behaviors.
 
 ### Variable System
-Optional variable identifiers for nodes, similar to WPF’s [WPF’s x:Name](https://learn.microsoft.com/en-us/dotnet/desktop/xaml-services/xname-directive), which Enables external classes to access specific nodes by their variable names. Variables and corresponding nodes are stored within the behavior tree.
+Optional variable identifiers for nodes, similar to [WPF’s x:Name](https://learn.microsoft.com/en-us/dotnet/desktop/xaml-services/xname-directive), which enable external classes to access specific nodes by their variable names.
 
 ---
 
@@ -53,11 +51,11 @@ Optional variable identifiers for nodes, similar to WPF’s [WPF’s x:Name](htt
 
 ### Creating a new Behavior Tree
 1. Start by creating a Behavior Tree asset by right-clicking in the `project tab` and choosing `Create > Behavior Tree`.
-2. Double-click the created BehaviorTree asset and the Cusom Editor Window should pop-up with the root node in the center.
+2. Double-click the created Behavior Tree asset, and the Custom Editor Window should pop up with the root node in the center.
 
 ### Modifying a Behavior Tree
-1. Add any of the preexisting nodes by pressing the spacebar and searching for the node you want to create. Left-click on the node you want and it will be added to the graph. Alternatively, similar to how Shader Graph does it, you can drag a connection out of an existing node and release and the same menu will appear and the created node will be automatically connected to the newly created one.
-2. You can modify the displayed name of the node, as well as the description tooltip via the `Node Inspector` on the left side of the graph window. Additionally, any serialized variables will be display in the `Node Inspector` as well. 
+1. Add any of the preexisting nodes by pressing the spacebar and searching for the node you want to create. Left-click on the node you want and it will be added to the graph. Alternatively, similar to how Shader Graph works, you can drag a connection out of an existing node, release it, and the same menu will appear, automatically connecting the newly created node.
+2. You can modify the displayed name of the node, as well as the description tooltip via the `Node Inspector` on the left side of the graph window. Additionally, any serialized variables will be displayed in the Node Inspector as well. 
 Here's a list of shortcuts that can be used in the graph view:
 
 | Shortcut | Functionality|
@@ -67,16 +65,16 @@ Here's a list of shortcuts that can be used in the graph view:
 | Ctrl + D | Duplicate selected node/s.|
 | Ctrl + Z | Undo.|
 
-**Note**: *due the nature in which Unity renders graphs, it's advisable not to use the undo command when the graph is big and complex as it will have to iterate through every single node in the graph*.
+**Note**: *Due to how Unity renders graphs, it is advisable not to use the undo command when the graph is large and complex, as it will have to iterate through every single node.*
 
-### Connecting a Behavior Tree to a GameObject agent
-1. Add a `BehaviorTreeRunner` component to the gameObject that will act as an agent (agent refers to the entity that the Behavior Tree will take control over.)
+### Connecting a Behavior Tree to a GameObject Agent
+1. Add a BehaviorTreeRunner component to the GameObject that will act as an agent (the entity that the Behavior Tree will control).
 
 | Variable | Functionality |
 |-|-|
 | Tree| A reference of the Behavior Tree that will be run by the agent.|
-| RunOnStart| If true, the Behavior Tree will start running as soon as the game starts (will be called on Start.)|
-| Agent| A reference to the agent. This should ideally, be a custom script to communicate with the Behavior Tree. It has to be extended from MonoBehavior. If you want to quickly test the Behavior Tree without having to create a custom agent controller, you can reference the `BehaviorTreeRunner` itself here.|
+| RunOnStart| If enabled, the Behavior Tree will start running as soon as the game starts (called in Start()).|
+| Agent| A reference to the agent. This should ideally, be a custom script to communicate with the Behavior Tree. It must inherit from MonoBehaviour. To quickly test the Behavior Tree without creating a custom agent controller, you can reference the BehaviorTreeRunner itself.|
 
 ![{CF4E86B3-D681-4177-A64A-06BE41BB74F6}](https://github.com/user-attachments/assets/919f4eca-ba21-4726-b251-dce814f6d6cc)
 
@@ -97,11 +95,11 @@ public class SomeAgentClass : MonoBehaviour
 }
 ```
 
-3. To stop the the runner, simply call `Stop()` on the runner without passing any arguments.
+3. To stop the runner, simply call `Stop()` without passing any arguments.
 
 ### Adding new nodes
 1. Press the space bar in the graph window.
-2. From the context menu, select one of the options for creating new nodes based on the type of nodes you want. The package has 5 unique node types that uses can choose from:
+2. From the context menu, select an option to create a new node based on the type you need. The package provides five unique node types users can choose from:
 
 ![{545BDFC7-5610-4A11-841A-6CEB51C7DAC5}](https://github.com/user-attachments/assets/68493cfa-2e6d-4b4f-88d9-028211ca0b1b)
 
@@ -116,7 +114,7 @@ public class SomeAgentClass : MonoBehaviour
 3. Name the node script and choose a directory to save it.
 4. Open it and modify the script as needed.
 
-Example: Action node script structure:
+Example: Action Node script structure:
 ``` C#
 public class NewActionNode : ActionNode
 {
@@ -138,7 +136,7 @@ public class NewActionNode : ActionNode
 }
 ```
 
-Example: Conditional Check node script structure:
+Example: Conditional Check Node script structure:
 ``` C#
 public class NewConditionalCheckNode : ConditionalCheckNode
 {
@@ -151,7 +149,7 @@ public class NewConditionalCheckNode : ConditionalCheckNode
 ```
 
 ### Node essentials:
-When working with the nodes in this framework, there are a couple of methods and terms that must understood to ensure nothing breaks down the line. Here are some essentials:
+When working with the nodes in this framework, there are a couple of methods and terms that must understood to ensure nothing breaks down the line. Here are some key concepts:
 
 #### Key members
 
@@ -160,12 +158,12 @@ When working with the nodes in this framework, there are a couple of methods and
 |`BlackboardVariableContainer Blackboard`| Returns the blackboard from which values can be retrieved using `BlackboardKey`s.|No|
 |`NodeViewDetails ViewDetails`| An object that holds the node's name and description based on what was set in the `Node Inspector`.|Yes, through the `Node Inspector`|
 |`string VariableName`| The unique variable name of the name if set in the `Node Inspector`.|Yes, through the `Node Inspector`|
-|`void GetAgent<T>()`| Returns the agent controlling the Behavior Tree. T must be a Monobehavior.|No|
+|`void GetAgent<T>()`| Returns the agent controlling the Behavior Tree. T must be a MonoBehaviour.|No|
 |`NodeState Update()`| Returns the node's current state which can be Running, Failure, or Success.|No|
-|`void OnAwake`| Called once in the Behavior Tree's life cycle.| Yes|
-|`void OnStart`| Called at the beginning of a node's execution.| Yes|
-|`void OnUpdate`| Called every frame while the node is running.| Yes|
-|`void OnExit`| Called when the node stops execution.| Yes|
+|`void OnAwake`| Called once during the Behavior Tree's initialization.| Yes|
+|`void OnStart`| Called when a node starts executing.| Yes|
+|`void OnUpdate`| Called continuously while the node is running.| Yes|
+|`void OnExit`| Called when the node finishes execution.| Yes|
 
 #### Node states
 A node can have one of 3 states at a given time:
@@ -176,9 +174,9 @@ A node can have one of 3 states at a given time:
 |Failure|The node failed to complete the task.| 
 
 #### Workflow
-When a node is called by its parent node, `void OnStart()`, `NodeState OnUpdate()`, and `void OnExit()` are executed in order. `OnStart()` and `OnExit()` are called once, while `OnUpdate()` is called repeatedly for as long as it returns `NodeState.Running`. As soon as `OnUpdate()` returns `NodeState.Success` or `NodeState.Failure`, `OnExit()` is triggered, and the parent node receives the result from the child node.
+When a node is called by its parent node, `OnStart()`, `OnUpdate()`, and `OnExit()` are executed in order. `OnStart()` and `OnExit()` are called once, while `OnUpdate()` is called repeatedly for as long as it returns `NodeState.Running`. As soon as `OnUpdate()` returns `NodeState.Success` or `NodeState.Failure`, `OnExit()` is triggered, and the parent node receives the result from the child node.
 
-#### Prebuilt nodes
+#### Built-in nodes
 | Node                    | Description |
 |-|-|
 | `ConditionalCheckNode`  | Evaluates a condition and returns `Success` or `Failure` without executing an action. |
@@ -191,7 +189,7 @@ When a node is called by its parent node, `void OnStart()`, `NodeState OnUpdate(
 | `TimeoutNode`          | Interrupts its child if execution exceeds a specified time limit. |
 | `ConditionalLoopNode`  | Repeats execution of its child while a condition remains true. |
 | `LoopNode`            | Continuously executes its child indefinitely. |
-| `ParallelNode`        | Runs multiple children simultaneously and returns success or failure based on a defined policy. |
+| `ParallelNode`        | Runs multiple child nodes simultaneously and returns success or failure based on a defined policy. |
 | `RandomSelectorNode`  | Selects and runs one of its children at random until one succeeds. |
 | `RandomSequenceNode`  | Runs all its children in a random order, stopping on the first failure. |
 | `SelectorNode`        | Executes children from left to right, returning `Success` if any child succeeds. |
@@ -201,7 +199,7 @@ When a node is called by its parent node, `void OnStart()`, `NodeState OnUpdate(
 | `WaitNode`           | Delays execution for a specified amount of time before returning `Success`. |
 
 #### Blackboard keys
-To access blackboard variables through the nodes, a variable of type `BlackboardKey` has to be declared then assigned to a value in the `Node Inspector` based on what variables have been defined in the blackboard. Here's a snippent of how to use it:
+To access Blackboard variables within nodes, declare a BlackboardKey variable and assign it a value in the Node Inspector based on the defined Blackboard variables. Here's a snippent of how to use it:
 
 ##### Adding variables to the Blackboard
 
@@ -224,24 +222,24 @@ public class NewNode : ActionNode
 // rest of the script
 ```
 
-![Blackboard variables addition and assignment GIF](./GitResources/BT_Blackboard.gif)
+![GIF showing Blackboard variable addition and assignment](./GitResources/BT_Blackboard.gif)
 
-Currently, only 9 types are supported: `boolean`, `integer`, `float`, `string`, `Vector2`, `Vector3`, `Color`, `GameObject` (from the assets, not the scene), and `ScriptableObjects`. More data types are to be introduced in future interations. 
+Currently, the framework supports nine data types: `boolean`, `integer`, `float`, `string`, `Vector2`, `Vector3`, `Color`, `GameObject` (from the assets, not the scene), and `ScriptableObjects`. More data types are to be introduced in future interations. 
 
 #### External Node Variable Identifiers
-Nodes can accessed from outside the Behavior Tree which is a good way to add a channel of communication between the framework and the rest of the game. It works in a similar fashion to how UI elements can be accessed from code in WPF where an optional variable name is declared in the node and can then be accessed anywhere through the Behavior Tree Runner. The following a clip of how to assign a variable name for a selected node followed by is a snippet of how it works in code (an extension for the agent script implemented above):
+Nodes can be accessed from outside the Behavior Tree, providing a communication channel between the framework and the rest of the game. It works in a similar fashion to how UI elements can be accessed from code in WPF where an optional variable name is declared in the node and can then be accessed anywhere through the Behavior Tree Runner. Below is a clip demonstrating how to assign a variable name to a selected node, followed by a code snippet showing its usage:
 
 ![Node variable assignment GIF](./GitResources/BT-Variables.gif)
 
 ``` C#
 public class SomeAgentClass : MonoBehaviour
 {
-    private const string NODE_VARIABLE_NAME = "preferablyCopiedName";
+    private const string NODE_VARIABLE_NAME = "useTheExactVariableName";
 
     private void PrintNodeIntValue()
     {
 	// Tree is reference to the BehaviorTree
-	int someIntValueInNode = _runner.Tree.GetNodeByVariable(NODE_VARIABLE_NAME);
+	BaseNode node = _runner.Tree.GetNodeByVariable(NODE_VARIABLE_NAME);
     }
 }
 ```
@@ -250,10 +248,10 @@ public class SomeAgentClass : MonoBehaviour
 - [x] Add common nodes.
 - [x] Add icons to different node types.
 - [x] Have a generic agent.
-- [ ] Unity 6 compatibility.
-- [ ] Visual debugging enhancements.
-- [ ] Custom interfact for naming the classes rather than using Window's file browser.
-- [ ] Customization options for the tool's UI.
+- [ ] Add Unity 6 compatibility..
+- [ ] Enhance visual debugging.
+- [ ] Add a custom interface for naming the classes rather than using Window's file browser.
+- [ ] Allow customization options for the tool's UI.
 
 ## Contributing
-Contributions are welcome! Feel free to open an issue or submit a pull request.
+Contributions are welcome! Open an issue or submit a pull request if you'd like to help improve the framework.
