@@ -116,6 +116,7 @@ public class SomeAgentClass : MonoBehaviour
 
 Example: Action Node script structure:
 ``` C#
+[NodePath("New Nodes/YourNodeName")]
 public class NewActionNode : ActionNode
 {
 	protected override void OnStart()
@@ -138,6 +139,7 @@ public class NewActionNode : ActionNode
 
 Example: Conditional Check Node script structure:
 ``` C#
+[NodePath("New Nodes/YourNodeName")]
 public class NewConditionalCheckNode : ConditionalCheckNode
 {
 	protected override bool IsTrue()
@@ -147,6 +149,11 @@ public class NewConditionalCheckNode : ConditionalCheckNode
 	}
 }
 ```
+
+#### Node Path Attribute
+The custom attribute `[NodePath(string path)]` makes it easier to find the nodes through the context menu. If a node does not have this attribute, it will be placed under the default directory `New Nodes/NodeName`.
+[Context Menu](./GitResources/BT_ContextMenu.gif)
+
 
 ### Node essentials:
 When working with the nodes in this framework, there are a couple of methods and terms that must understood to ensure nothing breaks down the line. Here are some key concepts:
@@ -197,6 +204,7 @@ When a node is called by its parent node, `OnStart()`, `OnUpdate()`, and `OnExit
 | `BehaviorTreeNode`    | The root node that manages execution flow within the behavior tree. |
 | `PrintNode`          | Outputs a debug message to the console when executed. |
 | `WaitNode`           | Delays execution for a specified amount of time before returning `Success`. |
+| `RandomWaitNode` | Delays execution for a random amount of time within a provided range before returning `Success`.|
 
 #### Blackboard keys
 To access Blackboard variables within nodes, declare a BlackboardKey variable and assign it a value in the Node Inspector based on the defined Blackboard variables. Here's a snippent of how to use it:
