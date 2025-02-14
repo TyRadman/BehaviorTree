@@ -151,8 +151,28 @@ public class NewConditionalCheckNode : ConditionalCheckNode
 ```
 
 #### Node Path Attribute
-The custom attribute `[NodePath(string path)]` makes it easier to find the nodes through the context menu. If a node does not have this attribute, it will be placed under the default directory `New Nodes/NodeName`.
-[Context Menu](./GitResources/BT_ContextMenu.gif)
+The custom attribute `[NodePath(string path)]` makes it easier to find the nodes through the context menu. If a node does not have this attribute, it will be placed under the default directory `New Nodes/NodeName`. Consider the following Node Path assigned for a new node called `NewNode`:
+``` C#
+[NodePath("Custom/Node/Path/New Node")]
+public class NewNode : ActionNode
+{
+	protected override void OnStart()
+	{
+		// start logic
+	}
+
+	protected override NodeState OnUpdate()
+	{
+		return NodeState.Success;
+	}
+
+	protected override void OnExit()
+	{
+	}
+}
+```
+This is what its path will look like in the context menu:
+![Context Menu](./GitResources/BT_ContextMenu.gif)
 
 
 ### Node essentials:
