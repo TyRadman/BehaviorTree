@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a5d8b8f8df8964d9e858585125561e, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  <LastSelectedBehaviorTree>k__BackingField: {fileID: 11400000, guid: 37b342eabb9f2734e9692cc33ad93435, type: 2}
+  <LastSelectedBehaviorTree>k__BackingField: {fileID: 11400000, guid: 166c3248da169d74d8546a1e966e1885,
+    type: 2}
   <RecentOpenedBehaviorTrees>k__BackingField:
-  - {fileID: 11400000, guid: 37b342eabb9f2734e9692cc33ad93435, type: 2}
+  - {fileID: 11400000, guid: 166c3248da169d74d8546a1e966e1885, type: 2}
+  - {fileID: 11400000, guid: 6ef57e21384c5564f98f2d02edf825dd, type: 2}

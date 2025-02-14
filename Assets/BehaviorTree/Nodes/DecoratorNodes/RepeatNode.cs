@@ -1,28 +1,52 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 
 namespace BT.Nodes
 {
-#if UNITY_EDITOR
+    using Utilities;
+
+    [NodePath(DECORATOR_NODE_PATH + "Repeat Node")]
     public class RepeatNode : DecoratorNode
     {
+        [SerializeField] private LoopMode _loopMode = LoopMode.Finite;
+        [SerializeField] private int _loopsToComplete = 3;
+
+        private int _loopsCompleted;
+
         protected override void OnStart()
         {
+            _loopsToComplete = Mathf.Max(1, _loopsToComplete);
 
+            _loopsCompleted = 0;
+        }
+
+        protected override NodeState OnUpdate()
+        {
+            NodeState childState = Child.Update();
+
+            if (_loopMode == LoopMode.Finite)
+            {
+                if (childState is NodeState.Failure or NodeState.Success)
+                {
+                    _loopsCompleted++;
+                }
+
+                if (_loopsCompleted >= _loopsToComplete)
+                {
+                    return NodeState.Success;
+                }
+
+                return NodeState.Running;
+            }
+            else
+            {
+                return NodeState.Running;
+            }
         }
 
         protected override void OnExit()
         {
 
         }
-
-        protected override NodeState OnUpdate()
-        {
-            Child.Update();
-
-            return NodeState.Running;
-        }
     }
-#endif
 }

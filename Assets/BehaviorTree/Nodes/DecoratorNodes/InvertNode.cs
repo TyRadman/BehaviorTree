@@ -1,8 +1,6 @@
-using UnityEngine;
-
 namespace BT.Nodes
 {
-#if UNITY_EDITOR
+	[NodePath(DECORATOR_NODE_PATH + "Invert Node")]
 	public class InvertNode : DecoratorNode
 	{
 		protected override void OnStart()
@@ -40,5 +38,4 @@ namespace BT.Nodes
 			// end logic
 		}
 	}
-#endif
 }

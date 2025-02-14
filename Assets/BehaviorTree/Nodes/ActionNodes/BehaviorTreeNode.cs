@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
-#if UNITY_EDITOR
-	public class BehaviorTreeNode : ActionNode
+    [NodePath(ACTION_NODE_PATH + "Behavior Tree Node")]
+    public class BehaviorTreeNode : ActionNode
 	{
 		[SerializeField] BehaviorTree _behaviorTree;
 		[HideInInspector]
@@ -59,5 +59,4 @@ namespace BT.Nodes
 			return _behaviorTree;
         }
 	}
-#endif
 }

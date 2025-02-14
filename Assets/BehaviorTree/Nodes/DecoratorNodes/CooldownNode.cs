@@ -5,6 +5,7 @@ namespace BT.Nodes
 {
     using Utilities;
 
+    [NodePath(DECORATOR_NODE_PATH + "Cooldown Node")]
     public class CooldownNode : DecoratorNode
     {
         [SerializeField] private TimeMode _timeMode = TimeMode.DeltaTime;

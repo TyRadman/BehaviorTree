@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BT.Nodes
 {
-#if UNITY_EDITOR
+
+    [NodePath(ACTION_NODE_PATH + "Empty Action Node")]
     public class EmptyActionNode : ActionNode
     {
         [SerializeField] private NodeState _nodeState = NodeState.Success;
@@ -23,5 +22,4 @@ namespace BT.Nodes
             return _nodeState;
         }
     }
-#endif
 }

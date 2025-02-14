@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -6,9 +5,10 @@ using UnityEditor;
 
 namespace BT.Nodes
 {
-#if UNITY_EDITOR
     public abstract class CompositeNode : BaseNode
     {
+        protected const string COMPOSITE_NODE_PATH = MAIN_NODE_PATH + "Composite Nodes/";
+
         public List<BaseNode> Children = new List<BaseNode>();
 
         public override void OnAwake()
@@ -76,5 +76,4 @@ namespace BT.Nodes
             Children.Clear();
         }
     }
-#endif
 }

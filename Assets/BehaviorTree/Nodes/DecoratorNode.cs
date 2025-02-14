@@ -1,14 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 namespace BT.Nodes
 {
-#if UNITY_EDITOR
     public abstract class DecoratorNode : BaseNode
     {
         [HideInInspector] public BaseNode Child;
+
+        protected const string DECORATOR_NODE_PATH = MAIN_NODE_PATH + "Decorator Nodes/";
 
         public override void OnAwake()
         {
@@ -71,5 +71,4 @@ namespace BT.Nodes
             Child = null;
         }
     }
-#endif
 }

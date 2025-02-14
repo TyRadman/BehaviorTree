@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BT.Nodes
 {
-#if UNITY_EDITOR
+    [NodePath(COMPOSITE_NODE_PATH + "Sequence Node")]
     public class SequenceNode : CompositeNode
     {
         private int _currentChild;
@@ -58,5 +56,4 @@ namespace BT.Nodes
             }
         }
     }
-#endif
 }

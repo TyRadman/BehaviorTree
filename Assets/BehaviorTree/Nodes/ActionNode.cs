@@ -4,6 +4,8 @@ namespace BT.Nodes
 {
     public abstract class ActionNode : BaseNode
     {
+        protected const string ACTION_NODE_PATH = MAIN_NODE_PATH + "Action Nodes/";
+
         public override void OnAwake()
         {
         }

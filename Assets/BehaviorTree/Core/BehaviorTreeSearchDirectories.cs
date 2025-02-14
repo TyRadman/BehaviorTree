@@ -1,41 +1,40 @@
 using System;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
 namespace BT
 {
-#if UNITY_EDITOR
     using Nodes;
 
-    [System.Serializable]
+    [Serializable]
     public class NodeSearchDirectory
     {
         [HideInInspector] public string ClassName { get; set; }
+
         public string Directory;
         public Type ClassType;
+    }
+
+    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
+    public class NodePathAttribute : System.Attribute
+    {
+        public string Path { get; }
+        public NodePathAttribute(string path) => Path = path;
     }
 
     [CreateAssetMenu()]
     public class BehaviorTreeSearchDirectories : ScriptableObject
     {
         [field: SerializeField] public List<NodeSearchDirectory> Directories { get; private set; } = new List<NodeSearchDirectory>();
-        private List<Type> DefaultNodes = new List<Type>
-        {
-            typeof(PrintNode), typeof(WaitNode), typeof(SequenceNode), 
-            typeof(RepeatNode), typeof(SelectorNode),
-            typeof(LoopNode), typeof(InvertNode), typeof(ParallelNode), typeof(BehaviorTreeNode),
-            typeof(EmptyActionNode), typeof(ForceStateNode)
-        };
 
         public void RefreshDictionary()
         {
             TypeCache.TypeCollection nodeTypes = TypeCache.GetTypesDerivedFrom(typeof(BaseNode));
             List<Type> projectTypes = nodeTypes.ToList();
 
-            // Remove types that don't exist in the project
+            // remove types that don't exist in the project
             for (int i = Directories.Count - 1; i >= 0; i--)
             {
                 if(!projectTypes.Exists(t => t == Directories[i].ClassType))
@@ -62,13 +61,31 @@ namespace BT
                     continue;
                 }
 
-                string directory = DefaultNodes.Exists(n => n == nodeType) ? "Defaults/" : "Custom/";
-                string childDirectory = $"{ObjectNames.NicifyVariableName(nodeType.BaseType.Name + "s")}/{ObjectNames.NicifyVariableName(nodeType.Name)}";
+                string childDirectory = $"New Nodes/{ObjectNames.NicifyVariableName(nodeType.BaseType.Name + "s")}/{ObjectNames.NicifyVariableName(nodeType.Name)}";
+
+                try
+                {
+                    Attribute attr = Attribute.GetCustomAttribute(nodeType, typeof(NodePathAttribute));
+
+                    if (attr is NodePathAttribute customAttribute)
+                    {
+                        childDirectory = customAttribute.Path;
+                        childDirectory = string.IsNullOrEmpty(childDirectory) ? "New Nodes" : childDirectory;
+                    }
+                    else
+                    {
+                        Debug.Log($"There is No attribute for node {nodeType.Name}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log($"No attribute for node {nodeType.Name}");
+                }
 
                 Directories.Add(new NodeSearchDirectory()
                 {
                     ClassName = nodeType.FullName,
-                    Directory = directory + childDirectory,
+                    Directory = childDirectory,
                     ClassType = nodeType
                 });
             }
@@ -79,5 +96,4 @@ namespace BT
             Directories.Clear();
         }
     }
-#endif
 }

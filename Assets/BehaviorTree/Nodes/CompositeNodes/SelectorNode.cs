@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
+    [NodePath(COMPOSITE_NODE_PATH + "Selector Node")]
     public class SelectorNode : CompositeNode
     {
         private int _currentChild;

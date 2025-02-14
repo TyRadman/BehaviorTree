@@ -1,10 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System;
 
 namespace BT.Nodes
 {
-    public abstract class BaseNode : ScriptableObject
+    public abstract class BaseNode : ScriptableObject, IDisposable
     {
         [HideInInspector]
         public NodeState State = NodeState.NONE;
@@ -36,6 +37,8 @@ namespace BT.Nodes
         /// The variable name that will allow access to this node from outside the BT system
         /// </summary>
         public string VariableName;
+
+        protected const string MAIN_NODE_PATH = "Default Nodes/";
 
         public virtual string GetNodeViewName()
         {
@@ -123,6 +126,11 @@ namespace BT.Nodes
             State = NodeState.NONE;
             // Called when the nodes are created
             return Instantiate(this);
+        }
+
+        public virtual void Dispose()
+        {
+
         }
     }
 }

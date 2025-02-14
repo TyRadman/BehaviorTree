@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
@@ -35,13 +34,15 @@ namespace BT
             return TreeState;
         }
 
-        private const string UNDO_REDO_CREATE_NODE_ID = "Behavior Tree (CreateNode)";
-        private const string UNDO_REDO_DELETE_NODE_ID = "Behavior Tree (DeleteNode)";
+
         [HideInInspector] public bool IsMinimapDisplayed = false;
         [HideInInspector] public bool IsBlackboardDisplayed = false;
         // the values that center the view at the zoom of one.
         [HideInInspector] public Vector3 ViewPosition = new Vector3(431, 358, 0f);
         [HideInInspector] public Vector3 ViewZoom = Vector3.one;
+
+        private const string UNDO_REDO_CREATE_NODE_ID = "Behavior Tree (CreateNode)";
+        private const string UNDO_REDO_DELETE_NODE_ID = "Behavior Tree (DeleteNode)";
 
         #region Node Variables
         public void UpdateVariable(BaseNode node)
@@ -64,11 +65,21 @@ namespace BT
 
         public bool VariableNameExists(string variableName, BaseNode ownerNode)
         {
+            if (_variableToNode.Count == 0)
+            {
+                return false;
+            }
+
             return _variableToNode.TryGetValue(variableName, out BaseNode existingNode) && existingNode != ownerNode;
         }
 
         public BaseNode GetNodeByVariable(string variableName)
         {
+            if(_variableToNode.Count == 0)
+            {
+                return null;
+            }
+
             return _variableToNode.TryGetValue(variableName, out BaseNode node) ? node : null;
         }
         #endregion
@@ -185,7 +196,6 @@ namespace BT
 
             Nodes.ForEach(n => n.Blackboard = BlackboardContainer);
 
-            // TODO: uncomment
             if (BlackboardContainer == null || BlackboardContainer.Variables == null || BlackboardContainer.Variables.Count == 0)
             {
                 return;

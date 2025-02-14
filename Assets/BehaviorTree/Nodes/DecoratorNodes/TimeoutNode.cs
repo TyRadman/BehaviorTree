@@ -4,6 +4,7 @@ namespace BT.Nodes
 {
     using Utilities;
 
+    [NodePath(DECORATOR_NODE_PATH + "Timeout Node")]
     public class TimeoutNode : DecoratorNode
     {
         [SerializeField] private TimeMode _timeMode = TimeMode.DeltaTime;

@@ -7,8 +7,9 @@ namespace BT.Nodes
 #if UNITY_EDITOR
 	public abstract class ConditionalLoopNode : DecoratorNode
     {
-		private int _loopsCompleted;
 		[SerializeField] private int _loopsToComplete = 3;
+
+		private int _loopsCompleted;
 
 		/// <summary>
 		/// When false, the loop breaks.
@@ -23,7 +24,7 @@ namespace BT.Nodes
 			_loopsCompleted = 0;
 		}
 
-		protected override NodeState OnUpdate()
+		protected sealed override NodeState OnUpdate()
 		{
 			if(!IsTrue())
             {

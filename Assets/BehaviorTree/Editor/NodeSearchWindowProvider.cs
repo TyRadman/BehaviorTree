@@ -108,7 +108,7 @@ namespace BT.BTEditor
                 SearchTreeEntry nodeEntry = new SearchTreeEntry(new GUIContent(nodeName, _icon))
                 {
                     level = parentGroup.level + 1,
-                    userData = directory.ClassName
+                    userData = directory.ClassName,
                 };
 
                 tree.Add(nodeEntry);

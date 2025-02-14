@@ -4,7 +4,7 @@ namespace BT.Nodes
 {
 	using Utilities;
 
-#if UNITY_EDITOR
+	[NodePath(DECORATOR_NODE_PATH + "Loop Node")]
 	public class LoopNode : DecoratorNode
 	{
 		[SerializeField] private LoopMode _loopMode = LoopMode.Finite;
@@ -48,5 +48,4 @@ namespace BT.Nodes
 
 		}
 	}
-#endif
 }

@@ -2,20 +2,22 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
-    [NodePath(ACTION_NODE_PATH + "Wait Node")]
-    public class WaitNode : ActionNode
+    [NodePath(ACTION_NODE_PATH + "Random Wait Node")]
+    public class RandomWaitNode : ActionNode
     {
-        public float Duration = 1f;
+        public Vector2 DurationRange = new Vector2(1f, 2f);
+        private float _currentDuration;
         private float _elapsedTime;
 
         protected override void OnStart()
         {
             _elapsedTime = 0f;
+            _currentDuration = Random.Range(DurationRange.x, DurationRange.y);
         }
 
         protected override NodeState OnUpdate()
         {
-            if (_elapsedTime < Duration)
+            if (_elapsedTime < _currentDuration)
             {
                 _elapsedTime += Time.deltaTime;
                 return NodeState.Running;
@@ -26,7 +28,7 @@ namespace BT.Nodes
 
         protected override void OnExit()
         {
-           
+
         }
     }
 }

@@ -58,6 +58,12 @@ namespace BT.BTEditor
             bool enterChildren = true;
 
             BaseNode node = _editor.target as BaseNode;
+
+            if(node == null)
+            {
+                Debug.LogError("WTF");
+            }
+
             string nodeVariableName = node.VariableName;
 
             List<FieldInfo> blackboardFields = new List<FieldInfo>();
@@ -76,7 +82,7 @@ namespace BT.BTEditor
                     continue;
                 }
 
-                if (field != null && field.Name == "VariableName" && !string.IsNullOrEmpty(nodeVariableName))
+                if (field != null && field.Name == "VariableName" && !string.IsNullOrEmpty(nodeVariableName) && node.BehaviorTree != null)
                 {
                     if(nodeVariableName.Contains(" "))
                     {

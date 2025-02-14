@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BT.Nodes
 {
-#if UNITY_EDITOR
+    [NodePath(ACTION_NODE_PATH + "Print Node")]
     public class PrintNode : ActionNode
     {
         public enum DebugType
@@ -53,5 +51,4 @@ namespace BT.Nodes
             }
         }
     }
-#endif
 }
