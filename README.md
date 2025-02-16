@@ -66,6 +66,10 @@ Here's a list of shortcuts that can be used in the graph view:
 | Ctrl + Z | Undo.|
 | shift + h| Center selected nodes horizontally.|
 | shift + v| Center selected nodes vertically.|
+| shift + UpArrow| Up-align selected nodes.|
+| shift + DownArrow| Down-align selected nodes.|
+| shift + LeftArrow| Left-align selected nodes.|
+| shift + RightArrow| Right-align selected nodes.|
 
 **Note**: *Due to how Unity renders graphs, it is advisable not to use the undo command when the graph is large and complex, as it will have to iterate through every single node.*
 
