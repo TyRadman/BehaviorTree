@@ -64,6 +64,8 @@ Here's a list of shortcuts that can be used in the graph view:
 | Ctrl + V | Paste selected node/s.|
 | Ctrl + D | Duplicate selected node/s.|
 | Ctrl + Z | Undo.|
+| shift + h| Center selected nodes horizontally.|
+| shift + v| Center selected nodes vertically.|
 
 **Note**: *Due to how Unity renders graphs, it is advisable not to use the undo command when the graph is large and complex, as it will have to iterate through every single node.*
 
