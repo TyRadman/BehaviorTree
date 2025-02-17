@@ -193,10 +193,11 @@ When working with the nodes in this framework, there are a couple of methods and
 |`string VariableName`| The unique variable name of the name if set in the `Node Inspector`.|Yes, through the `Node Inspector`|
 |`void GetAgent<T>()`| Returns the agent controlling the Behavior Tree. T must be a MonoBehaviour.|No|
 |`NodeState Update()`| Returns the node's current state which can be Running, Failure, or Success.|No|
-|`void OnAwake`| Called once during the Behavior Tree's initialization.| Yes|
+|`void OnAwake()`| Called once during the Behavior Tree's initialization.| Yes|
 |`void OnStart`| Called when a node starts executing.| Yes|
-|`void OnUpdate`| Called continuously while the node is running.| Yes|
-|`void OnExit`| Called when the node finishes execution.| Yes|
+|`void OnUpdate()`| Called continuously while the node is running.| Yes|
+|`void OnExit()`| Called when the node finishes execution.| Yes|
+|`void Interrupt()`| Forcibly stops the node's execution and sets its state to `Interrupted`. Used when external conditions require the task to be aborted before completion.|
 
 #### Node states
 A node can have one of 3 states at a given time:
@@ -205,6 +206,7 @@ A node can have one of 3 states at a given time:
 |Running|The node is still performing the task.|
 |Success|The node successfully completed the task.|
 |Failure|The node failed to complete the task.| 
+|Interrupted| The node was externally stopped before completing the task.|
 
 #### Workflow
 When a node is called by its parent node, `OnStart()`, `OnUpdate()`, and `OnExit()` are executed in order. `OnStart()` and `OnExit()` are called once, while `OnUpdate()` is called repeatedly for as long as it returns `NodeState.Running`. As soon as `OnUpdate()` returns `NodeState.Success` or `NodeState.Failure`, `OnExit()` is triggered, and the parent node receives the result from the child node.
