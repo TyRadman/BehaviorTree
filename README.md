@@ -197,7 +197,7 @@ When working with the nodes in this framework, there are a couple of methods and
 |`void OnStart`| Called when a node starts executing.| Yes|
 |`void OnUpdate()`| Called continuously while the node is running.| Yes|
 |`void OnExit()`| Called when the node finishes execution.| Yes|
-|`void Interrupt()`| Forcibly stops the node's execution and sets its state to `Interrupted`. Used when external conditions require the task to be aborted before completion.|
+|`void Interrupt()`| Forcibly stops the node's execution and sets its state to `Interrupted`. Used when external conditions require the task to be aborted before completion.| No|
 
 #### Node states
 A node can have one of 3 states at a given time:
