@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -19,9 +17,10 @@ namespace BT
     {
         private const string ACTION_NODE = "using UnityEngine;\n\n" +
             "namespace BT.Nodes\n{\n\t" +
-            "public class #SCRIPTNAME# : ActionNode" +
+            "\t[NodePath(\"New Nodes/#SCRIPTNAME#\")]\n" +
+            "\tpublic class #SCRIPTNAME# : ActionNode" +
             "\n\t{" +
-            "\n\t\tprotected override void OnStart()\n\t\t{\n\t\t\t// start logic\n\t\t}" +
+            "\n\t\tprotected override NodeState OnStart()\n\t\t{\n\t\t\t// start logic\n\t\t\treturn NodeState.Running;\n\t\t}" +
             "\n\n\t\tprotected override NodeState OnUpdate()\n\t\t{\n\t\t\t// update logic\n\t\t\treturn NodeState.Success;\n\t\t}" +
             "\n\n\t\tprotected override void OnExit()\n\t\t{\n\t\t\t// stop logic\n\t\t}" +
             "\n\t}\n}";
@@ -30,7 +29,7 @@ namespace BT
             "namespace BT.Nodes\n{\n\t" +
             "public class #SCRIPTNAME# : CompositeNode" +
             "\n\t{" +
-            "\n\t\tprotected override void OnStart()\n\t\t{\n\t\t\t// start logic\n\t\t}" +
+            "\n\t\tprotected override NodeState OnStart()\n\t\t{\n\t\t\t// start logic\n\t\t\treturn NodeState.Running;\n\t\t}" +
             "\n\n\t\tprotected override NodeState OnUpdate()\n\t\t{\n\t\t\t// update logic\n\t\t\treturn NodeState.Success;\n\t\t}" +
             "\n\n\t\tprotected override void OnExit()\n\t\t{\n\t\t\t// end logic\n\t\t}" +
             "\n\t}\n}";
@@ -39,7 +38,7 @@ namespace BT
             "namespace BT.Nodes\n{\n\t" +
             "public class #SCRIPTNAME# : DecoratorNode" +
             "\n\t{" +
-            "\n\t\tprotected override void OnStart()\n\t\t{\n\t\t\t// start logic\n\t\t}" +
+            "\n\t\tprotected override NodeState OnStart()\n\t\t{\n\t\t\t// start logic\n\t\t\treturn NodeState.Running;\n\t\t}" +
             "\n\n\t\tprotected override NodeState OnUpdate()\n\t\t{\n\t\t\t// update logic\n\t\t\treturn NodeState.Success;\n\t\t}" +
             "\n\n\t\tprotected override void OnExit()\n\t\t{\n\t\t\t// end logic\n\t\t}" +
             "\n\t}\n}";
@@ -114,38 +113,6 @@ namespace BT
             // Show the created asset in the project window
             ProjectWindowUtil.ShowCreatedAsset(asset);
         }
-
-        //private static string GetSelectedPathOrFallback()
-        //{
-        //    // Default path using SaveFolderPanel
-        //    string path = EditorUtility.SaveFolderPanel("Select Folder to Save Script", Application.dataPath, string.Empty);
-
-        //    Debug.Log("Initial selected path: " + path);
-
-        //    foreach (Object obj in Selection.GetFiltered(typeof(Object), SelectionMode.Assets))
-        //    {
-        //        string objPath = AssetDatabase.GetAssetPath(obj);
-        //        Debug.Log("Filtered asset path: " + objPath);
-
-        //        if (!string.IsNullOrEmpty(objPath) && File.Exists(objPath))
-        //        {
-        //            objPath = Path.GetDirectoryName(objPath);
-        //            Debug.Log("File exists, using directory path: " + objPath);
-        //            path = objPath;
-        //            break;
-        //        }
-        //        else if (Directory.Exists(objPath))
-        //        {
-        //            Debug.Log("Directory exists, using path: " + objPath);
-        //            path = objPath;
-        //            break;
-        //        }
-        //    }
-
-        //    Debug.Log("Final path being returned: " + path);
-        //    return path;
-        //}
-
 
         private class DoCreateScriptAsset : UnityEditor.ProjectWindowCallback.EndNameEditAction
         {

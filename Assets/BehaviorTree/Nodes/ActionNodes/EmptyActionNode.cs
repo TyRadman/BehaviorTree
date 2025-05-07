@@ -8,18 +8,19 @@ namespace BT.Nodes
     {
         [SerializeField] private NodeState _nodeState = NodeState.Success;
 
-        protected override void OnStart()
+        protected override NodeState OnStart()
         {
-        }
-
-        protected override void OnExit()
-        {
-
+            return _nodeState;
         }
 
         protected override NodeState OnUpdate()
         {
             return _nodeState;
+        }
+
+        protected override void OnExit()
+        {
+
         }
     }
 }

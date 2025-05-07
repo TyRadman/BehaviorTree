@@ -33,16 +33,23 @@ namespace BT
                 agent = _agent;
             }
 
-            Tree = Tree.Clone();
-            Tree.Bind(agent);
-            Tree.Start();
+            if (!Tree.IsInitiated)
+            {
+                string name = Tree.name;
+                Tree = Tree.Clone();
+                Tree.name = name + " Cloned";
+                Tree.Bind(agent);
+                Tree.AwakeBT();
+            }
 
+            Tree.StartBT();
             _isRunning = true;
         }
 
         public void Stop()
         {
             _isRunning = false;
+            Tree.StopBT();
         }
 
         private void Update()
@@ -52,7 +59,7 @@ namespace BT
                 return;
             }
 
-            Tree.Update();
+            Tree.UpdateBT();
         }
     }
 }

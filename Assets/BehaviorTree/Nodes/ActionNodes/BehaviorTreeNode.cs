@@ -5,47 +5,30 @@ namespace BT.Nodes
     [NodePath(ACTION_NODE_PATH + "Behavior Tree Node")]
     public class BehaviorTreeNode : ActionNode
 	{
-		[SerializeField] BehaviorTree _behaviorTree;
+		[SerializeField] private BehaviorTree _behaviorTree;
+        [HideInInspector] public BehaviorTree BehaviorTreeInstance;
 		[HideInInspector]
-		public RootNode RootNode;
+		public RootNode Root;
 
         public override void OnAwake()
         {
             base.OnAwake();
+
+            //BehaviorTreeNode btNodeClone = Instantiate(this);
+            BehaviorTreeInstance = _behaviorTree.Clone();
+            BehaviorTreeInstance.Bind(Agent);
+            BehaviorTreeInstance.AwakeBT();
+            Root = BehaviorTreeInstance.RootNode as RootNode;
         }
 
-        public override BaseNode Clone()
+        protected override NodeState OnStart()
 		{
-			base.Clone();
-
-			if (_behaviorTree == null)
-			{
-				Debug.LogError($"No behavior tree referenced at the behavior tree node {name}");
-				return null;
-			}
-
-			RootNode = _behaviorTree.RootNode as RootNode;
-
-			if(RootNode == null)
-            {
-
-            }
-
-			BehaviorTreeNode btNodeClone = Instantiate(this);
-			RootNode rootNodeClone = Instantiate(RootNode);
-			btNodeClone.RootNode = rootNodeClone;
-			rootNodeClone.Clone();
-			return btNodeClone;
-		}
-
-        protected override void OnStart()
-		{
-
+			return NodeState.Running;
 		}
 
 		protected override NodeState OnUpdate()
 		{
-			NodeState state = RootNode.Update();
+			NodeState state = Root.Update();
 			return state;
 		}
 
@@ -54,7 +37,14 @@ namespace BT.Nodes
 
 		}
 
-		public BehaviorTree GetBehaviorTree()
+        public override void Interrupt()
+        {
+            base.Interrupt();
+
+            Root.Interrupt();
+        }
+
+        public BehaviorTree GetBehaviorTreeReference()
         {
 			return _behaviorTree;
         }

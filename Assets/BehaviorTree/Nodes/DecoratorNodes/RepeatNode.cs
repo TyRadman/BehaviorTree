@@ -13,11 +13,13 @@ namespace BT.Nodes
 
         private int _loopsCompleted;
 
-        protected override void OnStart()
+        protected override NodeState OnStart()
         {
             _loopsToComplete = Mathf.Max(1, _loopsToComplete);
 
             _loopsCompleted = 0;
+
+            return NodeState.Running;
         }
 
         protected override NodeState OnUpdate()

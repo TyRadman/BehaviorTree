@@ -1,4 +1,3 @@
-using BT;
 using System.Reflection;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
@@ -44,8 +43,6 @@ namespace BT.BTEditor
                 return;
             }
 
-            //RenderDisplaySettings();
-
             // begin listening to changes in the inspector GUI
             EditorGUI.BeginChangeCheck();
 
@@ -84,34 +81,7 @@ namespace BT.BTEditor
 
                 if (field != null && field.Name == "VariableName" && !string.IsNullOrEmpty(nodeVariableName) && node.BehaviorTree != null)
                 {
-                    if(nodeVariableName.Contains(" "))
-                    {
-                        nodeVariableName = nodeVariableName.Replace(" ", "");
-                        node.VariableName = nodeVariableName;
-                    }
-
-                    if (!node.BehaviorTree.VariableNameExists(nodeVariableName, node))
-                    {
-                        node.BehaviorTree.UpdateVariable(node);
-                        EditorGUILayout.PropertyField(property, true);
-                    }
-                    else
-                    {
-                        EditorGUILayout.BeginHorizontal();
-
-                        // Display the PropertyField with red color
-                        GUI.color = Color.red;
-                        EditorGUILayout.PropertyField(property, true);
-                        GUI.color = Color.white;
-
-                        // Add a warning icon with a tooltip
-                        GUIContent iconContent = EditorGUIUtility.IconContent("console.erroricon");
-                        iconContent.tooltip = "Variable name already exists in the Behavior Tree";
-                        EditorGUILayout.LabelField(iconContent, GUILayout.Width(20), GUILayout.Height(EditorGUIUtility.singleLineHeight));
-
-                        // End the horizontal group
-                        EditorGUILayout.EndHorizontal();
-                    }
+                    DrawNodeVariableField(property, node, nodeVariableName);
 
                     continue;
                 }
@@ -138,13 +108,43 @@ namespace BT.BTEditor
             }
         }
 
+        private static void DrawNodeVariableField(SerializedProperty property, BaseNode node, string nodeVariableName)
+        {
+            if (nodeVariableName.Contains(" "))
+            {
+                nodeVariableName = nodeVariableName.Replace(" ", "");
+                node.VariableName = nodeVariableName;
+            }
+
+            if (!node.BehaviorTree.VariableNameExists(nodeVariableName, node))
+            {
+                node.BehaviorTree.UpdateVariable(node);
+                EditorGUILayout.PropertyField(property, true);
+            }
+            else
+            {
+                EditorGUILayout.BeginHorizontal();
+
+                // Display the PropertyField with red color
+                GUI.color = Color.red;
+                EditorGUILayout.PropertyField(property, true);
+                GUI.color = Color.white;
+
+                // Add a warning icon with a tooltip
+                GUIContent iconContent = EditorGUIUtility.IconContent("console.erroricon");
+                iconContent.tooltip = "Variable name already exists in the Behavior Tree";
+                EditorGUILayout.LabelField(iconContent, GUILayout.Width(20), GUILayout.Height(EditorGUIUtility.singleLineHeight));
+
+                // End the horizontal group
+                EditorGUILayout.EndHorizontal();
+            }
+        }
+
         private void DrawBlackboardKeyDropdown(BlackboardKey blackboardKey, string name)
         {
             Texture2D icon = GetBlackboardKeyIcon();
 
             // Create GUIContent with the icon and the label text
-            float iconWidth = 16f;
-            float iconHeight = 16f;
             GUIContent dropdownLabel = new GUIContent(" " + name, icon);
 
             List<string> options = GetBlackboardKeys();

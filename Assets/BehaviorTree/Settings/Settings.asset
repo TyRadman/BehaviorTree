@@ -12,6 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71a5d8b8f8df8964d9e858585125561e, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  <LastSelectedBehaviorTree>k__BackingField: {fileID: 11400000, guid: 2fc24b4d9471aae4e84d061f68983660, type: 2}
+  <LastSelectedBehaviorTree>k__BackingField: {fileID: 11400000, guid: a5c24198672d37040a05140dae8eab74,
+    type: 2}
   <RecentOpenedBehaviorTrees>k__BackingField:
-  - {fileID: 11400000, guid: 2fc24b4d9471aae4e84d061f68983660, type: 2}
+  - {fileID: 11400000, guid: 488abeec37745964fa3e4c68e7415b7a, type: 2}
+  - {fileID: 11400000, guid: 44796a7e632f2c1429f2443edc4cd790, type: 2}
+  - {fileID: 11400000, guid: 7a218811416f778439e5bf5432ff7393, type: 2}
+  - {fileID: 11400000, guid: ad38d809996e71a499b1bae2d5fb2c96, type: 2}
+  - {fileID: 11400000, guid: 70d88c5523b5b5f4685873da06e0d453, type: 2}
+  - {fileID: 11400000, guid: 0e5203f8ee85fc147be2b2c8c83344c7, type: 2}
+  - {fileID: 11400000, guid: d20bcb2c30301454e9ac9d9b8f151605, type: 2}
+  - {fileID: 11400000, guid: c608f31efca250343b7467fd02bc8ef6, type: 2}
+  - {fileID: 11400000, guid: f918510838616fd4f872f1c5b32bfc07, type: 2}
+  - {fileID: 11400000, guid: a5c24198672d37040a05140dae8eab74, type: 2}
+  - {fileID: 11400000, guid: 5fe50c9cf9e1fc94e8f6a5cb7837252a, type: 2}
+  - {fileID: 11400000, guid: 3962b53c538c9a747ba0cc8a9759a1ea, type: 2}
+  - {fileID: 11400000, guid: 29f058b30323a774088d613798a4c75e, type: 2}
+  - {fileID: 11400000, guid: 166c3248da169d74d8546a1e966e1885, type: 2}
+  - {fileID: 11400000, guid: 6ef57e21384c5564f98f2d02edf825dd, type: 2}

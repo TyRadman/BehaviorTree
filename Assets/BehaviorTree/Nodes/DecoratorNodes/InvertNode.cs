@@ -3,10 +3,10 @@ namespace BT.Nodes
 	[NodePath(DECORATOR_NODE_PATH + "Invert Node")]
 	public class InvertNode : DecoratorNode
 	{
-		protected override void OnStart()
-		{
-
-		}
+		protected override NodeState OnStart()
+        {
+            return NodeState.Running;
+        }
 
 		protected override NodeState OnUpdate()
 		{

@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace BT.Nodes
 {
-#if UNITY_EDITOR
     public class RootNode : BaseNode
     {
         //[HideInInspector]
@@ -17,9 +16,9 @@ namespace BT.Nodes
             Child.OnAwake();
         }
 
-        protected override void OnStart()
+        protected override NodeState OnStart()
         {
-
+            return NodeState.Running;
         }
 
         protected override void OnExit()
@@ -34,12 +33,14 @@ namespace BT.Nodes
 
         public override void AddChild(BaseNode child)
         {
+#if UNITY_EDITOR
             Undo.RecordObject(this, "Behavior Tree (Add Child)");
 
             if (child == null)
             {
                 Debug.Log("CHILD IS NULL");
             }
+#endif
 
             Child = child;
             base.AddChild(child);
@@ -47,7 +48,10 @@ namespace BT.Nodes
 
         public override void RemoveChild(BaseNode child)
         {
+#if UNITY_EDITOR
             Undo.RecordObject(this, "Behavior Tree (Remove Child)");
+#endif
+
             Child = null;
             base.RemoveChild(child);
         }
@@ -78,6 +82,24 @@ namespace BT.Nodes
             State = NodeState.Success;
             Child.OnForceStopNode();
         }
+
+        public override void Interrupt()
+        {
+            base.Interrupt();
+
+            Child.Interrupt();
+        }
+
+        public override bool Abort()
+        {
+            if (base.Abort())
+            {
+                Child.Abort();
+
+                return true;
+            }
+
+            return false;
+        }
     }
-#endif
 }

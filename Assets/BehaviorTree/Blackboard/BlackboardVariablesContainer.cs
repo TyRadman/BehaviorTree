@@ -5,7 +5,6 @@ using UnityEngine;
 
 namespace BT
 {
-#if UNITY_EDITOR
     public class BlackboardVariablesContainer : ScriptableObject
     {
         public BehaviorTree BehaviorTree;
@@ -13,9 +12,15 @@ namespace BT
 #if UNITY_EDITOR
         [field: SerializeField] public Vector2 Position { get; set; }
         [field: SerializeField] public Vector2 Size { get; set; } = new Vector2(300f, 300f);
+
+        public Rect GetDimensions()
+        {
+            return new Rect(Position, Size);
+        }
 #endif
         [field: SerializeField] public List<ExposedProperty> Variables { get; set; } = new List<ExposedProperty>();
-        
+
+#if UNITY_EDITOR
         public void RemoveProperty(ExposedProperty propertyToRemove)
         {
             if (BehaviorTree == null || propertyToRemove == null)
@@ -35,23 +40,28 @@ namespace BT
             // Save the changes
             AssetDatabase.SaveAssets();
         }
+#endif
 
-
-        public T GetValue<T>(string key)
+        public bool HasValue(BlackboardKey key)
         {
-            if (!Variables.Exists(p => p.PropertyName == key))
+            return Variables.Exists(v => v.PropertyName == key.Value);
+        }
+
+        public T GetValue<T>(BlackboardKey key)
+        {
+            if (!Variables.Exists(p => p.PropertyName == key.Value))
             {
-                Debug.LogError($"No property with the name {key} found in the blackboard");
+                Debug.LogError($"No property with the name {key.Value} found in the blackboard");
                 return default(T);
             }
 
-            Debug.Log($"successfully got {key} from blackboard");
-            return (T)Variables.Find(p => p.PropertyName == key).GetValue();
+            //Debug.Log($"successfully got {key.Value} from blackboard");
+            return (T)Variables.Find(p => p.PropertyName == key.Value).GetValue();
         }
 
-        public void SetValue<T>(string key, T value)
+        public void SetValue<T>(BlackboardKey key, T value)
         {
-            ExposedProperty property = Variables.Find(v => v.PropertyName == key);
+            ExposedProperty property = Variables.Find(v => v.PropertyName == key.Value);
 
             if(property == null)
             {
@@ -60,11 +70,6 @@ namespace BT
             }
 
             property.SetValue(value);
-        }
-
-        public Rect GetDimensions()
-        {
-            return new Rect(Position, Size);
         }
 
         public void AddProperty(ExposedProperty property)
@@ -77,5 +82,4 @@ namespace BT
             Variables.Add(property);
         }
     }
-#endif
 }

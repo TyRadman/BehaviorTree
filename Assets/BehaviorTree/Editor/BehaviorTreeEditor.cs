@@ -15,8 +15,7 @@ namespace BT.BTEditor
 
         private MiniMap _minimap;
         private Toggle _minimapToggle;
-
-        private Toggle _blackboardToggle;
+        //private Toggle _blackboardToggle;
         private CustomBlackboard _blackboard;
 
         private const string MINIMAP_TOGGLE_NAME = "minimap-toggle";
@@ -51,7 +50,7 @@ namespace BT.BTEditor
             return false;
         }
 
-        [MenuItem("Tanklike/Behavior Tree Editor")]
+        [MenuItem("BT/Behavior Tree Editor")]
         public static void OpenEditor()
         {
             if (Window == null)
@@ -204,13 +203,13 @@ namespace BT.BTEditor
 
             _treeView.AddBlackboard(_blackboard);
 
-            _blackboardToggle = rootVisualElement.Q<Toggle>(BLACKBOARD_TOGGLE_NAME);
+            //_blackboardToggle = rootVisualElement.Q<Toggle>(BLACKBOARD_TOGGLE_NAME);
 
-            _blackboardToggle.RegisterValueChangedCallback(evt =>
-            {
-                _blackboard.visible = evt.newValue;
-                SelectedBehaviorTree.IsBlackboardDisplayed = evt.newValue;
-            });
+            //_blackboardToggle.RegisterValueChangedCallback(evt =>
+            //{
+            //    _blackboard.visible = evt.newValue;
+            //    SelectedBehaviorTree.IsBlackboardDisplayed = evt.newValue;
+            //});
 
             LoadBlackboardVisibility();
         }
@@ -411,13 +410,13 @@ namespace BT.BTEditor
 
         private void LoadBlackboardVisibility()
         {
-            if (_blackboard == null || SelectedBehaviorTree == null || _blackboardToggle == null)
+            if (_blackboard == null || SelectedBehaviorTree == null /*|| _blackboardToggle == null*/)
             {
                 return;
             }
 
-            _blackboard.visible = SelectedBehaviorTree.IsBlackboardDisplayed;
-            _blackboardToggle.value = _blackboard.visible;
+            _blackboard.visible = true; //SelectedBehaviorTree.IsBlackboardDisplayed;
+            //_blackboardToggle.value = _blackboard.visible;
         }
 
         private void LoadViewData()

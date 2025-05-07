@@ -7,14 +7,11 @@ namespace BT.Nodes
     {
         private int _currentChild;
 
-        protected override void OnStart()
+        protected override NodeState OnStart()
         {
             _currentChild = 0;
-        }
 
-        protected override void OnExit()
-        {
-
+            return NodeState.Running;
         }
 
         protected override NodeState OnUpdate()
@@ -22,11 +19,15 @@ namespace BT.Nodes
             BaseNode child = Children[_currentChild];
             NodeState state;
 
-            if (child == null)
-            {
-                Debug.LogError($"Child is null. Index: {_currentChild} out of {Children.Count}");
-            }
+            //if (child == null)
+            //{
+            //    Debug.LogError($"Child is null. Index: {_currentChild} out of {Children.Count}");
+            //}
+
             state = child.Update();
+
+            //if(VariableName == "TT")
+            //Debug.Log($"Updating child {_currentChild}. State: {state}. At {Time.time}");
 
             switch (state)
             {
@@ -38,9 +39,15 @@ namespace BT.Nodes
                     {
                         return NodeState.Failure;
                     }
+                    // REVIEW: should interruption be a success?
+                case NodeState.Interrupted:
                 case NodeState.Success:
                     {
                         break;
+                    }
+                case NodeState.Aborted:
+                    {
+                        return NodeState.Aborted;
                     }
             }
 
@@ -54,6 +61,36 @@ namespace BT.Nodes
             {
                 return NodeState.Running;
             }
+        }
+
+        protected override void OnExit()
+        {
+
+        }
+
+        public override void Interrupt()
+        {
+            base.Interrupt();
+
+            if (_currentChild < Children.Count && _currentChild > -1)
+            {
+                Children[_currentChild].Interrupt();
+            }
+        }
+
+        public override bool Abort()
+        {
+            if (base.Abort())
+            {
+                if (_currentChild < Children.Count && _currentChild > -1)
+                {
+                    Children[_currentChild].Abort();
+                }
+
+                return true;
+            }
+
+            return false;
         }
     }
 }

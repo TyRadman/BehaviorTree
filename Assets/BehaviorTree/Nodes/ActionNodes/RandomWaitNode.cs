@@ -9,10 +9,12 @@ namespace BT.Nodes
         private float _currentDuration;
         private float _elapsedTime;
 
-        protected override void OnStart()
+        protected override NodeState OnStart()
         {
             _elapsedTime = 0f;
             _currentDuration = Random.Range(DurationRange.x, DurationRange.y);
+
+            return NodeState.Running;
         }
 
         protected override NodeState OnUpdate()

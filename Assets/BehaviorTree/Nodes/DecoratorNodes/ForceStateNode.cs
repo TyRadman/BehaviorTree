@@ -7,9 +7,10 @@ namespace BT.Nodes
 	{
 		[SerializeField] private NodeState _returnedState;
 
-		protected override void OnStart()
-		{
-		}
+		protected override NodeState OnStart()
+        {
+            return NodeState.Running;
+        }
 
 		protected override NodeState OnUpdate()
 		{

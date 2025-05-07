@@ -17,13 +17,6 @@ namespace BT
         public Type ClassType;
     }
 
-    [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-    public class NodePathAttribute : System.Attribute
-    {
-        public string Path { get; }
-        public NodePathAttribute(string path) => Path = path;
-    }
-
     [CreateAssetMenu()]
     public class BehaviorTreeSearchDirectories : ScriptableObject
     {

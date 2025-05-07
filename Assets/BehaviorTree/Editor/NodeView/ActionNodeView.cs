@@ -37,7 +37,7 @@ namespace BT.BTEditor
         {
             if (e.clickCount == 2)
             {
-                BehaviorTree bt = ((BehaviorTreeNode)Node).GetBehaviorTree();
+                BehaviorTree bt = ((BehaviorTreeNode)Node).GetBehaviorTreeReference();
 
                 BehaviorTreeEditor.OpenBehaviorTree(bt);
             }

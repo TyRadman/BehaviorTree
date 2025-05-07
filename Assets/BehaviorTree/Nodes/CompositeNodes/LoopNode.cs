@@ -12,12 +12,14 @@ namespace BT.Nodes
 
         private int _loopsCompleted;
 
-		protected override void OnStart()
+		protected override NodeState OnStart()
 		{
 			_loopsToComplete = Mathf.Max(1, _loopsToComplete);
 
 			_loopsCompleted = 0;
-		}
+
+            return NodeState.Running;
+        }
 
 		protected override NodeState OnUpdate()
 		{
@@ -25,7 +27,7 @@ namespace BT.Nodes
 
 			if (_loopMode == LoopMode.Finite)
 			{
-				if (childState is NodeState.Failure or NodeState.Success)
+				if (childState is NodeState.Failure or NodeState.Success or NodeState.Interrupted)
 				{
 					_loopsCompleted++;
 				}
@@ -34,18 +36,14 @@ namespace BT.Nodes
 				{
 					return NodeState.Success;
 				}
-
-				return NodeState.Running;
 			}
-			else
-			{
-				return NodeState.Running;
-			}
+		
+			return NodeState.Running;
 		}
 
 		protected override void OnExit()
 		{
 
 		}
-	}
+    }
 }

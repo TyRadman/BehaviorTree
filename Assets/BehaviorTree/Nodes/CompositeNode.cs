@@ -9,7 +9,7 @@ namespace BT.Nodes
     {
         protected const string COMPOSITE_NODE_PATH = MAIN_NODE_PATH + "Composite Nodes/";
 
-        public List<BaseNode> Children = new List<BaseNode>();
+        [HideInInspector] public List<BaseNode> Children = new List<BaseNode>();
 
         public override void OnAwake()
         {
@@ -25,14 +25,20 @@ namespace BT.Nodes
 
         public override void AddChild(BaseNode child)
         {
+#if UNITY_EDITOR
             Undo.RecordObject(this, "Behavior Tree (Add Child)");
+#endif
+
             Children.Add(child);
             base.AddChild(child);
         }
 
         public override void RemoveChild(BaseNode child)
         {
+#if UNITY_EDITOR
             Undo.RecordObject(this, "Behavior Tree (Remove Child)");
+#endif
+
             Children.Remove(child);
             base.RemoveChild(child);
         }

@@ -5,11 +5,13 @@ namespace BT.Nodes
     [NodePath(COMPOSITE_NODE_PATH + "Random Selector Node")]
     public class RandomSelectorNode : SelectorNode
     {
-        protected override void OnStart()
+        protected override NodeState OnStart()
         {
             base.OnStart();
 
             BTHelper.ShuffleList(Children);
+
+            return NodeState.Running;
         }
     }
 }

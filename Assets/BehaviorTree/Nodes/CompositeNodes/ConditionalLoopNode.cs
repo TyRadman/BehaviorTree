@@ -1,55 +1,62 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BT.Nodes
 {
-#if UNITY_EDITOR
+	using Utilities;
+
 	public abstract class ConditionalLoopNode : DecoratorNode
     {
-		[SerializeField] private int _loopsToComplete = 3;
+        [SerializeField] private LoopMode _loopMode = LoopMode.Finite;
+        [SerializeField] private int _loopsToComplete = 3;
+        [Tooltip("The state returned should the condition not be met.")]
+        [SerializeField] private NodeState _returnState = NodeState.Failure;
 
-		private int _loopsCompleted;
+        private int _loopsCompleted;
 
-		/// <summary>
-		/// When false, the loop breaks.
-		/// </summary>
-		/// <returns></returns>
-		protected abstract bool IsTrue();
+        /// <summary>
+        /// When false, the loop breaks.
+        /// </summary>
+        /// <returns></returns>
+        protected abstract bool IsConditionBroken();
 
-		protected override void OnStart()
+		protected override NodeState OnStart()
 		{
 			_loopsToComplete = Mathf.Max(1, _loopsToComplete);
 
 			_loopsCompleted = 0;
-		}
+
+            return NodeState.Running;
+        }
 
 		protected sealed override NodeState OnUpdate()
 		{
-			if(!IsTrue())
+            if (!IsConditionBroken())
             {
-				return NodeState.Failure;
+                Child.Interrupt();
+                return _returnState;
             }
 
-			NodeState childState = Child.Update();
+            NodeState childState = Child.Update();
 
-			if (childState == NodeState.Failure || childState == NodeState.Success)
-			{
-				_loopsCompleted++;
-			}
+            if (_loopMode == LoopMode.Finite)
+            {
+                if (childState is NodeState.Failure or NodeState.Success or NodeState.Interrupted)
+                {
+                    _loopsCompleted++;
+                }
 
-			if (_loopsCompleted >= _loopsToComplete)
-			{
-				return NodeState.Success;
-			}
+                if (_loopsCompleted >= _loopsToComplete)
+                {
+                    return NodeState.Success;
+                }
+            }
 
-			return NodeState.Running;
-		}
+            return NodeState.Running;
+        }
 
 		protected override void OnExit()
 		{
 
 		}
 	}
-#endif
 }

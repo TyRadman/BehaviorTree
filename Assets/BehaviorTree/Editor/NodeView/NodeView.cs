@@ -11,17 +11,19 @@ namespace BT.BTEditor
 
     public abstract class NodeView : Node
     {
+        public abstract string StyleClassName { get; set; }
         public Action<NodeView> OnNodeSelected;
         public BaseNode Node;
         public Port InputPort;
         public Port OutputPort;
-        public abstract string StyleClassName { get; set; }
-        private const string NODE_VIEW_UXML_DIRECTORY = BehaviorTreeSettings.CORE_DIRECTORY + "Editor/NodeView/NodeView.uxml";
-        private const string NODE_ICONS_PATH = BehaviorTreeSettings.CORE_DIRECTORY + "/Icons/NodesIcons/";
+
         private Label _stateLabel;
         private static BehaviorTreeView _view;
         private NodeState _currentState = NodeState.NONE;
         private string _lastAddedClass = string.Empty;
+
+        private const string NODE_VIEW_UXML_DIRECTORY = BehaviorTreeSettings.CORE_DIRECTORY + "Editor/NodeView/NodeView.uxml";
+        private const string NODE_ICONS_PATH = BehaviorTreeSettings.CORE_DIRECTORY + "/Icons/NodesIcons/";
 
         public NodeView() : base(NODE_VIEW_UXML_DIRECTORY)
         {
@@ -67,12 +69,27 @@ namespace BT.BTEditor
         private void BindTitleLabelToName()
         {
             Label titleLabel = this.Q<Label>("title-label");
+
+            if(titleLabel == null)
+            {
+                Debug.LogError("No title label");
+                return;
+            }
+
+            if(Node == null)
+            {
+                Debug.LogError("No node passed");
+                return;
+            }
+
             titleLabel.bindingPath = "ViewDetails.Name";
             titleLabel.Bind(new SerializedObject(Node));
 
             if (Node.ViewDetails.Name.Length == 0)
             {
-                Node.ViewDetails.Name = Node.GetType().Name;
+                string nodeName = Node.GetType().Name;
+                //nodeName = nodeName.
+                Node.ViewDetails.Name = nodeName;
                 titleLabel.text = Node.ViewDetails.Name;
             }
         }
@@ -244,6 +261,9 @@ namespace BT.BTEditor
             }
 
             string name = Node.GetType().Name.Replace("Node", string.Empty);
+            name = name.Replace("AN", string.Empty);
+            name = name.Replace("CN", string.Empty);
+            name = name.Replace("DN", string.Empty);
 
             classText.text = name;
         }

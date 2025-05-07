@@ -13,34 +13,54 @@ namespace BT.Nodes
         /// </summary>
         [Tooltip("Defines how a condition node controls the execution flow of a behavior tree. Determines whether a running sequence is interrupted immediately when the condition becomes false or allowed to complete before re-evaluation.")]
         [SerializeField] private InterruptionMode _interruptionMode;
+        [Tooltip("The state returned should the condition not be met.")]
+        [SerializeField] private NodeState _returnState = NodeState.Failure;
+        [SerializeField] private bool _invert = false;
+
+
         protected abstract bool IsTrue();
+
+        protected override NodeState OnStart()
+        {
+            base.OnStart();
+
+            if (_interruptionMode == InterruptionMode.Latched)
+            {
+                if (IsConditionBroken())
+                {
+                    return _returnState;
+                }
+            }
+
+            return NodeState.Running;
+        }
+
 
         protected sealed override NodeState OnUpdate()
         {
             if (_interruptionMode == InterruptionMode.Reactive)
             {
-                if (!IsTrue())
+                if (IsConditionBroken())
                 {
-                    return NodeState.Failure;
+                    Child.Interrupt();
+                    return _returnState;
                 }
 
-                return Child.Update();
-            }
-            else if(_interruptionMode == InterruptionMode.Latched)
-            {
-                if(Child.Update() != NodeState.Running)
-                {
-                    return IsTrue() ? NodeState.Success : NodeState.Failure;
-                }
-                else
-                {
-                    return NodeState.Running;
-                }
+                var childState = Child.Update();
+
+                return childState;
             }
             else
             {
-                return NodeState.Running;
+                var childState = Child.Update();
+
+                return childState;
             }
+        }
+
+        private bool IsConditionBroken()
+        {
+            return !IsTrue() ^ _invert;
         }
     }
 }

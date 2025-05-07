@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BT.Nodes
@@ -8,33 +7,78 @@ namespace BT.Nodes
 	{
 		public enum ParallelType
 		{
-			OneChildFailIsFail = 0, AllChildrenFailIsFail = 1, NumberOfChildrenFailIsFail = 2
+			OneTriggeredChild = 0, AllTriggeredChildren = 1, NumberOfTriggeredChildren = 2
 		}
 
 		[SerializeField] private ParallelType _failureCondition;
-		[HideInInspector] public int ConditionalFailedChildrenCount;
+		[SerializeField] private NodeState _returnState;
+		[SerializeField] private NodeState _childTriggerState;
+		[Tooltip("Takes effect only if the Failure Condition is set to NumberOfTriggeredChildren.")]
+		[SerializeField] public int ConditionalFailedChildrenCount = 1;
 
-		protected override void OnStart()
-		{
-
-		}
+		protected override NodeState OnStart()
+        {
+            return NodeState.Running;
+        }
 
 		protected override NodeState OnUpdate()
 		{
 			switch (_failureCondition)
 			{
-				case ParallelType.OneChildFailIsFail:
+				case ParallelType.OneTriggeredChild:
 					return PerformOneChildFailLogic();
-				case ParallelType.AllChildrenFailIsFail:
+				case ParallelType.AllTriggeredChildren:
 					return PerformAllChildrenFailLogic();
-				case ParallelType.NumberOfChildrenFailIsFail:
+				case ParallelType.NumberOfTriggeredChildren:
 					return PerformNumberOfChildrenFailLogic();
 				default:
 					return NodeState.Running;
 			}
-		}
+        }
 
-		private NodeState PerformNumberOfChildrenFailLogic()
+        private NodeState PerformOneChildFailLogic()
+        {
+            for (int i = 0; i < Children.Count; i++)
+            {
+                NodeState state = Children[i].State;
+
+                if (state == _childTriggerState)
+                {
+					for (int j = 0; j < Children.Count; j++)
+					{
+						Children[j].Interrupt();
+					}
+
+                    return _returnState;
+                }
+            }
+
+            for (int i = 0; i < Children.Count; i++)
+            {
+                Children[i].Update();
+            }
+
+            return NodeState.Running;
+        }
+
+        private NodeState PerformAllChildrenFailLogic()
+        {
+            bool allFailed = true;
+
+            for (int i = 0; i < Children.Count; i++)
+            {
+                NodeState state = Children[i].Update();
+
+                if (state != _childTriggerState)
+                {
+                    allFailed = false;
+                }
+            }
+
+            return allFailed ? _returnState : NodeState.Running;
+        }
+
+        private NodeState PerformNumberOfChildrenFailLogic()
 		{
 			int failedChildrenCount = 0;
 
@@ -42,46 +86,14 @@ namespace BT.Nodes
 			{
 				NodeState state = Children[i].Update();
 
-				if (state == NodeState.Failure)
+                if (state == _childTriggerState)
 				{
 					failedChildrenCount++;
 				}
 
 				if (failedChildrenCount >= ConditionalFailedChildrenCount)
 				{
-					return NodeState.Failure;
-				}
-			}
-
-			return NodeState.Running;
-		}
-
-		private NodeState PerformAllChildrenFailLogic()
-		{
-			bool allFailed = true;
-
-			for (int i = 0; i < Children.Count; i++)
-			{
-				NodeState state = Children[i].Update();
-
-				if (state != NodeState.Failure)
-				{
-					allFailed = false;
-				}
-			}
-
-			return allFailed ? NodeState.Failure : NodeState.Running;
-		}
-
-		private NodeState PerformOneChildFailLogic()
-		{
-			for (int i = 0; i < Children.Count; i++)
-			{
-				NodeState state = Children[i].Update();
-
-				if (state == NodeState.Failure)
-				{
-					return NodeState.Failure;
+					return _returnState;
 				}
 			}
 
@@ -92,5 +104,30 @@ namespace BT.Nodes
 		{
 
 		}
-	}
+
+        public override void Interrupt()
+        {
+            base.Interrupt();
+
+			for (int i = 0; i < Children.Count; i++)
+			{
+				Children[i].Interrupt();
+			}
+        }
+
+        public override bool Abort()
+        {
+			if (base.Abort())
+            {
+                for (int i = 0; i < Children.Count; i++)
+                {
+                    Children[i].Abort();
+                }
+
+                return true;
+			}
+
+			return false;
+        }
+    }
 }

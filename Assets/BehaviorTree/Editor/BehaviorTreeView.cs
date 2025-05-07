@@ -30,6 +30,16 @@ namespace BT.BTEditor
         {typeof(DecoratorNode), typeof(DecorateNodeView) },
     };
 
+        private Dictionary<KeyCode, Action<List<ISelectable>>> _alignmentInputMethods = new Dictionary<KeyCode, Action<List<ISelectable>>>()
+        {
+            {KeyCode.H, BTViewNodesAligner.AlignHorizontally},
+            {KeyCode.V, BTViewNodesAligner.AlignVertically},
+            {KeyCode.UpArrow, BTViewNodesAligner.AlignUp},
+            {KeyCode.DownArrow, BTViewNodesAligner.AlignDown},
+            {KeyCode.LeftArrow, BTViewNodesAligner.AlignLeft},
+            {KeyCode.RightArrow, BTViewNodesAligner.AlignRight},
+        };
+
 
         #region Initialization
         public BehaviorTreeView()
@@ -99,8 +109,19 @@ namespace BT.BTEditor
                 AssetDatabase.SaveAssets();
             }
 
+            tree.Nodes.RemoveAll(n => n == null);
+
             // create the node view
-            tree.Nodes.ForEach(n => CreateNodeView(n, n.Position));
+            foreach(BaseNode node in tree.Nodes)
+            {
+                if (node == null)
+                {
+                    Debug.LogError("No node");
+                    continue;
+                }
+
+                CreateNodeView(node, node.Position);
+            }
 
             // create the edges
             tree.Nodes.ForEach(n =>
@@ -308,13 +329,18 @@ namespace BT.BTEditor
                 a => DuplicateNodes(),
                 a => duplicateAvailable ? DropdownMenuAction.Status.Normal : DropdownMenuAction.Status.Disabled);
 
+            evt.menu.AppendAction("Align Vertically",
+                a => BTViewNodesAligner.AlignVertically(selection));
+
+            evt.menu.AppendAction("Align Horizontally",
+                a => BTViewNodesAligner.AlignHorizontally(selection));
+
             if (selection.OfType<NodeView>().ToList().Count > 0)
             {
                 evt.menu.AppendSeparator();
                 evt.menu.AppendAction("Do something for node", null);
             }
         }
-
 
         public void CreateNode(Type type, Vector2 position)
         {
@@ -413,6 +439,15 @@ namespace BT.BTEditor
                 else if (evt.keyCode == KeyCode.D)
                 {
                     DuplicateNodes();
+                    evt.StopPropagation();
+                }
+            }
+            // alignment shortcuts
+            else if (evt.shiftKey)
+            {
+                if(_alignmentInputMethods.ContainsKey(evt.keyCode))
+                {
+                    _alignmentInputMethods[evt.keyCode].Invoke(selection);
                     evt.StopPropagation();
                 }
             }

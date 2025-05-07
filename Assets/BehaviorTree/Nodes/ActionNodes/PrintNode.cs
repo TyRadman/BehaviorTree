@@ -14,9 +14,11 @@ namespace BT.Nodes
         [SerializeField] private string _message;
         [SerializeField] private DebugType _printType = DebugType.Log;
         [SerializeField] private bool _display = true;
+        [SerializeField] private bool _displayTime = false;
 
-        protected override void OnStart()
+        protected override NodeState OnStart()
         {
+            return NodeState.Running;
         }
 
         protected override void OnExit()
@@ -37,16 +39,18 @@ namespace BT.Nodes
                 return;
             }
 
+            string message = $"{_message}" + (_displayTime ? Time.time.ToString() : "");
+
             switch (_printType)
             {
                 case DebugType.Log:
-                    Debug.Log($"{_message}");
+                    Debug.Log(message);
                     break;
                 case DebugType.LogWarning:
-                    Debug.LogWarning($"{_message}");
+                    Debug.LogWarning(message);
                     break;
                 case DebugType.LogError:
-                    Debug.LogErrorFormat($"{_message}");
+                    Debug.LogErrorFormat(message);
                     break;
             }
         }

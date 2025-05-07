@@ -8,9 +8,10 @@ namespace BT.Nodes
         public float Duration = 1f;
         private float _elapsedTime;
 
-        protected override void OnStart()
+        protected override NodeState OnStart()
         {
             _elapsedTime = 0f;
+            return NodeState.Running;
         }
 
         protected override NodeState OnUpdate()

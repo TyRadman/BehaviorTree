@@ -10,28 +10,41 @@ namespace BT
     [CreateAssetMenu(fileName = "BT_NAME")]
     public class BehaviorTree : ScriptableObject
     {
-        public BaseNode RootNode;
-        public NodeState TreeState = NodeState.Running;
-        public List<BaseNode> Nodes = new List<BaseNode>();
-        public BlackboardVariablesContainer BlackboardContainer;
+        public bool IsInitiated { get; private set; } = false;
 
+        public List<BaseNode> Nodes = new List<BaseNode>();
+        public BaseNode RootNode;
         [HideInInspector] public Dictionary<BaseNode, string> _nodeVariables = new Dictionary<BaseNode, string>();
         [HideInInspector] private Dictionary<string, BaseNode> _variableToNode = new();
+        [HideInInspector] public BlackboardVariablesContainer BlackboardContainer;
+        [HideInInspector] public MonoBehaviour Agent;
+        [HideInInspector] public NodeState TreeState = NodeState.Running;
 
-        public void Start()
+
+        public void AwakeBT()
         {
-            RootNode.State = NodeState.Running;
             RootNode.OnAwake();
+            IsInitiated = true;
         }
 
-        public NodeState Update()
+        public void StartBT()
         {
-            if(RootNode.State == NodeState.Running )
+            RootNode.State = NodeState.Running;
+        }
+
+        public NodeState UpdateBT()
+        {
+            if(RootNode.State == NodeState.Running)
             {
                 TreeState = RootNode.Update();
             }
 
             return TreeState;
+        }
+
+        public void StopBT()
+        {
+            RootNode.Abort();
         }
 
 
@@ -43,6 +56,7 @@ namespace BT
 
         private const string UNDO_REDO_CREATE_NODE_ID = "Behavior Tree (CreateNode)";
         private const string UNDO_REDO_DELETE_NODE_ID = "Behavior Tree (DeleteNode)";
+
 
         #region Node Variables
         public void UpdateVariable(BaseNode node)
@@ -84,6 +98,7 @@ namespace BT
         }
         #endregion
 
+#if UNITY_EDITOR
         public BaseNode CreateNode(Type type)
         {
             BaseNode node = ScriptableObject.CreateInstance(type) as BaseNode;
@@ -119,6 +134,7 @@ namespace BT
             Undo.DestroyObjectImmediate(node);
             AssetDatabase.SaveAssets();
         }
+#endif
 
         /// <summary>
         /// Returns a runtime duplicate of the behavior tree
@@ -141,17 +157,15 @@ namespace BT
 
         public void Bind(MonoBehaviour agent)
         {
-            Traverse(RootNode, node =>
-            {
-                node.Agent = agent;
-                node.Blackboard = BlackboardContainer;
-            });
+            Agent = agent;
+            Traverse(RootNode, node => node.Bind(agent, BlackboardContainer));
         }
 
         public void Traverse(BaseNode node, Action<BaseNode> visitor)
         {
             if (node == null)
             {
+                Debug.LogError("No node");
                 return;
             }
          
@@ -160,6 +174,8 @@ namespace BT
             children.ForEach(n => Traverse(n, visitor));
         }
 
+
+#if UNITY_EDITOR
         #region Blackboard
         public void CreateBlackboardContainer()
         {
@@ -180,7 +196,7 @@ namespace BT
 
             AssetDatabase.SaveAssets();
         }
-        #endregion
+#endregion
 
         public void Refresh()
         {
@@ -259,5 +275,6 @@ namespace BT
                 }
             }
         }
+#endif
     }
 }
